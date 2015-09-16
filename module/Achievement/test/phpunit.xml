@@ -3,7 +3,7 @@
 <phpunit bootstrap="Bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="Achievement System Manager">
-            <directory>./AlbumTest</directory>
+            <directory>./AchievementTest</directory>
         </testsuite>
     </testsuites>
 </phpunit>
