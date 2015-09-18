@@ -4,6 +4,8 @@ namespace AchievementTest\Controller;
 
 class StudentWriteControllerTest extends AbstractHttpControllerTestCase
 {
+    protected $traceError = true;
+
     public function testWhenVisitPageCreateStudentProfileThenShowBlankStudentProfileForm()
     {
         $this->dispatch('/student/add');
@@ -15,6 +17,25 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertControllerClass('StudentWriteController');
         $this->assertActionName('add');
 
+        // turn on this line to debug
+        // echo $this->getResponse()->getContent();
+
+        /**
+         * assert blank form with needed element
+         */
+        $this->assertQuery("form[name='add-student'][id='add-student'][method='POST'][action='/student/add']");
+        $this->assertQuery("input[type='text'][name='student[registration-code]']");
+        $this->assertQuery("input[type='text'][name='student[katakana-name]']");
+        $this->assertQuery("input[type='text'][name='student[fullname]']");
+        $this->assertQuery("input[type='text'][name='student[dob]']");
+        $this->assertQuery("select[name='student[gender]']");
+        $this->assertQuery("select[name='student[school-year]']");
+
+        //assert only one siblings fieldset exits
+        $this->assertQuery("input[type='text'][name='student[siblings][0][fullname]']");
+        $this->assertQuery("input[type='text'][name='student[siblings][0][dob]']");
+        $this->assertQuery("input[type='text'][name='student[siblings][0][work]']");
+        $this->assertQuery("select[name='student[siblings][0][relationship]']");
     }
 
     public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent()

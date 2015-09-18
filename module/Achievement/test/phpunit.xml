@@ -6,4 +6,15 @@
             <directory>./AchievementTest</directory>
         </testsuite>
     </testsuites>
+    
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../module/Achievement/</directory>
+            <exclude>
+                <directory>../module/Achievement/test</directory>
+                <directory>../vendor</directory>
+                <file>../module/Achievement/test/Boostrap.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
 </phpunit>

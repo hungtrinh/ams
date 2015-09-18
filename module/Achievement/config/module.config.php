@@ -1,9 +1,15 @@
 <?php
 return [
+    'forms' => include __DIR__ . '/form.config.php',
+    'view_manager' => [
+         'template_path_stack' => [
+             __DIR__ . '/../view',
+         ],//template_path_stack
+     ],//view_manager
     'controllers' => [
-         'invokables' => [
-             'Achievement\Controller\StudentWrite' => 'Achievement\Controller\StudentWriteController',
-         ]
+        'factories' => [
+            'Achievement\Controller\StudentWrite' => 'Achievement\Student\Factory\WriteControllerFactory',
+        ]
      ],
     'router' => [
         'routes' => [

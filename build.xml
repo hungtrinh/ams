@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Achivemenent System Manage" default="build">
+	<target name="build" description="Build system">
+        <exec executable="vendor/bin/phpunit">
+            <arg value="-c" />
+            <arg value="module/Achievement/test/phpunit.xml" />
+        </exec>
+	</target>
+</project>
