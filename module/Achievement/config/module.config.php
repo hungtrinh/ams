@@ -1,6 +1,19 @@
 <?php
 return [
     'forms' => include __DIR__ . '/form.config.php',
+    'log' => [
+        'Log\App' => [
+            'writers' => [
+                [
+                    'name' => 'stream',
+                    'priority' => 1000,
+                    'options' => [
+                        'stream' => './data/logs/app.log',
+                    ],
+                ],
+            ],
+        ],
+    ],
     'view_manager' => [
          'template_path_stack' => [
              __DIR__ . '/../view',
