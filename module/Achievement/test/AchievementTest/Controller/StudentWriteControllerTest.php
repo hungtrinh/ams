@@ -36,6 +36,8 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertQuery("input[type='text'][name='student[siblings][0][dob]']");
         $this->assertQuery("input[type='text'][name='student[siblings][0][work]']");
         $this->assertQuery("select[name='student[siblings][0][relationship]']");
+        $this->assertQuery("select[name='student[siblings][0][relationship]'] > option[value='sister']");
+        $this->assertQuery("select[name='student[siblings][0][relationship]'] > option[value='brother']");
     }
 
     public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent()

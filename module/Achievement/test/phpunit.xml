@@ -6,7 +6,7 @@
             <directory>./AchievementTest</directory>
         </testsuite>
     </testsuites>
-    
+
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">../module/Achievement/</directory>

@@ -1,64 +1,13 @@
 <?php
 return [
+
     'Fieldset\Sibling' => [
-        'type' => 'Zend\Form\Fieldset',
+        'type' => 'fieldset',
         'name' => 'sibling',
         'elements' => [
             [
                 'spec' => [
-                    'type' => 'Text',
-                    'name' => 'fullname',
-                    'options' => [
-                        'label' => 'Full name',
-                    ],
-                ],
-            ],
-            [
-                'spec' => [
-                    'type' => 'Text',
-                    'name' => 'dob',
-                    'options' => [
-                        'label' => 'Date of birth',
-                    ],
-                ],
-            ],
-            [
-                'spec' => [
-                    'type' => 'Select',
-                    'name' => 'relationship',
-                    'options' => [
-                        'label' => 'Relationship',
-                    ],
-                ],
-            ],
-            [
-                'spec' => [
-                    'type' => 'Text',
-                    'name' => 'work',
-                    'options' => [
-                        'label' => 'Work',
-                    ],
-                ],
-            ],
-        ],//elements
-    ], //Fieldset\Sibling
-
-    'Fieldset\Student' => [
-        'type' => 'Zend\Form\Fieldset',
-        'name' => 'student',
-        'elements' => [
-            [
-                'spec' => [
-                    'type' => 'Text',
-                    'name' => 'registration-code',
-                    'options' => [
-                        'label' => 'Registration code',
-                    ],
-                ],
-            ], //registration-code
-            [
-                'spec' => [
-                    'type' => 'Text',
+                    'type' => 'text',
                     'name' => 'fullname',
                     'options' => [
                         'label' => 'Full name',
@@ -67,16 +16,7 @@ return [
             ], //fullname
             [
                 'spec' => [
-                    'type' => 'Text',
-                    'name' => 'katakana-name',
-                    'options' => [
-                        'label' => 'Katakana name',
-                    ],
-                ],
-            ], //katakana-name
-            [
-                'spec' => [
-                    'type' => 'Text',
+                    'type' => 'text',
                     'name' => 'dob',
                     'options' => [
                         'label' => 'Date of birth',
@@ -85,7 +25,72 @@ return [
             ], //dob
             [
                 'spec' => [
-                    'type' => 'Select',
+                    'type' => 'select',
+                    'name' => 'relationship',
+                    'options' => [
+                        'label' => 'Relationship',
+                        'value_options' => [
+                            'sister' => 'Sister',
+                            'brother' => 'Brother',
+                        ],
+                    ],
+                ],
+            ], //relationship
+            [
+                'spec' => [
+                    'type' => 'text',
+                    'name' => 'work',
+                    'options' => [
+                        'label' => 'Work',
+                    ],
+                ],
+            ], //work
+        ],//elements
+    ], //Fieldset\Sibling
+
+    'Fieldset\Student' => [
+        'type' => 'fieldset',
+        'name' => 'student',
+        'elements' => [
+            [
+                'spec' => [
+                    'type' => 'text',
+                    'name' => 'registration-code',
+                    'options' => [
+                        'label' => 'Registration code',
+                    ],
+                ],
+            ], //registration-code
+            [
+                'spec' => [
+                    'type' => 'text',
+                    'name' => 'fullname',
+                    'options' => [
+                        'label' => 'Full name',
+                    ],
+                ],
+            ], //fullname
+            [
+                'spec' => [
+                    'type' => 'text',
+                    'name' => 'katakana-name',
+                    'options' => [
+                        'label' => 'Katakana name',
+                    ],
+                ],
+            ], //katakana-name
+            [
+                'spec' => [
+                    'type' => 'text',
+                    'name' => 'dob',
+                    'options' => [
+                        'label' => 'Date of birth',
+                    ],
+                ],
+            ], //dob
+            [
+                'spec' => [
+                    'type' => 'select',
                     'name' => 'gender',
                     'options' => [
                         'label' => 'Gender',
@@ -94,7 +99,7 @@ return [
             ], //gender
             [
                 'spec' => [
-                    'type' => 'Select',
+                    'type' => 'select',
                     'name' => 'school-year',
                     'options' => [
                         'label' => 'School year',
@@ -103,7 +108,7 @@ return [
             ], //school-year
             [
                 'spec' => [
-                    'type' => 'Collection',
+                    'type' => 'collection',
                     'name' => 'siblings',
                     'options' => [
                         'label' => 'Siblings',
@@ -121,7 +126,7 @@ return [
     ], //Fieldset\Student
 
     'Form\Student' => [
-        'type' => 'Zend\Form\Form',
+        'type' => 'form',
         'name' => 'add-student',
         'elements' => [
             [
@@ -132,7 +137,8 @@ return [
                         'use_as_base_fieldset' => true,
                     ],
                 ],
-            ],
-        ],
+            ], //student
+        ], //elements
     ], //Form\Student
+
 ];

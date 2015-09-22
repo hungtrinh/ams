@@ -30,10 +30,10 @@ return [
                 'type' => 'literal',
                 'options' => [
                     'route' => '/student',
-                    // 'defaults' => [
-                    //     'controller' => 'Achievement\Controller\List',
-                    //     'action' => 'index',
-                    // ], //defaults
+                    'defaults' => [
+                        'controller' => 'Achievement\Controller\StudentWrite',
+                        'action' => 'index',
+                    ], //defaults
                 ], //options
                 'may_terminate' => true,
                 'child_routes'  => [
