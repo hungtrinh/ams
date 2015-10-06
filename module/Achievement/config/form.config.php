@@ -48,6 +48,37 @@ return [
         ],//elements
     ], //Fieldset\Sibling
 
+    'Fieldset\AccountBasic' => [
+        'type' => 'fieldset',
+        'name' => 'accountbasic',
+        'elements' => [
+            [
+                'spec' => [
+                    'type' => 'hidden',
+                    'name' => 'id',
+                ],
+            ], //userid
+            [
+                'spec' => [
+                    'type' => 'text',
+                    'name' => 'username',
+                    'options' => [
+                        'label' => 'Username',
+                    ],
+                ],
+            ], //username
+            [
+                'spec' => [
+                    'type' => 'password',
+                    'name' => 'password',
+                    'options' => [
+                        'label' => 'Password',
+                    ],
+                ],
+            ], //username
+        ], // elements
+    ], //Fieldset\AccountBasic
+
     'Fieldset\Student' => [
         'type' => 'fieldset',
         'name' => 'student',
@@ -122,42 +153,17 @@ return [
                     ],
                 ],
             ], //siblings
+            [
+                'spec' => [
+                    'type' => 'Fieldset\AccountBasic',
+                    'name' => 'account',
+                    'options' => [
+                        'use_as_base_fieldset' => true,
+                    ],
+                ],
+            ], //account
         ], //elements
     ], //Fieldset\Student
-
-    'Fieldset\AccountBasic' => [
-        'type' => 'fieldset',
-        'name' => 'accountbasic',
-        'elements' => [
-            [
-                'spec' => [
-                    'type' => 'hidden',
-                    'name' => 'id',
-                    'options' => [
-                        'label' => 'Userid',
-                    ],
-                ],
-            ], //userid
-            [
-                'spec' => [
-                    'type' => 'text',
-                    'name' => 'username',
-                    'options' => [
-                        'label' => 'Username',
-                    ],
-                ],
-            ], //username
-            [
-                'spec' => [
-                    'type' => 'password',
-                    'name' => 'password',
-                    'options' => [
-                        'label' => 'Password',
-                    ],
-                ],
-            ], //username
-        ], // elements
-    ], //Fieldset\AccountBasic
 
     'Form\Student' => [
         'type' => 'form',
@@ -172,15 +178,7 @@ return [
                     ],
                 ],
             ], //student
-            [
-                'spec' => [
-                    'type' => 'Fieldset\AccountBasic',
-                    'name' => 'account',
-                    'options' => [
-                        'use_as_base_fieldset' => true,
-                    ],
-                ],
-            ], //account
+
             [
                 'spec' => [
                     'type' => 'submit',

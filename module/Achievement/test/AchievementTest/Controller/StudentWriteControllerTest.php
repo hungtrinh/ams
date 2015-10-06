@@ -25,16 +25,16 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
          */
         $this->assertQuery("form[name='add-student'][id='add-student'][method='POST'][action='/student/add']");
 
-        $this->assertQuery("input[name='account[id]'][type='hidden']");
-        $this->assertQuery("input[name='account[username]'][type='text']");
-        $this->assertQuery("input[name='account[password]'][type='password']");
-
         $this->assertQuery("input[name='student[registration-code]'][type='text']");
         $this->assertQuery("input[name='student[katakana-name]'][type='text']");
         $this->assertQuery("input[name='student[fullname]'][type='text']");
         $this->assertQuery("input[name='student[dob]'][type='text']");
         $this->assertQuery("select[name='student[gender]']");
         $this->assertQuery("select[name='student[school-year]']");
+
+        $this->assertQuery("input[name='student[account][id]'][type='hidden']");
+        $this->assertQuery("input[name='student[account][username]'][type='text']");
+        $this->assertQuery("input[name='student[account][password]'][type='password']");
 
         //assert only one siblings fieldset exits
         $this->assertQuery("input[name='student[siblings][0][fullname]'][type='text']");
