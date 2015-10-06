@@ -10,7 +10,7 @@ class StudentWriteController extends AbstractActionController
 {
     /**
      * Student form
-     * 
+     *
      * @var \Zend\Form\FormInterface
      */
     protected $form;
@@ -22,9 +22,6 @@ class StudentWriteController extends AbstractActionController
 
     public function addAction()
     {
-        $viewModel = new ViewModel();
-        $viewModel->form = $this->form;
-        return $viewModel;
+        return ['form' => $this->form];
     }
 }
-

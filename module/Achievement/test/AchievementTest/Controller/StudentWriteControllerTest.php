@@ -24,20 +24,29 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
          * assert blank form with needed element
          */
         $this->assertQuery("form[name='add-student'][id='add-student'][method='POST'][action='/student/add']");
-        $this->assertQuery("input[type='text'][name='student[registration-code]']");
-        $this->assertQuery("input[type='text'][name='student[katakana-name]']");
-        $this->assertQuery("input[type='text'][name='student[fullname]']");
-        $this->assertQuery("input[type='text'][name='student[dob]']");
+
+        $this->assertQuery("input[name='account[id]'][type='hidden']");
+        $this->assertQuery("input[name='account[username]'][type='text']");
+        $this->assertQuery("input[name='account[password]'][type='password']");
+
+        $this->assertQuery("input[name='student[registration-code]'][type='text']");
+        $this->assertQuery("input[name='student[katakana-name]'][type='text']");
+        $this->assertQuery("input[name='student[fullname]'][type='text']");
+        $this->assertQuery("input[name='student[dob]'][type='text']");
         $this->assertQuery("select[name='student[gender]']");
         $this->assertQuery("select[name='student[school-year]']");
 
         //assert only one siblings fieldset exits
-        $this->assertQuery("input[type='text'][name='student[siblings][0][fullname]']");
-        $this->assertQuery("input[type='text'][name='student[siblings][0][dob]']");
-        $this->assertQuery("input[type='text'][name='student[siblings][0][work]']");
+        $this->assertQuery("input[name='student[siblings][0][fullname]'][type='text']");
+        $this->assertQuery("input[name='student[siblings][0][dob]'][type='text']");
+        $this->assertQuery("input[name='student[siblings][0][work]'][type='text']");
         $this->assertQuery("select[name='student[siblings][0][relationship]']");
         $this->assertQuery("select[name='student[siblings][0][relationship]'] > option[value='sister']");
         $this->assertQuery("select[name='student[siblings][0][relationship]'] > option[value='brother']");
+
+        $this->assertQuery("input[name='add'][type='submit']");
+
+
     }
 
     public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent()
