@@ -189,6 +189,9 @@ return [
                 ],
             ], // add new
         ], //elements
-    ], //Form\Student
 
+        'input_filter' => [
+            'student' => $studentFieldsetFilterSpec,
+        ], //input_filter
+    ], //Form\Student
 ];
