@@ -1,6 +1,34 @@
 <?php
-return [
+$accountBasicFieldsetFilterSpec = [
+    'type' => 'input_filter',
+    'username' => [
+        'name' => 'username',
+        'required' => true,
+    ]
+];
 
+$studentFieldsetFilterSpec = [
+    'type' => 'input_filter',
+    'registration-code' => [
+        'name'       => 'registration-code',
+        'required'   => true,
+    ],
+    'katakana-name' => [
+        'name'       => 'katakana-name',
+        'required'   => true,
+    ],
+    'fullname' => [
+        'name'       => 'fullname',
+        'required'   => true,
+    ],
+    'dob' => [
+        'name'       => 'dob',
+        'required'   => true,
+    ],
+    'account' => $accountBasicFieldsetFilterSpec,
+];
+
+return [
     'Fieldset\Sibling' => [
         'type' => 'fieldset',
         'name' => 'sibling',
@@ -65,6 +93,9 @@ return [
                     'options' => [
                         'label' => 'Username',
                     ],
+                    'attributes' => [
+                        'maxlength' => 7,
+                    ],
                 ],
             ], //username
             [
@@ -89,6 +120,9 @@ return [
                     'name' => 'registration-code',
                     'options' => [
                         'label' => 'Registration code',
+                    ],
+                    'attributes' => [
+                        'maxlength' => 7,
                     ],
                 ],
             ], //registration-code
@@ -125,18 +159,27 @@ return [
                     'name' => 'gender',
                     'options' => [
                         'label' => 'Gender',
+                        'value_options' => [
+                            'male' => 'Male',
+                            'female' => 'Female',
+                        ],
                     ],
                 ],
             ], //gender
             [
                 'spec' => [
                     'type' => 'select',
-                    'name' => 'school-year',
+                    'name' => 'grade',
                     'options' => [
                         'label' => 'School year',
+                        'value_options' => [
+                            '1' => '1',
+                            '2' => '2',
+                            '3' => '3',
+                        ],
                     ],
                 ],
-            ], //school-year
+            ], //grade
             [
                 'spec' => [
                     'type' => 'collection',
@@ -145,7 +188,6 @@ return [
                         'label' => 'Siblings',
                         'count' => 1,
                         'should_create_template' => false,
-                        'use_as_base_fieldset' => false,
                         'allow_add' => true,
                         'target_element' => [
                             'type' => 'Fieldset\Sibling',
@@ -162,6 +204,21 @@ return [
                     ],
                 ],
             ], //account
+            // [
+            //     'spec' => [
+            //         'type' => 'collection',
+            //         'name' => 'courses',
+            //         'options' => [
+            //             'label' => 'Courses',
+            //             'count' => 5,
+            //             'should_create_template' => false,
+            //             'allow_add' => false,
+            //             'target_element' => [
+            //                 'type' => 'Fieldset\Course',
+            //             ],
+            //         ],
+            //     ],
+            // ], //course
         ], //elements
     ], //Fieldset\Student
 

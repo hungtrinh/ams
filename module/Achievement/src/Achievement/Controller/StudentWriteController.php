@@ -3,7 +3,6 @@
 namespace Achievement\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
 use Zend\Form\FormInterface;
 
 class StudentWriteController extends AbstractActionController
@@ -22,6 +21,18 @@ class StudentWriteController extends AbstractActionController
 
     public function addAction()
     {
-        return ['form' => $this->form];
+        $request = $this->getRequest(); /* @var $request \Zend\Http\Request */
+
+        if ($request->isPost()) {
+            $this->form->setData($request->getPost());
+            if ($this->form->isValid()) {
+                //save student profile
+                return $this->redirect()->toRoute('home');
+            }
+        }
+
+        return [
+            'form' => $this->form
+        ];
     }
 }

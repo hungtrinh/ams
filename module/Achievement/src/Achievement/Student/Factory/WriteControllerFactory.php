@@ -10,9 +10,9 @@ use Zend\Mvc\Controller\ControllerManager;
  */
 class WriteControllerFactory
 {
-    function __invoke(ControllerManager $controllerManager)
+    public function __invoke(ControllerManager $controllerManager)
     {
-        $sm = $controllerManager->getServiceLocator();
-        return new StudentWriteController($sm->get('Form\Student'));
+        $locator = $controllerManager->getServiceLocator();
+        return new StudentWriteController($locator->get('Form\Student'));
     }
 }
