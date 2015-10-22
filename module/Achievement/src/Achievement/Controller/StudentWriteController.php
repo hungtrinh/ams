@@ -8,15 +8,20 @@ use Zend\Form\FormInterface;
 class StudentWriteController extends AbstractActionController
 {
     /**
-     * Student form
+     * Student studentForm
      *
      * @var \Zend\Form\FormInterface
      */
-    protected $form;
+    protected $studentForm;
 
-    public function __construct(FormInterface $form)
+    public function __construct(FormInterface $studentForm)
     {
-        $this->form = $form;
+        $this->studentForm = $studentForm;
+    }
+
+    public function indexAction()
+    {
+        return false;
     }
 
     public function addAction()
@@ -24,15 +29,15 @@ class StudentWriteController extends AbstractActionController
         $request = $this->getRequest(); /* @var $request \Zend\Http\Request */
 
         if ($request->isPost()) {
-            $this->form->setData($request->getPost());
-            if ($this->form->isValid()) {
+            $this->studentForm->setData($request->getPost());
+            if ($this->studentForm->isValid()) {
                 //save student profile
-                return $this->redirect()->toRoute('home');
+                return $this->redirect()->toRoute('student');
             }
         }
 
         return [
-            'form' => $this->form
+            'studentForm' => $this->studentForm
         ];
     }
 }

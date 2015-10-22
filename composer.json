@@ -10,7 +10,8 @@
     "require": {
         "php": ">=5.5",
         "zendframework/zendframework": "~2.5",
-        "zfcampus/zf-development-mode": "2.*"
+        "zfcampus/zf-development-mode": "2.*",
+        "atukai/at-php-settings": "dev-master"
     },
     "require-dev":  {
         "zendframework/zend-developer-tools": "dev-master",

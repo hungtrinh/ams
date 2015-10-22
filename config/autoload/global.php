@@ -11,6 +11,11 @@
  * file.
  */
 
-return array(
-    // ...
-);
+return [
+    'php_settings' => [
+        'display_startup_errors'     => false,
+        'display_errors'             => true,
+        'max_execution_time'         => 30,
+        'date.timezone'              => 'asia/Ho_Chi_Minh',
+    ]
+];

@@ -5,6 +5,7 @@
         <exec executable="vendor/bin/phpunit">
             <arg value="-c" />
             <arg value="module/Achievement/test/phpunit.xml" />
+            <arg value="--testdox" />
         </exec>
 	</target>
 </project>

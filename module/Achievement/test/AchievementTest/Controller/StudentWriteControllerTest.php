@@ -145,12 +145,11 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     /**
      * @dataProvider validNewStudentProfileProvider
      */
-    public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent($validProfile)
+    public function testWhenCreatedStudentProfileSuccessThenRedirectToStudentListPage($validProfile)
     {
-        $this->markTestIncomplete('specification');
-
+        $this->submitStudentProfile($validProfile);
         $this->assertResponseStatusCode(302);
-        $this->assertRedirectTo('/');
+        $this->assertRedirectTo('/student');
     }
 
     public function testWhenVisitPageEditStudentProfileThenShowPopulatedStudentProfileForm()

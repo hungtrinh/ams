@@ -10,7 +10,7 @@ return array(
         'Application',
         'ZF\DevelopmentMode',
         'Achievement',
-
+        'AtPhpSettings',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

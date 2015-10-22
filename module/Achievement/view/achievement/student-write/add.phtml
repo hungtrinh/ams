@@ -2,9 +2,9 @@
 /* @var $this \Zend\View\Renderer\PhpRenderer */
 /* @var $form \Zend\Form\FormInterface */
 
-$form = $this->form;
-$form->setAttribute('action', $this->url('student/add'));
+$studentForm = $this->studentForm;
+$studentForm->setAttribute('action', $this->url('student/add'));
 ?>
-<?= $this->form()->render($this->form); ?>
+<?= $this->form()->render($studentForm); ?>
 
 

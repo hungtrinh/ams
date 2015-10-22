@@ -347,7 +347,7 @@
 			"file": "module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php",
 			"settings":
 			{
-				"buffer_size": 6554,
+				"buffer_size": 6517,
 				"line_ending": "Unix"
 			}
 		},
@@ -355,15 +355,12 @@
 			"file": "module/Achievement/config/form.config.php",
 			"settings":
 			{
-				"buffer_size": 7588,
+				"buffer_size": 7633,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "<?php\n\nnamespace Achievement\\Controller;\n\nuse Zend\\Mvc\\Controller\\AbstractActionController;\nuse Zend\\Form\\FormInterface;\n\nclass StudentWriteController extends AbstractActionController\n{\n    /**\n     * Student form\n     *\n     * @var \\Zend\\Form\\FormInterface\n     */\n    protected $form;\n\n    public function __construct(FormInterface $form)\n    {\n        $this->form = $form;\n    }\n\n    public function addAction()\n    {\n        $request = $this->getRequest(); /* @var $request \\Zend\\Http\\Request */\n\n        if ($request->isPost()) {\n            $this->form->setData($request->getPost());\n            if ($this->form->isValid()) {\n                //save student profile\n                return $this->redirect()->toRoute('home');\n            }\n        }\n\n        return [\n            'form' => $this->form\n        ];\n    }\n}\n",
 			"file": "module/Achievement/src/Achievement/Controller/StudentWriteController.php",
-			"file_size": 825,
-			"file_write_time": 130891804360000000,
 			"settings":
 			{
 				"buffer_size": 825,
@@ -371,18 +368,10 @@
 			}
 		},
 		{
-			"file": "build.xml",
+			"file": "config/autoload/.gitignore",
 			"settings":
 			{
-				"buffer_size": 330,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/config/module.config.php",
-			"settings":
-			{
-				"buffer_size": 1748,
+				"buffer_size": 22,
 				"line_ending": "Unix"
 			}
 		}
@@ -458,8 +447,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "disable",
+		"height": 327.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -975,7 +964,7 @@
 				"Pretty JSON: Format (Pretty Print) JSON"
 			]
 		],
-		"width": 535.0
+		"width": 503.0
 	},
 	"console":
 	{
@@ -999,7 +988,8 @@
 	"expanded_folders":
 	[
 		"/Users/apple/www/ams",
-		"/Users/apple/www/ams/module",
+		"/Users/apple/www/ams/config",
+		"/Users/apple/www/ams/config/autoload",
 		"/Users/apple/www/ams/module/Achievement",
 		"/Users/apple/www/ams/module/Achievement/config",
 		"/Users/apple/www/ams/module/Achievement/test",
@@ -1017,12 +1007,15 @@
 	],
 	"file_history":
 	[
+		"/Users/apple/www/ams/module/Achievement/config/module.config.php",
+		"/Users/apple/www/ams/module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php",
+		"/Users/apple/www/ams/build.xml",
+		"/Users/apple/www/ams/module/Achievement/src/Achievement/Controller/StudentWriteController.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/Factory.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-inputfilter/src/Factory.php",
 		"/Users/apple/www/ams/ams.sublime-project",
 		"/Users/apple/www/ams/module/Achievement/test/phpunit.xml",
 		"/Users/apple/www/ams/vendor/zendframework/zend-inputfilter/src/InputFilterAbstractServiceFactory.php",
-		"/Users/apple/www/ams/module/Achievement/src/Achievement/Controller/StudentWriteController.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/FormAbstractServiceFactory.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-inputfilter/src/InputFilterProviderInterface.php",
 		"/Users/apple/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
@@ -1042,7 +1035,6 @@
 		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/Element.php",
 		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php",
 		"/Users/apple/Downloads/hocsinh_utf8-2.csv",
-		"/Users/apple/www/ams/module/Achievement/config/module.config.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Service/InputFilterManagerFactory.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-test/src/PHPUnit/Controller/AbstractControllerTestCase.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Controller/AbstractController.php",
@@ -1086,7 +1078,6 @@
 		"/Users/apple/www/ams/vendor/zendframework/zend-servicemanager/src/AbstractPluginManager.php",
 		"/Users/apple/www/ams/data/logs/.gitignore",
 		"/Users/apple/www/ams/module/Achievement/view/achievement/student-write/add.phtml",
-		"/Users/apple/www/ams/module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php",
 		"/Users/apple/www/ams/module/Achievement/view/achievement/student-write/index.phtml",
 		"/Users/apple/www/ams/vendor/zendframework/zend-modulemanager/src/Feature/FormElementProviderInterface.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-modulemanager/src/Listener/ServiceListener.php",
@@ -1143,8 +1134,7 @@
 		"/Users/apple/Library/Application Support/Sublime Text 3/Packages/Xdebug Client/Xdebug.sublime-settings",
 		"/Users/apple/www/dms/module/Document/Module.php",
 		"/Users/apple/www/npad/Project Phase/03 Source/npadapp/migrations/20150825034053_modify_classroom_table_version2.php",
-		"/Users/apple/www/npad/Project Phase/03 Source/npadapp/phinx.yml",
-		"/Users/apple/www/npad/Project Phase/03 Source/npadapp/module/Application/test/Boostrap.php"
+		"/Users/apple/www/npad/Project Phase/03 Source/npadapp/phinx.yml"
 	],
 	"find":
 	{
@@ -1186,6 +1176,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"Fieldset\\Course",
+			"Form\\Student",
 			"postEmptyStudentProfile",
 			"school-year",
 			"registration-code",
@@ -1311,9 +1303,7 @@
 			"Empty",
 			"// ",
 			",$",
-			" => ",
-			"=> .*$",
-			"^.* =>"
+			" => "
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -1383,15 +1373,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6554,
+						"buffer_size": 6517,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6150,
-								6150
+								6456,
+								6456
 							]
 						],
 						"settings":
@@ -1404,16 +1394,16 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 818.0,
+						"translation.y": 1613.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -1422,47 +1412,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7588,
+						"buffer_size": 7633,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6618,
-								6618
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "php",
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 77.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "module/Achievement/src/Achievement/Controller/StudentWriteController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 825,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								670,
-								670
+								7,
+								37
 							]
 						],
 						"settings":
@@ -1481,50 +1439,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "build.xml",
+					"buffer": 2,
+					"file": "module/Achievement/src/Achievement/Controller/StudentWriteController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 330,
+						"buffer_size": 825,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								291,
-								291
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": true,
-							"WordCountSyntax": "xml",
-							"syntax": "Packages/XML/XML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "module/Achievement/config/module.config.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1748,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14,
-								14
+								753,
+								499
 							]
 						],
 						"settings":
@@ -1536,10 +1464,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 160.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "config/autoload/.gitignore",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 22,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "plain text",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1585,7 +1543,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 283.0
+		"height": 374.0
 	},
 	"output.find_results":
 	{
@@ -1595,7 +1553,7 @@
 	{
 		"height": 100.0
 	},
-	"pinned_build_system": "Packages/User/phpcs.sublime-build",
+	"pinned_build_system": "Packages/Java/Ant.sublime-build",
 	"project": "ams.sublime-project",
 	"replace":
 	{
@@ -1608,6 +1566,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"module.config",
+				"module/Achievement/config/module.config.php"
+			],
+			[
+				"writecontrollerfactory",
+				"module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php"
+			],
 			[
 				"student",
 				"module/Achievement/src/Achievement/Controller/StudentWriteController.php"
@@ -1643,10 +1609,6 @@
 			[
 				"formelementmanager",
 				"vendor/zendframework/zend-form/src/FormElementManager.php"
-			],
-			[
-				"module.config",
-				"module/Achievement/config/module.config.php"
 			],
 			[
 				"config.php",
@@ -1751,10 +1713,6 @@
 			[
 				"formelementmanagerfactory.php",
 				"ams/vendor/zendframework/zend-mvc/src/Service/FormElementManagerFactory.php"
-			],
-			[
-				"writecontrollerfactory",
-				"ams/module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php"
 			],
 			[
 				"formmana",
@@ -2145,7 +2103,7 @@
 		],
 		"width": 704.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 		"xdebug":
@@ -2156,7 +2114,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 226.0,
 	"status_bar_visible": true,
 	"template_settings":
