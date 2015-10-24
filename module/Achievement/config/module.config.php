@@ -47,6 +47,16 @@ return [
                             ]//defaults
                         ], //options
                     ], //add
+                    'save' => [
+                        'type' => 'literal',
+                        'options' => [
+                            'route' => '/save',
+                            'defaults' => [
+                                'controller' => 'Achievement\Controller\StudentWrite',
+                                'action' => 'save',
+                            ]//defaults
+                        ], //options
+                    ], //save
                 ], //child_routes
             ], //route
         ], //routes

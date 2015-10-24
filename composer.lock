@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d6c6dd3e2061b70b8007a884e2016745",
-    "content-hash": "45c222986f5b804988dea10247330f93",
+    "hash": "920de0a67f2c36a7a6f396065a5400e4",
+    "content-hash": "491d7edf2774134c9d91807324d882dd",
     "packages": [
         {
             "name": "atukai/at-php-settings",

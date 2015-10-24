@@ -40,7 +40,7 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         //assert match request
         $this->assertMatchedRouteName('student/add');
         $this->assertModuleName('Achievement');
-        $this->assertControllerName('achievement\\Controller\\StudentWrite');
+        $this->assertControllerName('Achievement\\Controller\\StudentWrite');
         $this->assertControllerClass('StudentWriteController');
         $this->assertActionName('add');
 
@@ -90,13 +90,13 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
 
     protected function submitStudentProfile(array $rawProfile = [])
     {
-        $this->dispatch('/student/add', 'POST', $rawProfile);
+        $this->dispatch('/student/save', 'POST', $rawProfile);
 
-        $this->assertMatchedRouteName('student/add');
+        $this->assertMatchedRouteName('student/save');
         $this->assertModuleName('Achievement');
-        $this->assertControllerName('achievement\\Controller\\StudentWrite');
+        $this->assertControllerName('Achievement\\Controller\\StudentWrite');
         $this->assertControllerClass('StudentWriteController');
-        $this->assertActionName('add');
+        $this->assertActionName('save');
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayRegistrationCodeErrorMessage()
@@ -138,14 +138,19 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayUsernameErrorMessage()
     {
         $this->submitStudentProfile();
-
         $this->assertQuery("input[name='student[account][username]'][type='text'][class='input-error']");
+    }
+
+    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayPasswordErrorMessage()
+    {
+        $this->submitStudentProfile();
+        $this->assertQuery("input[name='student[account][password]'][type='password'][class='input-error']");
     }
 
     /**
      * @dataProvider validNewStudentProfileProvider
      */
-    public function testWhenCreatedStudentProfileSuccessThenRedirectToStudentListPage($validProfile)
+    public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent($validProfile)
     {
         $this->submitStudentProfile($validProfile);
         $this->assertResponseStatusCode(302);

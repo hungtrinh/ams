@@ -21,6 +21,7 @@
         "jhuet/zdt-logger-module": "dev-master",
         "snapshotpl/zf-snap-event-debugger": "1.*",
         "bjyoungblood/bjy-profiler": "^1.1",
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "^4.8",
+        "phpspec/prophecy": "~1.0"
     }
 }

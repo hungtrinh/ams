@@ -4,6 +4,10 @@ $accountBasicFieldsetFilterSpec = [
     'username' => [
         'name' => 'username',
         'required' => true,
+    ],
+    'password' => [
+        'name' => 'password',
+        'required' => true,
     ]
 ];
 

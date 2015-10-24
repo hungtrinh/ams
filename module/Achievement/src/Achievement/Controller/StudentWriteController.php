@@ -19,25 +19,42 @@ class StudentWriteController extends AbstractActionController
         $this->studentForm = $studentForm;
     }
 
+    /**
+     * list student
+     */
     public function indexAction()
     {
         return false;
     }
 
+    /**
+     * Display new student form.
+     */
     public function addAction()
     {
-        $request = $this->getRequest(); /* @var $request \Zend\Http\Request */
-
-        if ($request->isPost()) {
-            $this->studentForm->setData($request->getPost());
-            if ($this->studentForm->isValid()) {
-                //save student profile
-                return $this->redirect()->toRoute('student');
-            }
-        }
-
         return [
             'studentForm' => $this->studentForm
         ];
+    }
+
+    /**
+     * Persit valid student to db and redirect to list student page.
+     */
+    public function saveAction()
+    {
+        $request = $this->getRequest(); /* @var $request \Zend\Http\Request */
+        if (!$request->isPost()) {
+            return $this->forward()->dispatch('Achievement\Controller\StudentWrite', ['action' => 'add']);
+        }
+
+        $this->studentForm->setData($request->getPost());
+        if (!$this->studentForm->isValid()) {
+            return $this->forward()->dispatch('Achievement\Controller\StudentWrite', ['action' => 'add']);
+        }
+
+        //@todo Persit student to database.
+        // $student = $this->studentForm->getData();
+
+        return $this->redirect()->toRoute('student');
     }
 }
