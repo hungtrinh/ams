@@ -204,25 +204,42 @@ return [
                     'type' => 'Fieldset\AccountBasic',
                     'name' => 'account',
                     'options' => [
+                        'label'                => 'Account',
                         'use_as_base_fieldset' => true,
                     ],
                 ],
             ], //account
-            // [
-            //     'spec' => [
-            //         'type' => 'collection',
-            //         'name' => 'courses',
-            //         'options' => [
-            //             'label' => 'Courses',
-            //             'count' => 5,
-            //             'should_create_template' => false,
-            //             'allow_add' => false,
-            //             'target_element' => [
-            //                 'type' => 'Fieldset\Course',
-            //             ],
-            //         ],
-            //     ],
-            // ], //course
+            [
+                'spec' => [
+                    'type' => 'collection',
+                    'name' => 'courses',
+                    'options' => [
+                        'label' => 'Courses',
+                        'count' => 5,
+                        'should_create_template' => false,
+                        'allow_add' => false,
+                        'target_element' => [
+                            'type' => 'fieldset',
+                            'elements' => [
+                                [
+                                    'spec' => [
+                                        'type' => 'select',
+                                        'name' => 'code',
+                                        'options' => [
+                                            'label' => 'Course code',
+                                            'value_options' => [
+                                                '1' => '1',
+                                                '2' => '2',
+                                                '3' => '3',
+                                            ],
+                                        ],
+                                    ],
+                                ], //code
+                            ],//elements
+                        ],
+                    ],
+                ],
+            ], //course
         ], //elements
     ], //Fieldset\Student
 

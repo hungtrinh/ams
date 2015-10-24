@@ -79,11 +79,11 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertQuery("select[name='student[siblings][0][relationship]'] > option[value='brother']");
 
         //assert has 5 course
-        // $this->assertQuery("select[name='student[courses][0][code]']");
-        // $this->assertQuery("select[name='student[courses][1][code]']");
-        // $this->assertQuery("select[name='student[courses][2][code]']");
-        // $this->assertQuery("select[name='student[courses][3][code]']");
-        // $this->assertQuery("select[name='student[courses][4][code]']");
+        $this->assertQuery("select[name='student[courses][0][code]']");
+        $this->assertQuery("select[name='student[courses][1][code]']");
+        $this->assertQuery("select[name='student[courses][2][code]']");
+        $this->assertQuery("select[name='student[courses][3][code]']");
+        $this->assertQuery("select[name='student[courses][4][code]']");
 
         $this->assertQuery("input[name='add'][type='submit']");
     }
