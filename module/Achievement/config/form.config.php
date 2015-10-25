@@ -255,8 +255,13 @@ return [
                         'use_as_base_fieldset' => true,
                     ],
                 ],
-            ], //student
-
+            ], //student fieldset
+            [
+                'spec' => [
+                    'type' => 'csrf',
+                    'name' => 'security',
+                ],
+            ], //security
             [
                 'spec' => [
                     'type' => 'submit',
@@ -265,7 +270,7 @@ return [
                         'value' => 'Add new',
                     ],
                 ],
-            ], // add new
+            ], // add new button
         ], //elements
 
         'input_filter' => [

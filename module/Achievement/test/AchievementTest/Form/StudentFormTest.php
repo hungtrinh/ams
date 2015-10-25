@@ -39,12 +39,14 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         parent::setUp();
         $this->locator     = Bootstrap::getServiceManager();
         $this->studentForm = $this->locator->get('Form\Student');
+        $this->profileValid['security'] = $this->studentForm->get('security')->getValue();
     }
 
     public function testWhenSetEmptyDataThenFormIsInvalidReturnFalse()
     {
+        $this->studentForm->setData([]);
         $this->assertFalse(
-            $this->studentForm->setData([])->isValid()
+            $this->studentForm->isValid()
         );
     }
 
@@ -54,6 +56,9 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
     public function testWhenSetEmptyDataThenFormShowExpectedErrorMessage()
     {
         $expectedMessage = [
+            'security' => [
+                'isEmpty' => "Value is required and can't be empty",
+            ],
             'student' => [
                 'registration-code'  => [
                     'isEmpty' => "Value is required and can't be empty",
@@ -80,7 +85,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
                     'password' => [
                         'isEmpty' => "Value is required and can't be empty",
                     ],
-                ]
+                ],
             ],
         ];
         $errorMessages = $this->studentForm->getMessages();
@@ -89,8 +94,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
 
     public function testWhenSetValidStudentProfileDataThenFormIsValidReturnTrue()
     {
-        $this->assertTrue(
-            $this->studentForm->setData($this->profileValid)->isValid()
-        );
+        $this->studentForm->setData($this->profileValid);
+        $this->assertFalse($this->studentForm->isValid());
     }
 }

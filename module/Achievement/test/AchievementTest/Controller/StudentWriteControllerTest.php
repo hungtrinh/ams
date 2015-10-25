@@ -84,12 +84,18 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertQuery("select[name='student[courses][2][code]']");
         $this->assertQuery("select[name='student[courses][3][code]']");
         $this->assertQuery("select[name='student[courses][4][code]']");
-
+        $this->assertQuery("input[name='security'][type='hidden']");
         $this->assertQuery("input[name='add'][type='submit']");
     }
 
     protected function submitStudentProfile(array $rawProfile = [])
     {
+        $locator     = $this->getApplicationServiceLocator();
+        $formStudent = $locator->get('Form\Student');
+        $security    = $formStudent->get('security');
+        $rawProfile['security'] = $security->getValue();
+
+
         $this->dispatch('/student/save', 'POST', $rawProfile);
 
         $this->assertMatchedRouteName('student/save');
@@ -153,6 +159,7 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent($validProfile)
     {
         $this->submitStudentProfile($validProfile);
+        echo $this->getResponse()->getContent();
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/student');
     }
