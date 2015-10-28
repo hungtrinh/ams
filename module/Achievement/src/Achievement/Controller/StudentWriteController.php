@@ -53,6 +53,7 @@ class StudentWriteController extends AbstractActionController
         //@todo Persit student to database.
         // $student = $this->studentForm->getData();
         // $this->registerStudentService->register($student);
+
         return $this->redirect()->toRoute('student');
     }
 }

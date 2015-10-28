@@ -108,49 +108,49 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayRegistrationCodeErrorMessage()
     {
         $this->submitStudentProfile();
-        $this->assertQuery("input[name='student[registration-code]'][type='text'][class='input-error']");
+        $this->assertQuery(".has-error input[name='student[registration-code]'][type='text']");
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayKatakanaNameErrorMessage()
     {
         $this->submitStudentProfile();
-        $this->assertQuery("input[name='student[katakana-name]'][type='text'][class='input-error']");
+        $this->assertQuery(".has-error input[name='student[katakana-name]'][type='text']");
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayFullnameErrorMessage()
     {
         $this->submitStudentProfile();
-        $this->assertQuery("input[name='student[fullname]'][type='text'][class='input-error']");
+        $this->assertQuery(".has-error input[name='student[fullname]'][type='text']");
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayBirthdayErrorMessage()
     {
         $this->submitStudentProfile();
-        $this->assertQuery("input[name='student[dob]'][type='text'][class='input-error']");
+        $this->assertQuery(".has-error input[name='student[dob]'][type='text']");
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayGenderErrorMessage()
     {
         $this->submitStudentProfile();
-        $this->assertQuery("select[name='student[gender]'][class='input-error']");
+        $this->assertQuery(".has-error select[name='student[gender]']");
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayGradeErrorMessage()
     {
         $this->submitStudentProfile();
-        $this->assertQuery("select[name='student[grade]'][class='input-error']");
+        $this->assertQuery(".has-error select[name='student[grade]']");
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayUsernameErrorMessage()
     {
         $this->submitStudentProfile();
-        $this->assertQuery("input[name='student[account][username]'][type='text'][class='input-error']");
+        $this->assertQuery(".has-error input[name='student[account][username]'][type='text']");
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayPasswordErrorMessage()
     {
         $this->submitStudentProfile();
-        $this->assertQuery("input[name='student[account][password]'][type='password'][class='input-error']");
+        $this->assertQuery(".has-error input[name='student[account][password]'][type='password']");
     }
 
     /**
