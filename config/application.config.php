@@ -11,6 +11,7 @@ return array(
         'ZF\DevelopmentMode',
         'Achievement',
         'AtPhpSettings',
+        'TwbBundle',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

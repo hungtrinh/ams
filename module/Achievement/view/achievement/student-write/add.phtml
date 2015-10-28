@@ -1,10 +1,9 @@
 <?php
 /* @var $this \Zend\View\Renderer\PhpRenderer */
 /* @var $form \Zend\Form\FormInterface */
-
 $studentForm = $this->studentForm;
 $studentForm->setAttribute('action', $this->url('student/add'));
 ?>
-<?= $this->form()->render($studentForm); ?>
-
-
+<div class="container theme-showcase">
+    <?= $this->form($studentForm); ?>
+</div>

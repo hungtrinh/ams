@@ -11,7 +11,8 @@
         "php": ">=5.5",
         "zendframework/zendframework": "~2.5",
         "zfcampus/zf-development-mode": "2.*",
-        "atukai/at-php-settings": "dev-master"
+        "atukai/at-php-settings": "dev-master",
+        "neilime/zf2-twb-bundle": "2.*@stable"
     },
     "require-dev":  {
         "zendframework/zend-developer-tools": "dev-master",
