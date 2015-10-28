@@ -1,6 +1,14 @@
 <?php
+use Achievement\Account\Validator\UsernameUniqueFactory;
+use Achievement\Student\Factory\WriteControllerFactory;
+
 return [
     'forms' => include __DIR__ . '/form.config.php',
+    'validators' => [
+        'factories' => [
+            'username_unique' => UsernameUniqueFactory::class,
+        ],
+    ],
     'log' => [
         'Log\App' => [
             'writers' => [
@@ -21,7 +29,7 @@ return [
      ],//view_manager
     'controllers' => [
         'factories' => [
-            'Achievement\Controller\StudentWrite' => 'Achievement\Student\Factory\WriteControllerFactory',
+            'Achievement\Controller\StudentWrite' => WriteControllerFactory::class,
         ]
      ],
     'router' => [

@@ -7,13 +7,20 @@
         </testsuite>
     </testsuites>
 
+    <logging>
+        <log type="coverage-html" target="coverage"/>
+        <log type="coverage-clover" target="logs/clover.xml"/>
+        <log type="coverage-crap4j" target="logs/crap4j.xml"/>
+        <log type="coverage-xml" target="logs/coverage"/>
+        <log type="junit" target="logs/junit.xml" logIncompleteSkipped="false"/>
+    </logging>
+
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">../module/Achievement/</directory>
+            <directory suffix=".php">../</directory>
             <exclude>
-                <directory>../module/Achievement/test</directory>
-                <directory>../vendor</directory>
-                <file>../module/Achievement/test/Boostrap.php</file>
+                <file>../test/Bootstrap.php</file>
+                <directory>../../../vendor</directory>
             </exclude>
         </whitelist>
     </filter>

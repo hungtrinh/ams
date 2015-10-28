@@ -44,7 +44,7 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertControllerClass('StudentWriteController');
         $this->assertActionName('add');
 
-        // turn on this line to debug
+        // comment out line below to see html debug response
         // echo $this->getResponse()->getContent();
 
         /**
@@ -96,13 +96,13 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $rawProfile['security'] = $security->getValue();
 
 
-        $this->dispatch('/student/save', 'POST', $rawProfile);
+        $this->dispatch('/student/add', 'POST', $rawProfile);
 
-        $this->assertMatchedRouteName('student/save');
+        $this->assertMatchedRouteName('student/add');
         $this->assertModuleName('Achievement');
         $this->assertControllerName('Achievement\\Controller\\StudentWrite');
         $this->assertControllerClass('StudentWriteController');
-        $this->assertActionName('save');
+        $this->assertActionName('add');
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayRegistrationCodeErrorMessage()
@@ -159,9 +159,22 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent($validProfile)
     {
         $this->submitStudentProfile($validProfile);
-        echo $this->getResponse()->getContent();
+        // echo $this->getResponse()->getContent();
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/student');
+    }
+
+
+    public function testWhenVisitListStudentPageThenMatchStudentRoute()
+    {
+        $this->dispatch('/student');
+
+        //assert match request
+        $this->assertMatchedRouteName('student');
+        $this->assertModuleName('Achievement');
+        $this->assertControllerName('Achievement\\Controller\\StudentWrite');
+        $this->assertControllerClass('StudentWriteController');
+        $this->assertActionName('index');
     }
 
     public function testWhenVisitPageEditStudentProfileThenShowPopulatedStudentProfileForm()

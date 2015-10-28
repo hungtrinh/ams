@@ -13,6 +13,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
     protected $studentForm;
 
     protected $profileValid = [
+        'security' => 'depend on form object',
         'student' => [
             'registration-code'  => '1234567',
             'katakana-name'  => 'Yoshikuni',
@@ -39,6 +40,12 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         parent::setUp();
         $this->locator     = Bootstrap::getServiceManager();
         $this->studentForm = $this->locator->get('Form\Student');
+
+        $this->prepaireValidProfileData();
+    }
+
+    private function prepaireValidProfileData()
+    {
         $this->profileValid['security'] = $this->studentForm->get('security')->getValue();
     }
 

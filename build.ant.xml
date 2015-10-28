@@ -7,5 +7,23 @@
             <arg value="module/Achievement/test/phpunit.xml" />
             <arg value="--testdox" />
         </exec>
+        <exec executable="vendor/bin/phpunit">
+            <arg value="-c" />
+            <arg value="module/Achievement/test/phpunit.xml" />
+        </exec>
 	</target>
+    <target name="dev-off" description="Development mode off">
+        <exec executable="php">
+            <arg value="public/index.php" />
+            <arg value="development" />
+            <arg value="disable" />
+        </exec>
+    </target>
+    <target name="dev-on" description="Development mode off">
+        <exec executable="php">
+            <arg value="public/index.php" />
+            <arg value="development" />
+            <arg value="disable" />
+        </exec>
+    </target>
 </project>
