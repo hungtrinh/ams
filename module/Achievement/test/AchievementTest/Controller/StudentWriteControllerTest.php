@@ -85,7 +85,7 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertQuery("select[name='student[courses][3][code]']");
         $this->assertQuery("select[name='student[courses][4][code]']");
         $this->assertQuery("input[name='security'][type='hidden']");
-        $this->assertQuery("input[name='add'][type='submit']");
+        $this->assertQuery("button[name='add'][type='submit']");
     }
 
     protected function submitStudentProfile(array $rawProfile = [])
