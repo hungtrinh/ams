@@ -1,6 +1,7 @@
 <?php
 use Achievement\Account\Validator\UsernameUniqueFactory;
 use Achievement\Student\Factory\WriteControllerFactory;
+use Achievement\Student\Service\Register;
 
 return [
     'forms' => include __DIR__ . '/form.config.php',
@@ -32,6 +33,11 @@ return [
             'Achievement\Controller\StudentWrite' => WriteControllerFactory::class,
         ]
      ],
+    'service_manager' => [
+        'invokables' => [
+            'RegiterStudentService' => Register::class,
+        ]
+    ],
     'router' => [
         'routes' => [
             'student' => [
@@ -55,16 +61,6 @@ return [
                             ]//defaults
                         ], //options
                     ], //add
-                    'save' => [
-                        'type' => 'literal',
-                        'options' => [
-                            'route' => '/save',
-                            'defaults' => [
-                                'controller' => 'Achievement\Controller\StudentWrite',
-                                'action' => 'save',
-                            ]//defaults
-                        ], //options
-                    ], //save
                 ], //child_routes
             ], //route
         ], //routes

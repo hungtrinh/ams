@@ -4,8 +4,6 @@ namespace AchievementTest\Controller;
 
 class StudentWriteControllerTest extends AbstractHttpControllerTestCase
 {
-    protected $traceError = true;
-
     protected $profileValid = [
         'student' => [
             'registration-code'  => '1234567',
@@ -22,6 +20,21 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
             ]
         ],
     ];
+
+    protected $mockRegisterStudentService;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->mockRegisterStudentService = $this->prophesize('Achievement\Student\Service\RegisterInterface')->reveal();
+        $serviceLocator = $this->getApplicationServiceLocator();
+        $serviceLocator->setAllowOverride(true);
+        $serviceLocator->setService('RegiterStudentService', $this->mockRegisterStudentService);
+    }
+
+
+
 
     public function validNewStudentProfileProvider()
     {
@@ -158,8 +171,11 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
      */
     public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent($validProfile)
     {
+        $this->mockRegisterStudentService
+                ->register($validProfile);
+
         $this->submitStudentProfile($validProfile);
-        // echo $this->getResponse()->getContent();
+
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/student');
     }

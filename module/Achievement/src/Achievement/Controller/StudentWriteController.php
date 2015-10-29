@@ -4,6 +4,7 @@ namespace Achievement\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\FormInterface;
+use Achievement\Student\Service\RegisterInterface;
 
 class StudentWriteController extends AbstractActionController
 {
@@ -14,9 +15,16 @@ class StudentWriteController extends AbstractActionController
      */
     protected $studentForm;
 
-    public function __construct(FormInterface $studentForm)
+    /**
+     *
+     * @var \Achievement\Student\Service\RegisterInterface;
+     */
+    protected $registerService;
+
+    public function __construct(FormInterface $studentForm, RegisterInterface $registerService)
     {
         $this->studentForm = $studentForm;
+        $this->registerService = $registerService;
     }
 
     /**
@@ -51,8 +59,8 @@ class StudentWriteController extends AbstractActionController
         }
 
         //@todo Persit student to database.
-        // $student = $this->studentForm->getData();
-        // $this->registerStudentService->register($student);
+         $student = $this->studentForm->getData();
+         $this->registerService->register($student);
 
         return $this->redirect()->toRoute('student');
     }
