@@ -35,7 +35,7 @@ return [
      ],
     'service_manager' => [
         'invokables' => [
-            'RegiterStudentService' => Register::class,
+            'RegisterStudentService' => Register::class,
         ]
     ],
     'router' => [

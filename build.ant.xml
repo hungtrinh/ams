@@ -5,12 +5,9 @@
         <exec executable="vendor/bin/phpunit">
             <arg value="-c" />
             <arg value="module/Achievement/test/phpunit.xml" />
-            <arg value="--testdox" />
         </exec>
-        <exec executable="vendor/bin/phpunit">
-            <arg value="-c" />
-            <arg value="module/Achievement/test/phpunit.xml" />
-        </exec>
+
+        <antcall target="open-report"></antcall>
 	</target>
     <target name="dev-off" description="Development mode off">
         <exec executable="php">
@@ -24,6 +21,23 @@
             <arg value="public/index.php" />
             <arg value="development" />
             <arg value="disable" />
+        </exec>
+    </target>
+
+    <target name="clean"
+            description="Remove all temp dir">
+        <echo message="Remove test log folder 'module/Achievement/test/logs'" />
+        <delete dir="module/Achievement/test/logs"
+                includeemptydirs="true"/>
+        <echo message="Remove test coverage folder 'module/Achievement/test/coverage'" />
+        <delete dir="module/Achievement/test/coverage"
+                includeemptydirs="true"/>
+    </target>
+
+    <target name="open-report"
+            description="Open phpunit report. Run on MAC OS only">
+        <exec executable="open">
+            <arg value="module/Achievement/test/coverage/index.html"/>
         </exec>
     </target>
 </project>

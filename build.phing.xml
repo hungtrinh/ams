@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Achivemenent System Manage" default="build">
+    <target name="build"
+            description="Build system. It's default target"
+            depends="clean">
+        <echo message="Run phpunit" />
+        <exec
+            command="vendor/bin/phpunit -c module/Achievement/test/phpunit.xml"
+            passthru="true"
+            logoutput="true" />
+    </target>
+
+    <target name="dev-off"
+            description="Show debug toolbar. Use in development environment only">
+        <echo message="Show debug toolbar. Use in development environment only" />
+        <exec command="php public/index.php development disable" />
+    </target>
+
+    <target name="dev-on"
+            description="Disable debug toolbar. Recomended use in produciton environment.">
+        <echo message="Disable debug toolbar. Recomended use in produciton environment." />
+        <exec command="php public/index.php development enable" />
+    </target>
+
+    <target name="clean"
+            description="Remove all temp dir">
+        <echo message="Remove test log folder 'module/Achievement/test/logs'" />
+        <delete dir="module/Achievement/test/logs"
+                includeemptydirs="true"/>
+        <echo message="Remove test coverage folder 'module/Achievement/test/coverage'" />
+        <delete dir="module/Achievement/test/coverage"
+                includeemptydirs="true"/>
+    </target>
+</project>

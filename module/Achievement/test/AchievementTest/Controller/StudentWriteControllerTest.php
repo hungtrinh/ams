@@ -27,10 +27,10 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     {
         parent::setUp();
 
-        $this->mockRegisterStudentService = $this->prophesize('Achievement\Student\Service\RegisterInterface')->reveal();
+        $this->mockRegisterStudentService = $this->prophesize('Achievement\Student\Service\Register')->reveal();
         $serviceLocator = $this->getApplicationServiceLocator();
         $serviceLocator->setAllowOverride(true);
-        $serviceLocator->setService('RegiterStudentService', $this->mockRegisterStudentService);
+        $serviceLocator->setService('RegisterStudentService', $this->mockRegisterStudentService);
     }
 
 
@@ -191,15 +191,5 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertControllerName('Achievement\\Controller\\StudentWrite');
         $this->assertControllerClass('StudentWriteController');
         $this->assertActionName('index');
-    }
-
-    public function testWhenVisitPageEditStudentProfileThenShowPopulatedStudentProfileForm()
-    {
-        $this->markTestIncomplete('specification');
-    }
-
-    public function testWhenUpdatedStudentProfileSuccessThenRedirectToPageListStudent()
-    {
-        $this->markTestIncomplete('specification');
     }
 }

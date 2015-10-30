@@ -16,7 +16,7 @@ class WriteControllerFactory
         $locator = $controllerManager->getServiceLocator();
         return new StudentWriteController(
             $locator->get('Form\Student'),
-            $locator->get('RegiterStudentService')
+            $locator->get('RegisterStudentService')
         );
     }
 }

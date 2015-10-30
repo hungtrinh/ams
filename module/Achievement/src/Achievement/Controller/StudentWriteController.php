@@ -28,7 +28,8 @@ class StudentWriteController extends AbstractActionController
     }
 
     /**
-     * list student
+     * @deprecated
+     * list student will move to StudentViewController
      */
     public function indexAction()
     {
@@ -41,27 +42,33 @@ class StudentWriteController extends AbstractActionController
      */
     public function addAction()
     {
-        $request         = $this->getRequest(); /* @var $request \Zend\Http\Request */
-        $requestShowForm = $request->isGet();
-        $displayForm     = [
-            'studentForm' => $this->studentForm,
-        ];
-
-        if ($requestShowForm) {
-            return $displayForm;
+        if ($this->requestShowFormStudent() ||
+            $this->postInvalidProfile()) {
+            return [
+                'studentForm' => $this->studentForm,
+            ];
         }
 
-        //User request save student
-        $this->studentForm->setData($request->getPost());
-        $invalidStudentData = !$this->studentForm->isValid();
-        if ($invalidStudentData) {
-            return $displayForm;
-        }
-
-        //@todo Persit student to database.
          $student = $this->studentForm->getData();
          $this->registerService->register($student);
 
         return $this->redirect()->toRoute('student');
+    }
+
+    /**
+     * @return boolean
+     */
+    private function requestShowFormStudent()
+    {
+        return $this->getRequest()->isGet();
+    }
+
+    /**
+     * @return  boolean
+     */
+    private function postInvalidProfile()
+    {
+        $this->studentForm->setData($this->getRequest()->getPost());
+        return !$this->studentForm->isValid();
     }
 }

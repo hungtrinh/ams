@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"register",
+				"registerService"
+			],
+			[
 				"username",
 				"usernameUnique"
 			],
@@ -371,31 +375,15 @@
 			"file": "module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php",
 			"settings":
 			{
-				"buffer_size": 7939,
+				"buffer_size": 7622,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "module/Achievement/config/form.config.php",
+			"file": "vendor/zendframework/zend-servicemanager/src/ServiceManager.php",
 			"settings":
 			{
-				"buffer_size": 8735,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "build.xml",
-			"settings":
-			{
-				"buffer_size": 1428,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/test/phpunit.xml",
-			"settings":
-			{
-				"buffer_size": 933,
+				"buffer_size": 39654,
 				"line_ending": "Unix"
 			}
 		}
@@ -1012,30 +1000,37 @@
 	"expanded_folders":
 	[
 		"/Users/apple/www/ams",
+		"/Users/apple/www/ams/config/autoload",
 		"/Users/apple/www/ams/module",
-		"/Users/apple/www/ams/module/Application",
-		"/Users/apple/www/ams/vendor",
-		"/Users/apple/www/ams/vendor/neilime",
-		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle",
-		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle/build",
-		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle/build/logs",
-		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle/config",
-		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle/src",
-		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle/src/TwbBundle"
+		"/Users/apple/www/ams/module/Achievement",
+		"/Users/apple/www/ams/module/Achievement/src",
+		"/Users/apple/www/ams/module/Achievement/src/Achievement",
+		"/Users/apple/www/ams/module/Application"
 	],
 	"file_history":
 	[
+		"/Users/apple/www/ams/module/Achievement/config/form.config.php",
+		"/Users/apple/www/ams/build.xml",
+		"/Users/apple/www/ams/module/Achievement/test/phpunit.xml",
+		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Student/Service/RegisterTest.php",
+		"/Users/apple/www/ams/build.ant.xml",
+		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Service/HydratorManagerFactory.php",
+		"/Users/apple/www/ams/vendor/zendframework/zend-stdlib/src/Hydrator/ClassMethods.php",
+		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/Form.php",
+		"/Users/apple/www/ams/vendor/zendframework/zend-stdlib/src/Hydrator/HydratorPluginManager.php",
+		"/Users/apple/www/ams/build.phing.xml",
+		"/Users/apple/www/ams/module/Achievement/config/module.config.php",
+		"/Users/apple/www/ams/module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php",
+		"/Users/apple/www/ams/module/Achievement/src/Achievement/Controller/StudentWriteController.php",
 		"/Users/apple/www/ams/module/Achievement/test/Bootstrap.php",
+		"/Users/apple/Library/Application Support/Sublime Text 3/Packages/User/SuperAnt.sublime-settings",
 		"/Users/apple/www/ams/vendor/zendframework/zend-test/src/PHPUnit/Controller/AbstractHttpControllerTestCase.php",
 		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Controller/AbstractHttpControllerTestCase.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-test/src/PHPUnit/Controller/AbstractControllerTestCase.php",
 		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Account/Validator/UsernameUniqueFactoryTest.php",
 		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle/src/TwbBundle/Options/ModuleOptions.php",
 		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle/src/TwbBundle/Form/View/Helper/Factory/TwbBundleFormElementFactory.php",
-		"/Users/apple/www/ams/module/Achievement/src/Achievement/Controller/StudentWriteController.php",
 		"/Users/apple/www/ams/module/Application/view/layout/layout.phtml",
-		"/Users/apple/www/ams/build.xml",
-		"/Users/apple/www/ams/module/Achievement/test/phpunit.xml",
 		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/View/Helper/FormRow.php",
 		"/Users/apple/www/ams/module/Achievement/view/achievement/student-write/add.phtml",
 		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/View/Helper/FormElement.php",
@@ -1046,20 +1041,16 @@
 		"/Users/apple/www/ams/vendor/zendframework/zend-validator/src/Db/NoRecordExists.php",
 		"/Users/apple/www/zf-apigility-skeleton-1.3.1/vendor/zfcampus/zf-content-validation/src/Validator/Db/RecordExistsFactory.php",
 		"/Users/apple/www/zf-apigility-skeleton-1.3.1/vendor/zendframework/zend-db/src/Adapter/AdapterAbstractServiceFactory.php",
-		"/Users/apple/www/ams/module/Achievement/config/form.config.php",
 		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php",
 		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Account/Validator/UsernameUniqueTest.php",
-		"/Users/apple/www/ams/build.phing.xml",
 		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/FormElementManager.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Service/ValidatorManagerFactory.php",
-		"/Users/apple/www/ams/module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-validator/src/ValidatorPluginManager.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-servicemanager/src/AbstractPluginManager.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-modulemanager/src/Feature/ValidatorProviderInterface.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Controller/ControllerManager.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-validator/src/File/NotExists.php",
 		"/Users/apple/www/ams/composer.json",
-		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/Form.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/Fieldset.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/Element.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-inputfilter/src/Factory.php",
@@ -1082,7 +1073,6 @@
 		"/Users/apple/www/ams/vendor/zendframework/zend-di/src/LocatorInterface.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-servicemanager/src/ServiceLocatorInterface.php",
 		"/Users/apple/www/ams/vendor/phpunit/phpunit/src/Framework/TestCase.php",
-		"/Users/apple/www/ams/module/Achievement/config/module.config.php",
 		"/Users/apple/Downloads/CSVtruonghoclan3_utf8-1.csv",
 		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Controller/Plugin/Forward.php",
 		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Controller/AbstractController.php",
@@ -1146,13 +1136,7 @@
 		"/Users/apple/www/ams/module/Achievement/view/achievement/write/add.phtml",
 		"/Users/apple/www/dms/vendor/zendframework/zend-test/src/PHPUnit/Controller/AbstractHttpControllerTestCase.php",
 		"/Users/apple/www/ams/config/development.config.php",
-		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Controller/StudentControllerTest.php",
-		"/Users/apple/www/npad/Project Phase/03 Source/npadapp/vendor/zfcampus/zf-development-mode/development.local.php.dist",
-		"/Users/apple/www/ams/config/development.config.php.dist",
-		"/Users/apple/www/ams/public/index.php",
-		"/Users/apple/www/ams/Vagrantfile",
-		"/Users/apple/www/ams/public/.htaccess",
-		"/Users/apple/www/npad/Project Phase/03 Source/npadapp/vendor/zfcampus/zf-development-mode/development.config.php.dist"
+		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Controller/StudentControllerTest.php"
 	],
 	"find":
 	{
@@ -1197,6 +1181,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"canonicalNamesReplacements",
+			"msg",
 			"inputErrorClass",
 			"input-error",
 			"error",
@@ -1322,9 +1308,7 @@
 			"navi",
 			"    \n",
 			"Authentication failed. Please try again.",
-			"translate",
-			"formElementErrors",
-			"failedLoginMessage"
+			"translate"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -1385,7 +1369,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1394,15 +1378,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7939,
+						"buffer_size": 7622,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								935,
+								935
 							]
 						],
 						"settings":
@@ -1414,34 +1398,28 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": 1.0,
+						"translation.y": 341.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 1,
-					"file": "module/Achievement/config/form.config.php",
+					"file": "vendor/zendframework/zend-servicemanager/src/ServiceManager.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8735,
+						"buffer_size": 39654,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								416,
-								416
+								2189,
+								2215
 							]
 						],
 						"settings":
@@ -1453,76 +1431,17 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1454.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "build.xml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1428,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								151,
-								151
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": true,
-							"WordCountSyntax": "xml",
-							"syntax": "Packages/XML/XML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "module/Achievement/test/phpunit.xml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 933,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								25,
-								25
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": true,
-							"WordCountSyntax": "xml",
-							"syntax": "Packages/XML/XML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -1566,7 +1485,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 260.0
+		"height": 415.0
 	},
 	"output.find_results":
 	{
@@ -1576,7 +1495,7 @@
 	{
 		"height": 100.0
 	},
-	"pinned_build_system": "Packages/Java/Ant.sublime-build",
+	"pinned_build_system": "Packages/Super Ant/SuperAnt.sublime-build",
 	"project": "ams.sublime-project",
 	"replace":
 	{
@@ -1589,6 +1508,42 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"servicemanager",
+				"vendor/zendframework/zend-servicemanager/src/ServiceManager.php"
+			],
+			[
+				"form.php",
+				"vendor/zendframework/zend-form/src/Form.php"
+			],
+			[
+				"classmethods",
+				"vendor/zendframework/zend-stdlib/src/Hydrator/ClassMethods.php"
+			],
+			[
+				"hydratorpluginmanager",
+				"vendor/zendframework/zend-stdlib/src/Hydrator/HydratorPluginManager.php"
+			],
+			[
+				"hydr",
+				"vendor/zendframework/zend-mvc/src/Service/HydratorManagerFactory.php"
+			],
+			[
+				"writecontrollerfac",
+				"module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php"
+			],
+			[
+				"writecontroller.php",
+				"module/Achievement/src/Achievement/Controller/StudentWriteController.php"
+			],
+			[
+				"module.config.php",
+				"module/Achievement/config/module.config.php"
+			],
+			[
+				"bootstrap.php",
+				"module/Achievement/test/Bootstrap.php"
+			],
 			[
 				"phpunit.xml",
 				"module/Achievement/test/phpunit.xml"
@@ -1620,10 +1575,6 @@
 			[
 				"layout.phtml",
 				"module/Application/view/layout/layout.phtml"
-			],
-			[
-				"bootstrap.php",
-				"module/Achievement/test/Bootstrap.php"
 			],
 			[
 				"usernameuniquefactorytest.php",
@@ -1694,10 +1645,6 @@
 				"vendor/zendframework/zend-inputfilter/src/Factory.php"
 			],
 			[
-				"form.php",
-				"vendor/zendframework/zend-form/src/Form.php"
-			],
-			[
 				"element.php",
 				"vendor/zendframework/zend-form/src/Element.php"
 			],
@@ -1760,10 +1707,6 @@
 			[
 				"locator",
 				"vendor/zendframework/zend-servicemanager/src/ServiceLocatorInterface.php"
-			],
-			[
-				"module.config.php",
-				"module/Achievement/config/module.config.php"
 			],
 			[
 				"abstractcontrollertestcase",
@@ -1904,10 +1847,6 @@
 			[
 				"course-l",
 				"module/Application/view/application/course/course-list.phtml"
-			],
-			[
-				"hydratorpluginmanager",
-				"ams/vendor/zendframework/zend-stdlib/src/Hydrator/HydratorPluginManager.php"
 			],
 			[
 				"forma",
@@ -2080,26 +2019,6 @@
 			[
 				"profile/index.phtml",
 				"ProfileManager/application/views/scripts/profile/index.phtml"
-			],
-			[
-				"categoryserc",
-				"module/Document/src/Document/Service/CategoryService.php"
-			],
-			[
-				"testcategroy",
-				"module/Document/test/DocumentTest/Service/CategoryServiceTest.php"
-			],
-			[
-				"categoryser",
-				"module/Document/src/Document/Service/CategoryService.php"
-			],
-			[
-				"20150319181650_document_migration.php",
-				"migrations/20150319181650_document_migration.php"
-			],
-			[
-				"documentcreatefiletest",
-				"vms/tests/application/controllers/DocumentCreateFileTest.php"
 			]
 		],
 		"width": 0.0
@@ -2138,7 +2057,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": false,
-	"side_bar_width": 326.0,
+	"side_bar_width": 201.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
