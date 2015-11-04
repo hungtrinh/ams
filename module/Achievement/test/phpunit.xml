@@ -9,6 +9,8 @@
 
     <logging>
         <log type="coverage-html" target="coverage"/>
+        <log type="testdox-html" target="coverage/testdox.html"/>
+        <log type="testdox-text" target="coverage/testdox.txt"/>
         <!-- <log type="coverage-clover" target="logs/clover.xml"/>
         <log type="coverage-crap4j" target="logs/crap4j.xml"/>
         <log type="coverage-xml" target="logs/coverage"/>

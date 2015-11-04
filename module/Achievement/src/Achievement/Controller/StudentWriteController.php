@@ -60,7 +60,7 @@ class StudentWriteController extends AbstractActionController
      */
     private function requestShowFormStudent()
     {
-        return $this->getRequest()->isGet();
+        return !$this->getRequest()->isPost();
     }
 
     /**
