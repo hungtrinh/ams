@@ -8,7 +8,25 @@ use AchievementTest\Bootstrap;
 class StudentFormTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var  \Zend\Form\FormInterface
+     * $studentForm get from Bootstrap::getServiceManager()->get('Form\Student')
+     * will return same instance in all test case (get from same ServiceManager instance)
+     *
+     * When user (form) call getValue on csrf element first time
+     * then csrf validator will check if not exist csrf token hash
+     * then generate csrf hash and csrf token store in $_SESSION.
+     *
+     * So  $form->isValid($validData) === true for test case A
+     *
+     * After Run tesk case default phpunit destroy all global variable.
+     * (this line below tell phpunit please backup SESSION for next test case)
+     *
+     * And then $form->isValid($validData) === false for test case B
+     * (because system empty SESSION after test case A)
+     */
+    protected $backupGlobalsBlacklist = array( '_SESSION' );
+
+    /**
+     * @var \Zend\Form\FormInterface
      */
     protected $studentForm;
 
@@ -30,17 +48,9 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         ],
     ];
 
-    /**
-     * @var  \Zend\ServiceManager\ServiceLocatorInterface
-     */
-    protected $locator;
-
     protected function setUp()
     {
-        parent::setUp();
-        $this->locator     = Bootstrap::getServiceManager();
-        $this->studentForm = $this->locator->get('Form\Student');
-
+        $this->studentForm = Bootstrap::getServiceManager()->get('Form\Student');
         $this->prepaireValidProfileData();
     }
 
@@ -51,6 +61,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
 
     public function testWhenSetEmptyDataThenFormIsInvalidReturnFalse()
     {
+        $x = $this->studentForm->isValid();
         $this->studentForm->setData([]);
         $this->assertFalse(
             $this->studentForm->isValid()
@@ -102,6 +113,6 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
     public function testWhenSetValidStudentProfileDataThenFormIsValidReturnTrue()
     {
         $this->studentForm->setData($this->profileValid);
-        $this->assertFalse($this->studentForm->isValid());
+        $this->assertTrue($this->studentForm->isValid());
     }
 }

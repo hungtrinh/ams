@@ -175,7 +175,6 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
                 ->register($validProfile);
 
         $this->submitStudentProfile($validProfile);
-
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/student');
     }
