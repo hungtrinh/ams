@@ -32,7 +32,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
 
     /**
      * Valid student profile user will submit
-     * 
+     *
      * @var []
      */
     protected $profileValid = [

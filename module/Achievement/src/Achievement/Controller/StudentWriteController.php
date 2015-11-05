@@ -21,9 +21,11 @@ class StudentWriteController extends AbstractActionController
      */
     protected $registerService;
 
-    public function __construct(FormInterface $studentForm, RegisterInterface $registerService)
-    {
-        $this->studentForm = $studentForm;
+    public function __construct(
+        FormInterface $studentForm,
+        RegisterInterface $registerService
+    ) {
+        $this->studentForm     = $studentForm;
         $this->registerService = $registerService;
     }
 
@@ -49,8 +51,8 @@ class StudentWriteController extends AbstractActionController
             ];
         }
 
-         $student = $this->studentForm->getData();
-         $this->registerService->register($student);
+        $student = $this->studentForm->getData();
+        $this->registerService->register($student);
 
         return $this->redirect()->toRoute('student');
     }
