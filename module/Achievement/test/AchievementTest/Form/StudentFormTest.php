@@ -30,6 +30,11 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
      */
     protected $studentForm;
 
+    /**
+     * Valid student profile user will submit
+     * 
+     * @var []
+     */
     protected $profileValid = [
         'security' => 'depend on form object',
         'student' => [
@@ -48,6 +53,44 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         ],
     ];
 
+    /**
+     * Expected errors message when user submit empty form
+     * @var []
+     */
+    protected $expectedEmptyFormErrorMessages = [
+        'security' => [
+            'isEmpty' => "Value is required and can't be empty",
+        ],
+        'student' => [
+            'registration-code'  => [
+                'isEmpty' => "Value is required and can't be empty",
+            ],
+            'katakana-name'  => [
+                'isEmpty' => "Value is required and can't be empty",
+            ],
+            'fullname'  => [
+                'isEmpty' => "Value is required and can't be empty",
+            ],
+            'dob' => [
+                'isEmpty' => "Value is required and can't be empty",
+            ],
+            'gender' => [
+                'isEmpty' => "Value is required and can't be empty",
+            ],
+            'grade' => [
+                'isEmpty' => "Value is required and can't be empty",
+            ],
+            'account' => [
+                'username' => [
+                    'isEmpty' => "Value is required and can't be empty",
+                ],
+                'password' => [
+                    'isEmpty' => "Value is required and can't be empty",
+                ],
+            ],
+        ],
+    ];
+
     protected function setUp()
     {
         $this->studentForm = Bootstrap::getServiceManager()->get('Form\Student');
@@ -61,11 +104,9 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
 
     public function testWhenSetEmptyDataThenFormIsInvalidReturnFalse()
     {
-        $x = $this->studentForm->isValid();
-        $this->studentForm->setData([]);
-        $this->assertFalse(
-            $this->studentForm->isValid()
-        );
+        $emptyProfileData = [];
+        $this->studentForm->setData($emptyProfileData);
+        $this->assertFalse($this->studentForm->isValid());
     }
 
     /**
@@ -73,41 +114,8 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
      */
     public function testWhenSetEmptyDataThenFormShowExpectedErrorMessage()
     {
-        $expectedMessage = [
-            'security' => [
-                'isEmpty' => "Value is required and can't be empty",
-            ],
-            'student' => [
-                'registration-code'  => [
-                    'isEmpty' => "Value is required and can't be empty",
-                ],
-                'katakana-name'  => [
-                    'isEmpty' => "Value is required and can't be empty",
-                ],
-                'fullname'  => [
-                    'isEmpty' => "Value is required and can't be empty",
-                ],
-                'dob' => [
-                    'isEmpty' => "Value is required and can't be empty",
-                ],
-                'gender' => [
-                    'isEmpty' => "Value is required and can't be empty",
-                ],
-                'grade' => [
-                    'isEmpty' => "Value is required and can't be empty",
-                ],
-                'account' => [
-                    'username' => [
-                        'isEmpty' => "Value is required and can't be empty",
-                    ],
-                    'password' => [
-                        'isEmpty' => "Value is required and can't be empty",
-                    ],
-                ],
-            ],
-        ];
         $errorMessages = $this->studentForm->getMessages();
-        $this->assertEquals($expectedMessage, $errorMessages);
+        $this->assertEquals($this->expectedEmptyFormErrorMessages, $errorMessages);
     }
 
     public function testWhenSetValidStudentProfileDataThenFormIsValidReturnTrue()
