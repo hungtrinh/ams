@@ -104,7 +104,7 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     protected function submitStudentProfile(array $rawProfile = [])
     {
         $locator     = $this->getApplicationServiceLocator();
-        $formStudent = $locator->get('Form\Student');
+        $formStudent = $locator->get('Achievement\Form\Student');
         $security    = $formStudent->get('security');
         $rawProfile['security'] = $security->getValue();
 

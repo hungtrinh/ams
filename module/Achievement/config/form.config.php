@@ -33,7 +33,7 @@ $studentFieldsetFilterSpec = [
 ];
 
 return [
-    'Fieldset\Sibling' => [
+    'Achievement\Form\Sibling' => [
         'type' => 'fieldset',
         'name' => 'sibling',
         'elements' => [
@@ -78,9 +78,9 @@ return [
                 ],
             ], //work
         ],//elements
-    ], //Fieldset\Sibling
+    ], //Achievement\Form\Sibling
 
-    'Fieldset\AccountBasic' => [
+    'Achievement\Form\AccountBasicFieldset' => [
         'type' => 'fieldset',
         'name' => 'accountbasic',
         'elements' => [
@@ -112,9 +112,9 @@ return [
                 ],
             ], //username
         ], // elements
-    ], //Fieldset\AccountBasic
+    ], //Achievement\Form\AccountBasicFieldset
 
-    'Fieldset\Student' => [
+    'Achievement\Form\StudentFieldset' => [
         'type' => 'fieldset',
         'name' => 'student',
         'hydrator' => 'Achievement\Student\Form\StudentProfileHydrator',
@@ -196,14 +196,14 @@ return [
                         'should_create_template' => false,
                         'allow_add' => true,
                         'target_element' => [
-                            'type' => 'Fieldset\Sibling',
+                            'type' => 'Achievement\Form\Sibling',
                         ],
                     ],
                 ],
             ], //siblings
             [
                 'spec' => [
-                    'type' => 'Fieldset\AccountBasic',
+                    'type' => 'Achievement\Form\AccountBasicFieldset',
                     'name' => 'account',
                     'options' => [
                         'label'                => 'Account',
@@ -243,15 +243,15 @@ return [
                 ],
             ], //course
         ], //elements
-    ], //Fieldset\Student
+    ], //Achievement\Form\StudentFieldset
 
-    'Form\Student' => [
+    'Achievement\Form\Student' => [
         'type' => 'form',
         'name' => 'add-student',
         'elements' => [
             [
                 'spec' => [
-                    'type' => 'Fieldset\Student',
+                    'type' => 'Achievement\Form\StudentFieldset',
                     'name' => 'student',
                     'options' => [
                         'use_as_base_fieldset' => true,
@@ -278,5 +278,6 @@ return [
         'input_filter' => [
             'student' => $studentFieldsetFilterSpec,
         ], //input_filter
-    ], //Form\Student
+
+    ], //Achievement\Form\Student
 ];

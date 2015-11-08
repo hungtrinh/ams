@@ -10,7 +10,7 @@ use Achievement\Student\Domain\Model\Profile;
 class StudentFormTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * $studentForm get from Bootstrap::getServiceManager()->get('Form\Student')
+     * $studentForm get from Bootstrap::getServiceManager()->get('Achievement\Form\Student')
      * will return same instance in all test case (get from same ServiceManager instance)
      *
      * When user (form) call getValue on csrf element first time
@@ -95,7 +95,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->studentForm = Bootstrap::getServiceManager()->get('Form\Student');
+        $this->studentForm = Bootstrap::getServiceManager()->get('Achievement\Form\Student');
         $this->prepaireValidProfileData();
     }
 
