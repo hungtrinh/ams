@@ -5,6 +5,7 @@ namespace AchievementTest\Student\Factory;
 use PHPUnit_Framework_TestCase;
 use Achievement\Student\Factory\WriteControllerFactory;
 use AchievementTest\Bootstrap;
+use Achievement\Controller\StudentWriteController;
 
 /**
  * Test factory create Achievement\Controller\StudentWriteController in right way
@@ -26,7 +27,7 @@ class WriteControllerFactoryTest extends PHPUnit_Framework_TestCase
 
     public function testCallInvokeReturnStudentWriteController()
     {
-        $studentWriteController = $this->factory->__invoke($this->controllerManager);
-        $this->assertInstanceOf(\Achievement\Controller\StudentWriteController::class, $studentWriteController);
+        $studentController = $this->factory->__invoke($this->controllerManager);
+        $this->assertInstanceOf(StudentWriteController::class, $studentController);
     }
 }

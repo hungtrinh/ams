@@ -7,7 +7,7 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     protected $profileValid = [
         'student' => [
             'registration-code'  => '1234567',
-            'katakana-name'  => 'Yoshikuni',
+            'phonetic-name'  => 'Yoshikuni',
             'fullname'  => '吉国',
             'dob' => '1985-01-18',
             'gender' => 'male',
@@ -66,7 +66,7 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertQuery("form[name='add-student'][id='add-student'][method='POST'][action='/student/add']");
 
         $this->assertQuery("input[name='student[registration-code]'][type='text'][maxlength='7']");
-        $this->assertQuery("input[name='student[katakana-name]'][type='text']");
+        $this->assertQuery("input[name='student[phonetic-name]'][type='text']");
         $this->assertQuery("input[name='student[fullname]'][type='text']");
         $this->assertQuery("input[name='student[dob]'][type='text']");
 
@@ -124,10 +124,10 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertQuery(".has-error input[name='student[registration-code]'][type='text']");
     }
 
-    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayKatakanaNameErrorMessage()
+    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayPhoneticNameErrorMessage()
     {
         $this->submitStudentProfile();
-        $this->assertQuery(".has-error input[name='student[katakana-name]'][type='text']");
+        $this->assertQuery(".has-error input[name='student[phonetic-name]'][type='text']");
     }
 
     public function testWhenSubmitEmptyStudentProfileThenSystemDisplayFullnameErrorMessage()

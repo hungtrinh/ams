@@ -4,6 +4,7 @@ namespace AchievementTest\Form;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
+use Achievement\Student\Domain\Model\ProfileInteface;
 
 class StudentFormTest extends PHPUnit_Framework_TestCase
 {
@@ -39,7 +40,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         'security' => 'depend on form object',
         'student' => [
             'registration-code'  => '1234567',
-            'katakana-name'  => 'Yoshikuni',
+            'phonetic-name'  => 'Yoshikuni',
             'fullname'  => '吉国',
             'dob' => '1985-01-18',
             'gender' => 'male',
@@ -65,7 +66,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
             'registration-code'  => [
                 'isEmpty' => "Value is required and can't be empty",
             ],
-            'katakana-name'  => [
+            'phonetic-name'  => [
                 'isEmpty' => "Value is required and can't be empty",
             ],
             'fullname'  => [
@@ -122,5 +123,13 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
     {
         $this->studentForm->setData($this->profileValid);
         $this->assertTrue($this->studentForm->isValid());
+    }
+
+    public function testWhenSetValidProfileThenGetDataWillReturnProfileModel()
+    {
+        $this->studentForm->setData($this->profileValid);
+        $this->studentForm->isValid();
+        $studentProfile = $this->studentForm->getData();
+        $this->assertInstanceOf(ProfileInteface::class, $studentProfile);
     }
 }

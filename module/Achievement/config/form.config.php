@@ -17,8 +17,8 @@ $studentFieldsetFilterSpec = [
         'name'       => 'registration-code',
         'required'   => true,
     ],
-    'katakana-name' => [
-        'name'       => 'katakana-name',
+    'phonetic-name' => [
+        'name'       => 'phonetic-name',
         'required'   => true,
     ],
     'fullname' => [
@@ -142,12 +142,12 @@ return [
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => 'katakana-name',
+                    'name' => 'phonetic-name',
                     'options' => [
-                        'label' => 'Katakana name',
+                        'label' => 'Phonetic name',
                     ],
                 ],
-            ], //katakana-name
+            ], //phonetic-name
             [
                 'spec' => [
                     'type' => 'text',
