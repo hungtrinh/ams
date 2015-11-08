@@ -117,6 +117,8 @@ return [
     'Fieldset\Student' => [
         'type' => 'fieldset',
         'name' => 'student',
+        'hydrator' => 'Achievement\Student\Form\StudentProfileHydrator',
+        'object' => \Achievement\Student\Domain\Model\Profile::class,
         'elements' => [
             [
                 'spec' => [

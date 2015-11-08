@@ -4,7 +4,8 @@ namespace AchievementTest\Form;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
-use Achievement\Student\Domain\Model\ProfileInteface;
+use Achievement\Student\Domain\Model\ProfileInterface;
+use Achievement\Student\Domain\Model\Profile;
 
 class StudentFormTest extends PHPUnit_Framework_TestCase
 {
@@ -129,7 +130,20 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
     {
         $this->studentForm->setData($this->profileValid);
         $this->studentForm->isValid();
+
         $studentProfile = $this->studentForm->getData();
-        $this->assertInstanceOf(ProfileInteface::class, $studentProfile);
+        $this->assertInstanceOf(ProfileInterface::class, $studentProfile, print_r($studentProfile, true));
+
+        $this->assertEquals('1234567', $studentProfile->getRegistrationCode());
+        $this->assertEquals('Yoshikuni', $studentProfile->getPhoneticName());
+        $this->assertEquals('吉国', $studentProfile->getFullname());
+        $this->assertEquals('1985-01-18', $studentProfile->getDob());
+        $this->assertEquals('male', $studentProfile->getGender());
+        $this->assertEquals(1, $studentProfile->getGrade());
+        $this->assertEquals([
+            'id' => 1,
+            'username' => 'hungtd',
+            'password' => '1234',
+        ], $studentProfile->getAccount());
     }
 }

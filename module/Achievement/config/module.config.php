@@ -2,6 +2,7 @@
 use Achievement\Account\Validator\UsernameUniqueFactory;
 use Achievement\Student\Factory\WriteControllerFactory;
 use Achievement\Student\Service\Register;
+use Achievement\Student\Factory\ProfileFormHydratorFactory;
 
 return [
     'forms' => include __DIR__ . '/form.config.php',
@@ -9,6 +10,11 @@ return [
         'factories' => [
             'username_unique' => UsernameUniqueFactory::class,
         ],
+    ],
+    'hydrators' => [
+        'factories' => [
+            'Achievement\Student\Form\StudentProfileHydrator' => ProfileFormHydratorFactory::class,
+        ]
     ],
     'log' => [
         'Log\App' => [
