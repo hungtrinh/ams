@@ -5,7 +5,15 @@ use Achievement\Student\Service\Register;
 use Achievement\Student\Factory\ProfileFormHydratorFactory;
 
 return [
+    'input_filters' => [
+        'abstract_factories' => [
+            'Zend\InputFilter\InputFilterAbstractServiceFactory'
+        ],
+    ],
+    'input_filter_specs' => include __DIR__ . '/inputfilters.config.php',
+
     'forms' => include __DIR__ . '/form.config.php',
+
     'validators' => [
         'factories' => [
             'username_unique' => UsernameUniqueFactory::class,

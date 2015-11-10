@@ -17,5 +17,5 @@ return [
         'display_errors'             => true,
         'max_execution_time'         => 30,
         'date.timezone'              => 'asia/Ho_Chi_Minh',
-    ]
+    ],
 ];

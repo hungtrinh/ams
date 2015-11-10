@@ -275,9 +275,7 @@ return [
             ], // add new button
         ], //elements
 
-        'input_filter' => [
-            'student' => $studentFieldsetFilterSpec,
-        ], //input_filter
+        'input_filter' => 'Achievement\InputFilter\Student'
 
     ], //Achievement\Form\Student
 ];
