@@ -24,4 +24,11 @@ class StudentTest extends TestCase
     {
         $this->assertInstanceOf(InputFilterInterface::class, $this->studentInputFilter);
     }
+
+    public function testWhenCallIsValidWithValidProfileThenReturnTrue()
+    {
+
+        $validProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
+        $this->assertTrue($this->studentInputFilter->setData($validProfile)->isValid());
+    }
 }

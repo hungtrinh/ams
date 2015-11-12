@@ -37,23 +37,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
      *
      * @var []
      */
-    protected $profileValid = [
-        'security' => 'depend on form object',
-        'student' => [
-            'registration-code'  => '1234567',
-            'phonetic-name'  => 'Yoshikuni',
-            'fullname'  => '吉国',
-            'dob' => '1985-01-18',
-            'gender' => 'male',
-            'grade' => 1,
-
-            'account' => [
-                'id' => 1,
-                'username' => 'hungtd',
-                'password' => '1234',
-            ]
-        ],
-    ];
+    protected $profileValid;
 
     /**
      * Expected errors message when user submit empty form
@@ -93,15 +77,32 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         ],
     ];
 
+    /**
+     * @var \Zend\ServiceManager\ServiceLocatorInterface
+     */
+    protected $locator;
+
     protected function setUp()
     {
-        $this->studentForm = Bootstrap::getServiceManager()->get('Achievement\Form\Student');
+        $this->locator =  Bootstrap::getServiceManager();
+        $this->studentForm = $this->locator->get('Achievement\Form\Student');
         $this->prepaireValidProfileData();
     }
 
     private function prepaireValidProfileData()
     {
+        $this->profileValid = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
         $this->profileValid['security'] = $this->studentForm->get('security')->getValue();
+    }
+
+    public function testExpectedFormStructure()
+    {
+        $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
+        $studentFieldset = $this->studentForm->get('student');
+
+        $this->assertSame($expectedStudentField, $this->studentForm->get('student'));
+        $this->assertInstanceOf(\Zend\Form\Element\Csrf::class, $this->studentForm->get('security'));
+        $this->assertInstanceOf(\Zend\Form\Element\Submit::class, $this->studentForm->get('add'));
     }
 
     public function testWhenSetEmptyDataThenFormIsInvalidReturnFalse()
