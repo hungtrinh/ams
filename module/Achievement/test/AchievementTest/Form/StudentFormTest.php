@@ -143,7 +143,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $studentProfile->getGrade());
         $this->assertEquals([
             'id' => 1,
-            'username' => 'hungtd',
+            'username' => '1234567',
             'password' => '1234',
         ], $studentProfile->getAccount());
     }

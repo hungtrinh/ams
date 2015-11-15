@@ -10,7 +10,7 @@ return [
 
         'account' => [
             'id' => 1,
-            'username' => 'hungtd',
+            'username' => '1234567',
             'password' => '1234',
         ]
     ],

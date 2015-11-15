@@ -25,7 +25,15 @@ return [
                 'username' => [
                     'name' => 'username',
                     'required' => true,
-                ],
+                    'validators' => [
+                        [
+                            'name' => 'regex',
+                            'options' => [
+                                'pattern' => '/[0-9]{7}/',
+                            ],
+                        ],
+                    ], //validators
+                ], //username
                 'password' => [
                     'name' => 'password',
                     'required' => true,

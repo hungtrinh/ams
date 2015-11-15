@@ -31,4 +31,11 @@ class StudentTest extends TestCase
         $validProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
         $this->assertTrue($this->studentInputFilter->setData($validProfile)->isValid());
     }
+
+    public function testIsValidWillReturnFalseWhenInjectUsernameDifferenceSeventNumber()
+    {
+        $inValidProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
+        $inValidProfile['student']['account']['username'] = 'abcdef';
+        $this->assertFalse($this->studentInputFilter->setData($inValidProfile)->isValid());
+    }
 }

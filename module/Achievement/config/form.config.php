@@ -235,6 +235,9 @@ return [
                 'spec' => [
                     'type' => 'submit',
                     'name' => "add",
+                    'options' => [
+                        'exclude' => true,
+                    ],
                     'attributes' => [
                         'value' => 'Add new',
                     ],

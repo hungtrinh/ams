@@ -4,41 +4,22 @@ namespace AchievementTest\Controller;
 
 class StudentWriteControllerTest extends AbstractHttpControllerTestCase
 {
-    protected $profileValid = [
-        'student' => [
-            'registration-code'  => '1234567',
-            'phonetic-name'  => 'Yoshikuni',
-            'fullname'  => '吉国',
-            'dob' => '1985-01-18',
-            'gender' => 'male',
-            'grade' => 1,
 
-            'account' => [
-                'id' => 1,
-                'username' => 'hungtd',
-                'password' => '1234',
-            ]
-        ],
-    ];
 
     protected $mockRegisterStudentService;
 
     public function setUp()
     {
         parent::setUp();
-
         $this->mockRegisterStudentService = $this->prophesize('Achievement\Student\Service\Register')->reveal();
         $serviceLocator = $this->getApplicationServiceLocator();
         $serviceLocator->setAllowOverride(true);
         $serviceLocator->setService('RegisterStudentService', $this->mockRegisterStudentService);
     }
 
-
-
-
     public function validNewStudentProfileProvider()
     {
-        $newProfile = $this->profileValid;
+        $newProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
         unset($newProfile['student']['account']['id']);
 
         return [
@@ -56,9 +37,6 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertControllerName('Achievement\\Controller\\StudentWrite');
         $this->assertControllerClass('StudentWriteController');
         $this->assertActionName('add');
-
-        // comment out line below to see html debug response
-        // echo $this->getResponse()->getContent();
 
         /**
          * assert blank form with needed element
@@ -173,9 +151,8 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     {
         $this->mockRegisterStudentService
                 ->register($validProfile);
-
+        // var_dump($validProfile);
         $this->submitStudentProfile($validProfile);
-        $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/student');
     }
 
