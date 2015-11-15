@@ -1,37 +1,4 @@
 <?php
-$accountBasicFieldsetFilterSpec = [
-    'type' => 'input_filter',
-    'username' => [
-        'name' => 'username',
-        'required' => true,
-    ],
-    'password' => [
-        'name' => 'password',
-        'required' => true,
-    ]
-];
-
-$studentFieldsetFilterSpec = [
-    'type' => 'input_filter',
-    'registration-code' => [
-        'name'       => 'registration-code',
-        'required'   => true,
-    ],
-    'phonetic-name' => [
-        'name'       => 'phonetic-name',
-        'required'   => true,
-    ],
-    'fullname' => [
-        'name'       => 'fullname',
-        'required'   => true,
-    ],
-    'dob' => [
-        'name'       => 'dob',
-        'required'   => true,
-    ],
-    'account' => $accountBasicFieldsetFilterSpec,
-];
-
 return [
     'Achievement\Form\Sibling' => [
         'type' => 'fieldset',
