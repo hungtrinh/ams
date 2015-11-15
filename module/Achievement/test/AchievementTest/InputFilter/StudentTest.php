@@ -25,7 +25,7 @@ class StudentTest extends TestCase
         $this->assertInstanceOf(InputFilterInterface::class, $this->studentInputFilter);
     }
 
-    public function testRegistrationCodeIsRequired()
+    protected function validateRegistrationCodeOnly($registerCode)
     {
         $this->studentInputFilter->setValidationGroup(['student' => 'registration-code' ]);
         $this->studentInputFilter->setData([
@@ -33,20 +33,28 @@ class StudentTest extends TestCase
                 'registration-code' => '',
             ]
         ]);
+    }
 
+    protected function validatePhoneticNameOnly($phoneticName)
+    {
+        $this->studentInputFilter->setValidationGroup(['student' => 'phonetic-name' ]);
+        $this->studentInputFilter->setData([
+            'student' => [
+                'phonetic-name' => $phoneticName,
+            ]
+        ]);
+    }
+
+    public function testRegistrationCodeIsRequired()
+    {
+        $this->validateRegistrationCodeOnly('');
         $this->assertFalse($this->studentInputFilter->isValid());
         $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['registration-code']);
     }
 
     public function testPhoneticNameIsRequired()
     {
-        $this->studentInputFilter->setValidationGroup(['student' => 'phonetic-name' ]);
-        $this->studentInputFilter->setData([
-            'student' => [
-                'phonetic-name' => '',
-            ]
-        ]);
-
+        $this->validatePhoneticNameOnly('');
         $this->assertFalse($this->studentInputFilter->isValid());
         $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['phonetic-name']);
     }
