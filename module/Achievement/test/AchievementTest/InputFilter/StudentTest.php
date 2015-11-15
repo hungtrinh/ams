@@ -20,17 +20,12 @@ class StudentTest extends TestCase
         $this->studentInputFilter = $inputFilterManger->get('Achievement\InputFilter\Student');
     }
 
-    public function testIsAnInstanceInputFilterInterface()
-    {
-        $this->assertInstanceOf(InputFilterInterface::class, $this->studentInputFilter);
-    }
-
     protected function validateRegistrationCodeOnly($registerCode)
     {
         $this->studentInputFilter->setValidationGroup(['student' => 'registration-code' ]);
         $this->studentInputFilter->setData([
             'student' => [
-                'registration-code' => '',
+                'registration-code' => $registerCode,
             ]
         ]);
     }
@@ -43,6 +38,11 @@ class StudentTest extends TestCase
                 'phonetic-name' => $phoneticName,
             ]
         ]);
+    }
+
+    public function testIsAnInstanceInputFilterInterface()
+    {
+        $this->assertInstanceOf(InputFilterInterface::class, $this->studentInputFilter);
     }
 
     public function testRegistrationCodeIsRequired()
