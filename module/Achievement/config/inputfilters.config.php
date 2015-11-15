@@ -3,7 +3,7 @@
 return [
     'Achievement\InputFilter\Student' => [
         'student' => [
-            'type' => 'input_filter',
+            'type' => 'InputFilter',
             'registration-code' => [
                 'name'       => 'registration-code',
                 'required'   => true,
@@ -21,7 +21,7 @@ return [
                 'required'   => true,
             ],
             'account' => [
-                'type' => 'input_filter',
+                'type' => 'InputFilter',
                 'username' => [
                     'name' => 'username',
                     'required' => true,

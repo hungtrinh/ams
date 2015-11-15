@@ -20,7 +20,7 @@ class StudentTest extends TestCase
         $this->studentInputFilter = $inputFilterManger->get('Achievement\InputFilter\Student');
     }
 
-    protected function validateRegistrationCodeOnly($registerCode)
+    protected function validateOnlyRegistrationCodeWith($registerCode)
     {
         $this->studentInputFilter->setValidationGroup(['student' => 'registration-code' ]);
         $this->studentInputFilter->setData([
@@ -30,7 +30,7 @@ class StudentTest extends TestCase
         ]);
     }
 
-    protected function validatePhoneticNameOnly($phoneticName)
+    protected function validateOnlyPhoneticNameWith($phoneticName)
     {
         $this->studentInputFilter->setValidationGroup(['student' => 'phonetic-name' ]);
         $this->studentInputFilter->setData([
@@ -47,14 +47,24 @@ class StudentTest extends TestCase
 
     public function testRegistrationCodeIsRequired()
     {
-        $this->validateRegistrationCodeOnly('');
+        $emptyString = '';
+        $this->validateOnlyRegistrationCodeWith($emptyString);
+        $this->assertFalse($this->studentInputFilter->isValid());
+        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['registration-code']);
+    }
+
+    public function testRegistrationCodeIsRequiredAndNotAcceptWhiteSpace()
+    {
+        $threeSpace = '   ';
+        $this->validateOnlyRegistrationCodeWith($threeSpace);
         $this->assertFalse($this->studentInputFilter->isValid());
         $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['registration-code']);
     }
 
     public function testPhoneticNameIsRequired()
     {
-        $this->validatePhoneticNameOnly('');
+        $emptyString = '';
+        $this->validateOnlyPhoneticNameWith($emptyString);
         $this->assertFalse($this->studentInputFilter->isValid());
         $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['phonetic-name']);
     }
