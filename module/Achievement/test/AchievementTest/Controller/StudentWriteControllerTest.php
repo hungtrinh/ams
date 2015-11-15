@@ -5,7 +5,6 @@ namespace AchievementTest\Controller;
 class StudentWriteControllerTest extends AbstractHttpControllerTestCase
 {
 
-
     protected $mockRegisterStudentService;
 
     public function setUp()
@@ -21,7 +20,6 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     {
         $newProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
         unset($newProfile['student']['account']['id']);
-
         return [
             [$newProfile],
         ];

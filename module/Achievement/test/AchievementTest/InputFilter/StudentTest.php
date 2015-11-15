@@ -15,9 +15,9 @@ class StudentTest extends TestCase
 
     protected function setUp()
     {
-        $this->studentInputFilter = Bootstrap::getServiceManager()
-                                        ->get('InputFilterManager')
-                                        ->get('Achievement\InputFilter\Student');
+        $serviceManager = Bootstrap::getServiceManager();
+        $inputFilterManger = $serviceManager->get('InputFilterManager');
+        $this->studentInputFilter = $inputFilterManger->get('Achievement\InputFilter\Student');
     }
 
     public function testIsAnInstanceInputFilterInterface()
@@ -25,9 +25,34 @@ class StudentTest extends TestCase
         $this->assertInstanceOf(InputFilterInterface::class, $this->studentInputFilter);
     }
 
+    public function testRegistrationCodeIsRequired()
+    {
+        $this->studentInputFilter->setValidationGroup(['student' => 'registration-code' ]);
+        $this->studentInputFilter->setData([
+            'student' => [
+                'registration-code' => '',
+            ]
+        ]);
+
+        $this->assertFalse($this->studentInputFilter->isValid());
+        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['registration-code']);
+    }
+
+    public function testPhoneticNameIsRequired()
+    {
+        $this->studentInputFilter->setValidationGroup(['student' => 'phonetic-name' ]);
+        $this->studentInputFilter->setData([
+            'student' => [
+                'phonetic-name' => '',
+            ]
+        ]);
+
+        $this->assertFalse($this->studentInputFilter->isValid());
+        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['phonetic-name']);
+    }
+
     public function testWhenCallIsValidWithValidProfileThenReturnTrue()
     {
-
         $validProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
         $this->assertTrue($this->studentInputFilter->setData($validProfile)->isValid());
     }
