@@ -20,24 +20,29 @@ class StudentTest extends TestCase
         $this->studentInputFilter = $inputFilterManger->get('Achievement\InputFilter\Student');
     }
 
-    protected function validateOnlyRegistrationCodeWith($registerCode)
+    protected function setupInvidualValidOnStudentFieldSet($fieldName, $fieldValue)
     {
-        $this->studentInputFilter->setValidationGroup(['student' => 'registration-code' ]);
+        $this->studentInputFilter->setValidationGroup(['student' => $fieldName ]);
         $this->studentInputFilter->setData([
             'student' => [
-                'registration-code' => $registerCode,
+                $fieldName => $fieldValue,
             ]
         ]);
     }
 
+    protected function validateOnlyRegistrationCodeWith($registerCode)
+    {
+        $this->setupInvidualValidOnStudentFieldSet('registration-code', $registerCode);
+    }
+
     protected function validateOnlyPhoneticNameWith($phoneticName)
     {
-        $this->studentInputFilter->setValidationGroup(['student' => 'phonetic-name' ]);
-        $this->studentInputFilter->setData([
-            'student' => [
-                'phonetic-name' => $phoneticName,
-            ]
-        ]);
+        $this->setupInvidualValidOnStudentFieldSet('phonetic-name', $phoneticName);
+    }
+
+    protected function validateOnlyFullnameWith($fullname)
+    {
+        $this->setupInvidualValidOnStudentFieldSet('fullname', $fullname);
     }
 
     public function testIsAnInstanceInputFilterInterface()
@@ -67,6 +72,14 @@ class StudentTest extends TestCase
         $this->validateOnlyPhoneticNameWith($emptyString);
         $this->assertFalse($this->studentInputFilter->isValid());
         $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['phonetic-name']);
+    }
+
+    public function testFullnameIsRequired()
+    {
+        $emptyString = '';
+        $this->validateOnlyFullnameWith($emptyString);
+        $this->assertFalse($this->studentInputFilter->isValid());
+        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['fullname']);
     }
 
     public function testWhenCallIsValidWithValidProfileThenReturnTrue()
