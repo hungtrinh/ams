@@ -20,9 +20,11 @@ class StudentTest extends TestCase
         $this->studentInputFilter = $inputFilterManger->get('Achievement\InputFilter\Student');
     }
 
-    protected function setupInvidualValidOnStudentFieldSet($fieldName, $fieldValue)
+    protected function setInvidualValidOnStudentFieldSet($fieldName, $fieldValue)
     {
-        $this->studentInputFilter->setValidationGroup(['student' => $fieldName ]);
+        $this->studentInputFilter->setValidationGroup([
+            'student' => $fieldName
+        ]);
         $this->studentInputFilter->setData([
             'student' => [
                 $fieldName => $fieldValue,
@@ -30,19 +32,35 @@ class StudentTest extends TestCase
         ]);
     }
 
+    protected function setInvidualValidOnAccountFieldSet($fieldName, $fieldValue)
+    {
+        $this->studentInputFilter->setValidationGroup([
+            'student' => [
+                'account' => $fieldName,
+            ]
+        ]);
+        $this->studentInputFilter->setData([
+            'student' => [
+                'account' => [
+                    $fieldName => $fieldValue,
+                ]
+            ]
+        ]);
+    }
+
     protected function validateOnlyRegistrationCodeWith($registerCode)
     {
-        $this->setupInvidualValidOnStudentFieldSet('registration-code', $registerCode);
+        $this->setInvidualValidOnStudentFieldSet('registration-code', $registerCode);
     }
 
     protected function validateOnlyPhoneticNameWith($phoneticName)
     {
-        $this->setupInvidualValidOnStudentFieldSet('phonetic-name', $phoneticName);
+        $this->setInvidualValidOnStudentFieldSet('phonetic-name', $phoneticName);
     }
 
     protected function validateOnlyFullnameWith($fullname)
     {
-        $this->setupInvidualValidOnStudentFieldSet('fullname', $fullname);
+        $this->setInvidualValidOnStudentFieldSet('fullname', $fullname);
     }
 
     public function testIsAnInstanceInputFilterInterface()
@@ -82,16 +100,30 @@ class StudentTest extends TestCase
         $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['fullname']);
     }
 
-    public function testWhenCallIsValidWithValidProfileThenReturnTrue()
+    public function testDobIsRequired()
     {
-        $validProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
-        $this->assertTrue($this->studentInputFilter->setData($validProfile)->isValid());
+        $this->setInvidualValidOnStudentFieldSet('dob', '');
+        $this->assertFalse($this->studentInputFilter->isValid());
+        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['dob']);
     }
 
-    public function testIsValidWillReturnFalseWhenInjectUsernameDifferenceSeventNumber()
+    public function testUsernameIsRequired()
+    {
+        $this->setInvidualValidOnAccountFieldSet('username', '');
+        $this->assertFalse($this->studentInputFilter->isValid());
+        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['account']['username']);
+    }
+
+    public function testUsernameIsInvalidWhenDoesNotContainExactly7DigitsCharacterAnsi()
     {
         $inValidProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
         $inValidProfile['student']['account']['username'] = 'abcdef';
         $this->assertFalse($this->studentInputFilter->setData($inValidProfile)->isValid());
+    }
+
+    public function testIsValidWithProfileExpected()
+    {
+        $validProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
+        $this->assertTrue($this->studentInputFilter->setData($validProfile)->isValid());
     }
 }
