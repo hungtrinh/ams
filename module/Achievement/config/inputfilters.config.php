@@ -25,6 +25,9 @@ return [
                             'name' => 'regex',
                             'options' => [
                                 'pattern' => '/[0-9]{7}/',
+                                'messages' => [
+                                    'regexNotMatch' => 'The input must contain only 7 digits'
+                                ]
                             ],
                         ],
                     ], //validators

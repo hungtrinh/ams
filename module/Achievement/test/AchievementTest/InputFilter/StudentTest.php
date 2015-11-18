@@ -118,7 +118,12 @@ class StudentTest extends TestCase
     {
         $inValidProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
         $inValidProfile['student']['account']['username'] = 'abcdef';
+
         $this->assertFalse($this->studentInputFilter->setData($inValidProfile)->isValid());
+        $errorMessages = $this->studentInputFilter->getMessages();
+        $this->assertArrayHasKey('regexNotMatch', $errorMessages['student']['account']['username']);
+        $this->assertEquals('The input must contain only 7 digits', $errorMessages['student']['account']['username']['regexNotMatch']);
+
     }
 
     public function testIsValidWithProfileExpected()
