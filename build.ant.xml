@@ -20,7 +20,7 @@
         <exec executable="php">
             <arg value="public/index.php" />
             <arg value="development" />
-            <arg value="disable" />
+            <arg value="enable" />
         </exec>
     </target>
 
