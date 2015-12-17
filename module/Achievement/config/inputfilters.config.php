@@ -35,7 +35,7 @@ return [
                 'password' => [
                     'name' => 'password',
                 ]
-            ],
-        ],
-    ],
+            ], //account
+        ], //student
+    ], //Achievement\InputFilter\Student
 ];
