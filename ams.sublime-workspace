@@ -428,21 +428,69 @@
 	"buffers":
 	[
 		{
-			"contents": "<?php\n\nnamespace AchievementTest\\InputFilter;\n\nuse PHPUnit_Framework_TestCase as TestCase;\nuse AchievementTest\\Bootstrap;\nuse Zend\\InputFilter\\InputFilterInterface;\n\nclass StudentTest extends TestCase\n{\n    /**\n     * @var \\Zend\\InputFilter\\InputFilterInterface\n     */\n    protected $studentInputFilter;\n\n    protected function setUp()\n    {\n        $serviceManager = Bootstrap::getServiceManager();\n        $inputFilterManger = $serviceManager->get('InputFilterManager');\n        $this->studentInputFilter = $inputFilterManger->get('Achievement\\InputFilter\\Student');\n    }\n\n    /**\n     * Get raw data validate profile user will submit by web form\n     * @return []\n     */\n    protected function getFixtureValidProfile()\n    {\n        return include(realpath(\"module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php\"));\n    }\n\n    protected function setInvidualValidOnStudentFieldSet($fieldName, $fieldValue)\n    {\n        $this->studentInputFilter->setValidationGroup([\n            'student' => $fieldName\n        ]);\n        $this->studentInputFilter->setData([\n            'student' => [\n                $fieldName => $fieldValue,\n            ]\n        ]);\n    }\n\n    protected function setInvidualValidOnAccountFieldSet($fieldName, $fieldValue)\n    {\n        $this->studentInputFilter->setValidationGroup([\n            'student' => [\n                'account' => $fieldName,\n            ]\n        ]);\n        $this->studentInputFilter->setData([\n            'student' => [\n                'account' => [\n                    $fieldName => $fieldValue,\n                ]\n            ]\n        ]);\n    }\n\n    protected function validateOnlyRegistrationCodeWith($registerCode)\n    {\n        $this->setInvidualValidOnStudentFieldSet(\n            'registration-code',\n            $registerCode\n        );\n    }\n\n    protected function validateOnlyPhoneticNameWith($phoneticName)\n    {\n        $this->setInvidualValidOnStudentFieldSet(\n            'phonetic-name',\n            $phoneticName\n        );\n    }\n\n    protected function validateOnlyFullnameWith($fullname)\n    {\n        $this->setInvidualValidOnStudentFieldSet('fullname', $fullname);\n    }\n\n    public function testIsAnInstanceInputFilterInterface()\n    {\n        $this->assertInstanceOf(\n            InputFilterInterface::class,\n            $this->studentInputFilter\n        );\n    }\n\n    public function testRegistrationCodeIsRequired()\n    {\n        $emptyString = '';\n        $this->validateOnlyRegistrationCodeWith($emptyString);\n        $this->assertFalse($this->studentInputFilter->isValid());\n        $this->assertArrayHasKey(\n            'isEmpty',\n            $this->studentInputFilter->getMessages()['student']['registration-code']\n        );\n    }\n\n    public function testRegistrationCodeIsRequiredAndNotAcceptWhiteSpace()\n    {\n        $threeSpace = '   ';\n        $this->validateOnlyRegistrationCodeWith($threeSpace);\n        $this->assertFalse($this->studentInputFilter->isValid());\n        $this->assertArrayHasKey(\n            'isEmpty',\n            $this->studentInputFilter->getMessages()['student']['registration-code']\n        );\n    }\n\n    public function testPhoneticNameIsRequired()\n    {\n        $emptyString = '';\n        $this->validateOnlyPhoneticNameWith($emptyString);\n        $this->assertFalse($this->studentInputFilter->isValid());\n        $this->assertArrayHasKey(\n            'isEmpty',\n            $this->studentInputFilter->getMessages()['student']['phonetic-name']\n        );\n    }\n\n    public function testFullnameIsRequired()\n    {\n        $emptyString = '';\n        $this->validateOnlyFullnameWith($emptyString);\n        $this->assertFalse($this->studentInputFilter->isValid());\n        $this->assertArrayHasKey(\n            'isEmpty',\n            $this->studentInputFilter->getMessages()['student']['fullname']\n        );\n    }\n\n    public function testDobIsRequired()\n    {\n        $this->setInvidualValidOnStudentFieldSet('dob', '');\n        $this->assertFalse($this->studentInputFilter->isValid());\n        $this->assertArrayHasKey(\n            'isEmpty',\n            $this->studentInputFilter->getMessages()['student']['dob']\n        );\n    }\n\n    public function testUsernameIsRequired()\n    {\n        $this->setInvidualValidOnAccountFieldSet('username', '');\n        $this->assertFalse($this->studentInputFilter->isValid());\n        $this->assertArrayHasKey(\n            'isEmpty',\n            $this->studentInputFilter->getMessages()['student']['account']['username']\n        );\n    }\n\n    public function testUsernameIsInvalidWhenDoesNotContainExactly7DigitsCharacterAnsi()\n    {\n        $inValidProfile = $this->getFixtureValidProfile();\n        $inValidProfile['student']['account']['username'] = 'abcdef';\n\n        $this->assertFalse($this->studentInputFilter->setData($inValidProfile)->isValid());\n        $errorMessages = $this->studentInputFilter->getMessages();\n        $this->assertArrayHasKey(\n            'regexNotMatch',\n            $errorMessages['student']['account']['username']\n        );\n        $this->assertEquals(\n            'The input must contain only 7 digits',\n            $errorMessages['student']['account']['username']['regexNotMatch']\n        );\n\n    }\n\n    public function testIsValidWithProfileExpected()\n    {\n        $validProfile = $this->getFixtureValidProfile();\n        $this->assertTrue($this->studentInputFilter->setData($validProfile)->isValid());\n    }\n}\ns",
-			"file": "module/Achievement/test/AchievementTest/InputFilter/StudentTest.php",
-			"file_size": 5428,
-			"file_write_time": 130947955051313994,
+			"file": "module/Achievement/test/AchievementTest/Student/Service/StudentRegisterTest.php",
 			"settings":
 			{
-				"buffer_size": 5429,
+				"buffer_size": 938,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/hungtd/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+			"file": "module/Achievement/test/AchievementTest/InputFilter/StudentTest.php",
 			"settings":
 			{
-				"buffer_size": 60,
+				"buffer_size": 5439,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "module/Achievement/Module.php",
+			"settings":
+			{
+				"buffer_size": 425,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "module/Achievement/config/form.config.php",
+			"settings":
+			{
+				"buffer_size": 8324,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?php\nuse Achievement\\Account\\Validator\\UsernameUniqueFactory;\nuse Achievement\\Student\\Factory\\WriteControllerFactory;\nuse Achievement\\Student\\Service\\StudentRegister;\nuse Achievement\\Student\\Factory\\ProfileFormHydratorFactory;\n\nreturn [\n    'input_filters' => [\n        'abstract_factories' => [\n            'Zend\\InputFilter\\InputFilterAbstractServiceFactory'\n        ],\n    ],\n    'input_filter_specs' => include __DIR__ . '/inputfilters.config.php',\n\n    'forms' => include __DIR__ . '/form.config.php',\n \n    'validators' => [\n        'factories' => [\n            'username_unique' => UsernameUniqueFactory::class,\n        ],\n    ],\n    'hydrators' => [\n        'factories' => [\n            'Achievement\\Student\\Form\\StudentProfileHydrator' => ProfileFormHydratorFactory::class,\n        ]\n    ],\n    'view_manager' => [\n         'template_path_stack' => [\n             __DIR__ . '/../view',\n         ],//template_path_stack\n     ],//view_manager\n    'controllers' => [\n        'factories' => [\n            'Achievement\\Controller\\StudentWrite' => WriteControllerFactory::class,\n        ]\n     ],\n    'service_manager' => [\n        'invokables' => [\n            'RegisterStudentService' => StudentRegister::class,\n        ]\n    ],\n    'router' => [\n        'routes' => [\n            'student' => [\n                'type' => 'literal',\n                'options' => [\n                    'route' => '/student',\n                    'defaults' => [\n                        'controller' => 'Achievement\\Controller\\StudentWrite',\n                        'action' => 'index',\n                    ], //defaults\n                ], //options\n                'may_terminate' => true,\n                'child_routes'  => [\n                    'add' => [\n                        'type' => 'literal',\n                        'options' => [\n                            'route' => '/add',\n                            'defaults' => [\n                                'controller' => 'Achievement\\Controller\\StudentWrite',\n                                'action' => 'add',\n                            ]//defaults\n                        ], //options\n                    ], //add\n                ], //child_routes\n            ], //route\n        ], //routes\n    ], //router\n];\n",
+			"file": "module/Achievement/config/module.config.php",
+			"file_size": 2259,
+			"file_write_time": 130948043185459260,
+			"settings":
+			{
+				"buffer_size": 2260,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "module/Achievement/test/AchievementTest/DatabaseTestCase.php",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/hungtd/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 767,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "module/Achievement/test/Bootstrap.php",
+			"settings":
+			{
+				"buffer_size": 2621,
 				"line_ending": "Unix"
 			}
 		},
@@ -451,46 +499,6 @@
 			"settings":
 			{
 				"buffer_size": 1056,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "build.xml",
-			"settings":
-			{
-				"buffer_size": 1673,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/config/inputfilters.config.php",
-			"settings":
-			{
-				"buffer_size": 1268,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/src/Achievement/Controller/StudentWriteController.php",
-			"settings":
-			{
-				"buffer_size": 1757,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/config/form.config.php",
-			"settings":
-			{
-				"buffer_size": 8333,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/index.php",
-			"settings":
-			{
-				"buffer_size": 805,
 				"line_ending": "Unix"
 			}
 		}
@@ -566,10 +574,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 174.0,
-		"last_filter": " git commit",
+		"height": 59.0,
+		"last_filter": "quick",
 		"selected_items":
 		[
+			[
+				"quick",
+				"Git: Quick Commit"
+			],
 			[
 				" git commit",
 				"Git: Quick Commit"
@@ -1077,10 +1089,6 @@
 			[
 				"svn show ",
 				"SVN: Show Applicable File Commands"
-			],
-			[
-				"svn file log",
-				"SVN: (File) Log"
 			]
 		],
 		"width": 601.0
@@ -1106,13 +1114,46 @@
 	},
 	"expanded_folders":
 	[
-		"/home/hungtd/Projects/ams"
+		"/home/hungtd/Projects/ams",
+		"/home/hungtd/Projects/ams/data/cache",
+		"/home/hungtd/Projects/ams/data/logs",
+		"/home/hungtd/Projects/ams/module",
+		"/home/hungtd/Projects/ams/module/Achievement",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student",
+		"/home/hungtd/Projects/ams/module/Achievement/test",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Factory",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Service"
 	],
 	"file_history":
 	[
-		"/home/hungtd/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
-		"/home/hungtd/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-inputfilter/src/InputFilter.php",
+		"/home/hungtd/Projects/ams/config/application.config.old",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-inputfilter/src/BaseInputFilter.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Service/StudentRegisterInterface.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Service/StudentRegister.php",
+		"/home/hungtd/Projects/ams/module/Achievement/config/form.config.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Form/StudentFormTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Service/RegisterTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Model/Profile.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/phpunit.xml",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Model/ProfileInterface.php",
+		"/home/hungtd/Projects/ams/module/Achievement/config/module.config.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Domain/Model/Profile.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/InputFilter/StudentTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Controller/StudentWriteController.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/coverage/src/Achievement/Student/Service/StudentRegisterInterface.php.html",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Factory/WriteControllerFactoryTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php",
+		"/home/hungtd/Projects/ams/build.phing.xml",
+		"/home/hungtd/Projects/ams/build.xml",
+		"/home/hungtd/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/hungtd/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/hungtd/Projects/ams/module/Achievement/config/inputfilters.config.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Service/RegisterInterface.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Service/Register.php",
+		"/home/hungtd/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
 		"/Users/apple/www/ams/vendor/zendframework/zend-inputfilter/src/BaseInputFilter.php",
 		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Form/StudentFormTest.php",
 		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php",
@@ -1213,31 +1254,7 @@
 		"/Users/apple/www/ams/vendor/zendframework/zend-stdlib/src/Hydrator/ClassMethods.php",
 		"/Users/apple/Library/Application Support/Sublime Text 3/Packages/User/SuperAnt.sublime-settings",
 		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Controller/AbstractHttpControllerTestCase.php",
-		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Account/Validator/UsernameUniqueFactoryTest.php",
-		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle/src/TwbBundle/Options/ModuleOptions.php",
-		"/Users/apple/www/ams/vendor/neilime/zf2-twb-bundle/src/TwbBundle/Form/View/Helper/Factory/TwbBundleFormElementFactory.php",
-		"/Users/apple/www/ams/module/Application/view/layout/layout.phtml",
-		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/View/Helper/FormRow.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/View/Helper/FormElement.php",
-		"/Users/apple/www/ams/module/Achievement/src/Achievement/Account/Validator/UsernameUniqueFactory.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-validator/src/Db/AbstractDb.php",
-		"/Users/apple/www/zf-apigility-skeleton-1.3.1/vendor/zfcampus/zf-content-validation/src/Validator/Db/NoRecordExistsFactory.php",
-		"/Users/apple/www/zf-apigility-skeleton-1.3.1/module/npad/config/module.config.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-validator/src/Db/NoRecordExists.php",
-		"/Users/apple/www/zf-apigility-skeleton-1.3.1/vendor/zfcampus/zf-content-validation/src/Validator/Db/RecordExistsFactory.php",
-		"/Users/apple/www/zf-apigility-skeleton-1.3.1/vendor/zendframework/zend-db/src/Adapter/AdapterAbstractServiceFactory.php",
-		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Account/Validator/UsernameUniqueTest.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Service/ValidatorManagerFactory.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-validator/src/ValidatorPluginManager.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-modulemanager/src/Feature/ValidatorProviderInterface.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Controller/ControllerManager.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-validator/src/File/NotExists.php",
-		"/Users/apple/www/ams/composer.json",
-		"/Users/apple/www/ams/vendor/zendframework/zend-form/src/Element.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-inputfilter/src/Input.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-validator/src/ValidatorChain.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-stdlib/src/PriorityQueue.php",
-		"/Users/apple/www/ams/vendor/zendframework/zend-mvc/src/Service/FilterManagerFactory.php"
+		"/Users/apple/www/ams/module/Achievement/test/AchievementTest/Account/Validator/UsernameUniqueFactoryTest.php"
 	],
 	"find":
 	{
@@ -1248,6 +1265,9 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"/home/hungtd/Projects/ams/module/Achievement",
+			"/home/hungtd/Projects/ams/module/Achievement/src/Achievement",
+			"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest",
 			"/Users/apple/www/ams/vendor/zendframework/zend-inputfilter",
 			"/Users/apple/www/ams/vendor/zendframework/zend-filter",
 			"/Users/apple/www/ams/module",
@@ -1288,9 +1308,12 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"folder",
+			"Domain",
+			"/Domain/",
 			"fixture",
 			"profileValid",
 			"validNewStudentProfileProvider",
@@ -1415,10 +1438,7 @@
 			"select",
 			"'text'",
 			"full-name",
-			"Fullname",
-			"array(",
-			"];",
-			")"
+			"Fullname"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -1426,6 +1446,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"Domain",
 			"'Achievement\\Form\\Student'",
 			"grade",
 			"school-year",
@@ -1472,7 +1493,7 @@
 			"order.Ship"
 		],
 		"reverse": false,
-		"show_context": true,
+		"show_context": false,
 		"use_buffer2": true,
 		"whole_word": false,
 		"wrap": true
@@ -1480,70 +1501,91 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "module/Achievement/test/AchievementTest/InputFilter/StudentTest.php",
+					"file": "module/Achievement/test/AchievementTest/Student/Service/StudentRegisterTest.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5429,
+						"buffer_size": 938,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3852,
-								3852
-							],
-							[
-								5327,
-								5327
+								243,
+								243
 							]
 						],
 						"settings":
 						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "php",
-							"history_list_is_closing": true,
-							"rulers":
-							[
-								80
-							],
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2489.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/home/hungtd/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+					"file": "module/Achievement/test/AchievementTest/InputFilter/StudentTest.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 60,
+						"buffer_size": 5439,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1,
-								1
+								336,
+								336
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "module/Achievement/Module.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 425,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								317,
+								317
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1555,47 +1597,165 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
-					"buffer": 2,
-					"file": "module/Achievement/test/phpunit.xml",
+					"buffer": 3,
+					"file": "module/Achievement/config/form.config.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1056,
+						"buffer_size": 8324,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								747,
-								747
+								8320,
+								8320
 							]
 						],
 						"settings":
 						{
-							"WordCountSyntax": "xml",
-							"syntax": "Packages/XML/XML.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 204.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "module/Achievement/config/module.config.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2260,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1060,
+								1060
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 51.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "module/Achievement/test/AchievementTest/DatabaseTestCase.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "build.xml",
+					"buffer": 6,
+					"file": "/home/hungtd/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1673,
+						"buffer_size": 767,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								326,
+								326
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "module/Achievement/test/Bootstrap.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2621,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "module/Achievement/test/phpunit.xml",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1056,
 						"regions":
 						{
 						},
@@ -1617,130 +1777,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "module/Achievement/config/inputfilters.config.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1268,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								320,
-								320
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "php",
-							"history_list_is_closing": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "module/Achievement/src/Achievement/Controller/StudentWriteController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1757,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1112,
-								1130
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "php",
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "module/Achievement/config/form.config.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8333,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8001,
-								8001
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "php",
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "public/index.php",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 805,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								659,
-								669
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "php",
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -1786,7 +1822,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 415.0
+		"height": 523.0
 	},
 	"output.find_results":
 	{
@@ -1804,7 +1840,7 @@
 	"project": "ams.sublime-project",
 	"replace":
 	{
-		"height": 64.0
+		"height": 68.0
 	},
 	"save_all_on_build": false,
 	"select_file":
@@ -1814,12 +1850,68 @@
 		"selected_items":
 		[
 			[
+				"inputfilter.php",
+				"vendor/zendframework/zend-inputfilter/src/InputFilter.php"
+			],
+			[
+				"studentformtest",
+				"module/Achievement/test/AchievementTest/Form/StudentFormTest.php"
+			],
+			[
+				"studentwritecontrollertest.php",
+				"module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php"
+			],
+			[
+				"studentregisteri",
+				"module/Achievement/src/Achievement/Student/Service/StudentRegisterInterface.php"
+			],
+			[
+				"studentregis",
+				"module/Achievement/src/Achievement/Student/Service/StudentRegister.php"
+			],
+			[
+				"studentres",
+				"module/Achievement/src/Achievement/Student/Service/StudentRegister.php"
+			],
+			[
+				"registerstudentinterface",
+				"module/Achievement/test/coverage/src/Achievement/Student/Service/StudentRegisterInterface.php.html"
+			],
+			[
+				"studentcontro",
+				"module/Achievement/src/Achievement/Controller/StudentWriteController.php"
+			],
+			[
+				"writecontrollerfactorytest.php",
+				"module/Achievement/test/AchievementTest/Student/Factory/WriteControllerFactoryTest.php"
+			],
+			[
+				"registert",
+				"module/Achievement/test/AchievementTest/Student/Service/RegisterTest.php"
+			],
+			[
+				"writecontrollerfactoryt",
+				"module/Achievement/test/AchievementTest/Student/Factory/WriteControllerFactoryTest.php"
+			],
+			[
+				"phpunit.xml",
+				"module/Achievement/test/phpunit.xml"
+			],
+			[
+				"buil",
+				"build.xml"
+			],
+			[
+				"build.phing",
+				"build.phing.xml"
+			],
+			[
 				"build",
 				"build.xml"
 			],
 			[
-				"inputfilter.php",
-				"vendor/zendframework/zend-inputfilter/src/InputFilter.php"
+				"studenttes",
+				"module/Achievement/test/AchievementTest/InputFilter/StudentTest.php"
 			],
 			[
 				"notempty",
@@ -1840,10 +1932,6 @@
 			[
 				"studentwriteco",
 				"module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php"
-			],
-			[
-				"studentformtest",
-				"module/Achievement/test/AchievementTest/Form/StudentFormTest.php"
 			],
 			[
 				"studenttest",
@@ -2006,10 +2094,6 @@
 				"vendor/zendframework/zend-form/src/Form.php"
 			],
 			[
-				"phpunit.xml",
-				"module/Achievement/test/phpunit.xml"
-			],
-			[
 				"studentprofilehydratorf",
 				"module/Achievement/src/Achievement/Student/Factory/ProfileFormHydratorFactory.php"
 			],
@@ -2060,10 +2144,6 @@
 			[
 				"paginator.php",
 				"vendor/zendframework/zend-paginator/src/Paginator.php"
-			],
-			[
-				"studentcontro",
-				"module/Achievement/src/Achievement/Controller/StudentWriteController.php"
 			],
 			[
 				"module.config.php",
@@ -2280,50 +2360,6 @@
 			[
 				"forward",
 				"vendor/zendframework/zend-mvc/src/Controller/Plugin/Forward.php"
-			],
-			[
-				"atphpsettings",
-				"vendor/atukai/at-php-settings/src/AtPhpSettings/Collector/PhpSettingsCollector.php"
-			],
-			[
-				"application",
-				"config/application.config.php"
-			],
-			[
-				"global",
-				"config/autoload/global.php"
-			],
-			[
-				"composer",
-				"composer.json"
-			],
-			[
-				"layout.",
-				"module/Application/view/layout/layout.phtml"
-			],
-			[
-				"add.html",
-				"module/Achievement/view/achievement/student-write/add.phtml"
-			],
-			[
-				"bui",
-				"build.xml"
-			],
-			[
-				"writecontrollerfactory",
-				"module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php"
-			],
-			[
-				"zend/form/factory",
-				"vendor/zendframework/zend-form/src/Factory.php"
-			],
-			[
-				"formab",
-				"vendor/zendframework/zend-form/src/FormAbstractServiceFactory.php"
-			],
-			[
-				"inputfilterproviderinterface",
-				"vendor/zendframework/zend-inputfilter/src/InputFilterProviderInterface.php"
 			]
 		],
 		"width": 0.0
@@ -2350,7 +2386,7 @@
 		],
 		"width": 704.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 		"xdebug":
@@ -2396,8 +2432,8 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 310.0,
+	"side_bar_visible": true,
+	"side_bar_width": 302.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
