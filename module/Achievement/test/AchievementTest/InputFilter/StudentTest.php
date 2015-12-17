@@ -153,7 +153,7 @@ class StudentTest extends TestCase
     public function testUsernameIsInvalidWhenDoesNotContainExactly7DigitsCharacterAnsi()
     {
         $inValidProfile = $this->getFixtureValidProfile();
-        $inValidProfile['student']['account']['username'] = 'abcdef';
+        $inValidProfile['student']['account']['username'] = 'invalid usernamne';
 
         $this->assertFalse($this->studentInputFilter->setData($inValidProfile)->isValid());
         $errorMessages = $this->studentInputFilter->getMessages();
