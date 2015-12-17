@@ -85,7 +85,7 @@ return [
         'type' => 'fieldset',
         'name' => 'student',
         'hydrator' => 'Achievement\Student\Form\StudentProfileHydrator',
-        'object' => \Achievement\Student\Domain\Model\Profile::class,
+        'object' => \Achievement\Student\Model\Profile::class,
         'elements' => [
             [
                 'spec' => [

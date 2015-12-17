@@ -4,8 +4,8 @@ namespace AchievementTest\Form;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
-use Achievement\Student\Domain\Model\ProfileInterface;
-use Achievement\Student\Domain\Model\Profile;
+use Achievement\Student\Model\ProfileInterface;
+use Achievement\Student\Model\Profile;
 
 class StudentFormTest extends PHPUnit_Framework_TestCase
 {

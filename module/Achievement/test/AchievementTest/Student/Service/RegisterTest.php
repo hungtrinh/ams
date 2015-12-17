@@ -4,7 +4,7 @@ namespace AchievementTest\Student\Service;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
-use Achievement\Student\Domain\Model\Profile as StudentProfile;
+use Achievement\Student\Model\Profile as StudentProfile;
 use Achievement\Student\Service\StudentRegisterInterface;
 
 class RegisterTest extends PHPUnit_Framework_TestCase

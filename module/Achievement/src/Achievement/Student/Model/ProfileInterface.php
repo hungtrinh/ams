@@ -1,6 +1,6 @@
 <?php
 
-namespace Achievement\Student\Domain\Model;
+namespace Achievement\Student\Model;
 
 interface ProfileInterface
 {
