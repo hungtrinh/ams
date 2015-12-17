@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="Achivemenent System Manage" default="build">
-	<target name="build" description="Build system">
+    
+    <target name="build" description="Build system">
         <exec executable="vendor/bin/phpunit">
             <arg value="-c" />
             <arg value="module/Achievement/test/phpunit.xml" />
         </exec>
 
         <antcall target="open-report"></antcall>
-	</target>
+    </target>
+
     <target name="dev-off" description="Development mode off">
         <exec executable="php">
             <arg value="public/index.php" />
@@ -36,11 +38,12 @@
 
     <target name="open-report"
             description="Open phpunit report. Run on MAC OS only">
-        <exec executable="open">
+        <exec executable="firefox">
             <arg value="module/Achievement/test/coverage/index.html"/>
         </exec>
-        <exec executable="open">
+        <exec executable="firefox">
             <arg value="module/Achievement/test/coverage/testdox.html"/>
         </exec>
     </target>
+    
 </project>
