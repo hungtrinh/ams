@@ -9,18 +9,22 @@ use Achievement\Student\Service\RegisterInterface;
 class StudentWriteController extends AbstractActionController
 {
     /**
-     * Student studentForm
-     *
+     * Student form
      * @var \Zend\Form\FormInterface
      */
     protected $studentForm;
 
     /**
-     *
+     * Student register service
      * @var \Achievement\Student\Service\RegisterInterface;
      */
     protected $registerService;
 
+    /**
+     * Initial neeeded resource to register an student
+     * @param FormInterface     $studentForm     student form user will see
+     * @param RegisterInterface $registerService register student service
+     */
     public function __construct(
         FormInterface $studentForm,
         RegisterInterface $registerService
@@ -39,8 +43,9 @@ class StudentWriteController extends AbstractActionController
     }
 
     /**
-     * Display new student form when user visit
-     * Persit student to persitent when user submit form and redirect to list student page
+     * 1.Display new student form when user visit
+     * 2.Persit student to persitent when user submit form
+     * and redirect to list student page
      */
     public function addAction()
     {
@@ -51,13 +56,14 @@ class StudentWriteController extends AbstractActionController
             ];
         }
 
-        $student = $this->studentForm->getData();
-        $this->registerService->register($student);
+        $studentValid = $this->studentForm->getData();
+        $this->registerService->register($studentValid);
 
         return $this->redirect()->toRoute('student');
     }
 
     /**
+     * Assert user want to see student form only
      * @return boolean
      */
     private function requestShowFormStudent()
@@ -66,6 +72,7 @@ class StudentWriteController extends AbstractActionController
     }
 
     /**
+     * Assert user post raw valid profile data
      * @return  boolean
      */
     private function postInvalidProfile()
