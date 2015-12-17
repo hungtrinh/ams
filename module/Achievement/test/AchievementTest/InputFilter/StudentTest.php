@@ -20,6 +20,15 @@ class StudentTest extends TestCase
         $this->studentInputFilter = $inputFilterManger->get('Achievement\InputFilter\Student');
     }
 
+    /**
+     * Get raw data validate profile user will submit by web form
+     * @return []
+     */
+    protected function getFixtureValidProfile()
+    {
+        return include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
+    }
+
     protected function setInvidualValidOnStudentFieldSet($fieldName, $fieldValue)
     {
         $this->studentInputFilter->setValidationGroup([
@@ -50,12 +59,18 @@ class StudentTest extends TestCase
 
     protected function validateOnlyRegistrationCodeWith($registerCode)
     {
-        $this->setInvidualValidOnStudentFieldSet('registration-code', $registerCode);
+        $this->setInvidualValidOnStudentFieldSet(
+            'registration-code',
+            $registerCode
+        );
     }
 
     protected function validateOnlyPhoneticNameWith($phoneticName)
     {
-        $this->setInvidualValidOnStudentFieldSet('phonetic-name', $phoneticName);
+        $this->setInvidualValidOnStudentFieldSet(
+            'phonetic-name',
+            $phoneticName
+        );
     }
 
     protected function validateOnlyFullnameWith($fullname)
@@ -65,7 +80,10 @@ class StudentTest extends TestCase
 
     public function testIsAnInstanceInputFilterInterface()
     {
-        $this->assertInstanceOf(InputFilterInterface::class, $this->studentInputFilter);
+        $this->assertInstanceOf(
+            InputFilterInterface::class,
+            $this->studentInputFilter
+        );
     }
 
     public function testRegistrationCodeIsRequired()
@@ -73,7 +91,10 @@ class StudentTest extends TestCase
         $emptyString = '';
         $this->validateOnlyRegistrationCodeWith($emptyString);
         $this->assertFalse($this->studentInputFilter->isValid());
-        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['registration-code']);
+        $this->assertArrayHasKey(
+            'isEmpty',
+            $this->studentInputFilter->getMessages()['student']['registration-code']
+        );
     }
 
     public function testRegistrationCodeIsRequiredAndNotAcceptWhiteSpace()
@@ -81,7 +102,10 @@ class StudentTest extends TestCase
         $threeSpace = '   ';
         $this->validateOnlyRegistrationCodeWith($threeSpace);
         $this->assertFalse($this->studentInputFilter->isValid());
-        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['registration-code']);
+        $this->assertArrayHasKey(
+            'isEmpty',
+            $this->studentInputFilter->getMessages()['student']['registration-code']
+        );
     }
 
     public function testPhoneticNameIsRequired()
@@ -89,7 +113,10 @@ class StudentTest extends TestCase
         $emptyString = '';
         $this->validateOnlyPhoneticNameWith($emptyString);
         $this->assertFalse($this->studentInputFilter->isValid());
-        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['phonetic-name']);
+        $this->assertArrayHasKey(
+            'isEmpty',
+            $this->studentInputFilter->getMessages()['student']['phonetic-name']
+        );
     }
 
     public function testFullnameIsRequired()
@@ -97,38 +124,53 @@ class StudentTest extends TestCase
         $emptyString = '';
         $this->validateOnlyFullnameWith($emptyString);
         $this->assertFalse($this->studentInputFilter->isValid());
-        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['fullname']);
+        $this->assertArrayHasKey(
+            'isEmpty',
+            $this->studentInputFilter->getMessages()['student']['fullname']
+        );
     }
 
     public function testDobIsRequired()
     {
         $this->setInvidualValidOnStudentFieldSet('dob', '');
         $this->assertFalse($this->studentInputFilter->isValid());
-        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['dob']);
+        $this->assertArrayHasKey(
+            'isEmpty',
+            $this->studentInputFilter->getMessages()['student']['dob']
+        );
     }
 
     public function testUsernameIsRequired()
     {
         $this->setInvidualValidOnAccountFieldSet('username', '');
         $this->assertFalse($this->studentInputFilter->isValid());
-        $this->assertArrayHasKey('isEmpty', $this->studentInputFilter->getMessages()['student']['account']['username']);
+        $this->assertArrayHasKey(
+            'isEmpty',
+            $this->studentInputFilter->getMessages()['student']['account']['username']
+        );
     }
 
     public function testUsernameIsInvalidWhenDoesNotContainExactly7DigitsCharacterAnsi()
     {
-        $inValidProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
+        $inValidProfile = $this->getFixtureValidProfile();
         $inValidProfile['student']['account']['username'] = 'abcdef';
 
         $this->assertFalse($this->studentInputFilter->setData($inValidProfile)->isValid());
         $errorMessages = $this->studentInputFilter->getMessages();
-        $this->assertArrayHasKey('regexNotMatch', $errorMessages['student']['account']['username']);
-        $this->assertEquals('The input must contain only 7 digits', $errorMessages['student']['account']['username']['regexNotMatch']);
+        $this->assertArrayHasKey(
+            'regexNotMatch',
+            $errorMessages['student']['account']['username']
+        );
+        $this->assertEquals(
+            'The input must contain only 7 digits',
+            $errorMessages['student']['account']['username']['regexNotMatch']
+        );
 
     }
 
     public function testIsValidWithProfileExpected()
     {
-        $validProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
+        $validProfile = $this->getFixtureValidProfile();
         $this->assertTrue($this->studentInputFilter->setData($validProfile)->isValid());
     }
 }
