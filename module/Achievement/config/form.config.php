@@ -244,8 +244,6 @@ return [
                 ],
             ], // add new button
         ], //elements
-
         'input_filter' => 'Achievement\InputFilter\Student'
-
     ], //Achievement\Form\Student
 ];
