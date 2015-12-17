@@ -4,6 +4,8 @@ namespace AchievementTest\Student\Service;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
+use Achievement\Student\Domain\Model\Profile as StudentProfile;
+use Achievement\Student\Service\StudentRegisterInterface;
 
 class RegisterTest extends PHPUnit_Framework_TestCase
 {
@@ -19,6 +21,16 @@ class RegisterTest extends PHPUnit_Framework_TestCase
 
     public function testIsAnInstanceOfRegisterInterface()
     {
-        $this->assertInstanceOf(\Achievement\Student\Service\RegisterInterface::class, $this->registerService);
+        $this->assertInstanceOf(
+            StudentRegisterInterface::class,
+            $this->registerService
+        );
+    }
+
+    public function testRegisterWillReturnNull()
+    {
+        $student = new StudentProfile();
+        $result = $this->registerService->register($student);
+        $this->assertNull($result);
     }
 }

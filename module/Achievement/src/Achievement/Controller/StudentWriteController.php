@@ -4,7 +4,7 @@ namespace Achievement\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\FormInterface;
-use Achievement\Student\Service\RegisterInterface;
+use Achievement\Student\Service\StudentRegisterInterface;
 
 class StudentWriteController extends AbstractActionController
 {
@@ -16,18 +16,18 @@ class StudentWriteController extends AbstractActionController
 
     /**
      * Student register service
-     * @var \Achievement\Student\Service\RegisterInterface;
+     * @var \Achievement\Student\Service\StudentRegisterInterface;
      */
     protected $registerService;
 
     /**
      * Initial neeeded resource to register an student
      * @param FormInterface     $studentForm     student form user will see
-     * @param RegisterInterface $registerService register student service
+     * @param StudentRegisterInterface $registerService register student service
      */
     public function __construct(
         FormInterface $studentForm,
-        RegisterInterface $registerService
+        StudentRegisterInterface $registerService
     ) {
         $this->studentForm     = $studentForm;
         $this->registerService = $registerService;

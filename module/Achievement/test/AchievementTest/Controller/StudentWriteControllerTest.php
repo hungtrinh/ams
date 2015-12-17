@@ -10,7 +10,7 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->mockRegisterStudentService = $this->prophesize('Achievement\Student\Service\Register')->reveal();
+        $this->mockRegisterStudentService = $this->prophesize('Achievement\Student\Service\StudentRegister')->reveal();
         $serviceLocator = $this->getApplicationServiceLocator();
         $serviceLocator->setAllowOverride(true);
         $serviceLocator->setService('RegisterStudentService', $this->mockRegisterStudentService);

@@ -7,7 +7,7 @@ namespace Achievement\Student\Service;
  *
  * @author hungtd
  */
-class Register implements RegisterInterface
+class StudentRegister implements StudentRegisterInterface
 {
     public function register($student)
     {

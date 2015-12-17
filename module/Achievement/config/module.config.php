@@ -1,7 +1,7 @@
 <?php
 use Achievement\Account\Validator\UsernameUniqueFactory;
 use Achievement\Student\Factory\WriteControllerFactory;
-use Achievement\Student\Service\Register;
+use Achievement\Student\Service\StudentRegister;
 use Achievement\Student\Factory\ProfileFormHydratorFactory;
 
 return [
@@ -36,7 +36,7 @@ return [
      ],
     'service_manager' => [
         'invokables' => [
-            'RegisterStudentService' => Register::class,
+            'RegisterStudentService' => StudentRegister::class,
         ]
     ],
     'router' => [

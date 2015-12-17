@@ -5,7 +5,7 @@ namespace Achievement\Student\Service;
 /**
  * Register an student
  */
-interface RegisterInterface
+interface StudentRegisterInterface
 {
 
     /**
