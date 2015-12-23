@@ -2,7 +2,7 @@
 use Achievement\Account\Validator\UsernameUniqueFactory;
 use Achievement\Student\Factory\WriteControllerFactory;
 use Achievement\Student\Service\StudentRegister;
-use Achievement\Student\Factory\ProfileFormHydratorFactory;
+use Achievement\Student\Hydrator\ProfileFormFactory;
 
 return [
     'input_filters' => [
@@ -21,7 +21,7 @@ return [
     ],
     'hydrators' => [
         'factories' => [
-            'Achievement\Student\Hydrator\ProfileForm' => ProfileFormHydratorFactory::class,
+            'Achievement\Student\Hydrator\ProfileForm' => ProfileFormFactory::class,
         ]
     ],
     'view_manager' => [

@@ -56,4 +56,14 @@
             passthru="true"
             logoutput="true" />
     </target>
+
+    <target name="phpunit"
+            description="Phpunit debug"
+            depends="clean">
+            <echo message="Phpunit debug" />
+            <exec
+            command="vendor/bin/phpunit --verbose -c module/Achievement/test/phpunit.xml"
+            passthru="true"
+            logoutput="true" />
+    </target>
 </project>

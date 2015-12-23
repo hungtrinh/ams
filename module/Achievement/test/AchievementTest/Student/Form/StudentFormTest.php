@@ -97,9 +97,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         $this->profileValid['security'] = $this->studentForm->get('security')->getValue();
     }
 
-    
-
-    public function testExpectedFormStructure()
+    public function testHasStudentElementIsAStudentFieldset()
     {
         $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
         $studentFieldset = $this->studentForm->get('student');
@@ -109,7 +107,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(\Zend\Form\Element\Submit::class, $this->studentForm->get('add'));
     }
 
-    public function testWhenSetEmptyDataThenFormIsInvalidReturnFalse()
+    public function testIsInvalidWhenSetEmptyProfile()
     {
         $emptyProfileData = [];
         $this->studentForm->setData($emptyProfileData);
@@ -117,7 +115,7 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @depends testWhenSetEmptyDataThenFormIsInvalidReturnFalse
+     * @depends testIsInvalidWhenSetEmptyProfile
      */
     public function testWhenSetEmptyDataThenFormShowExpectedErrorMessage()
     {
@@ -125,24 +123,13 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($this->expectedEmptyFormErrorMessages, $errorMessages);
     }
 
-    public function testFormUseAchivementStudentHydratorStudentProfile()
-    {
-        $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
-        $hydrator = $expectedStudentField->getHydrator();
-
-        $hydratorManager = $this->locator->get('HydratorManager');
-        $studentProfileHydrator = $hydratorManager->get('Achievement\Student\Hydrator\ProfileForm');
-        
-        $this->assertEquals($studentProfileHydrator, $hydrator);
-    }
-
-    public function testWhenSetValidStudentProfileDataThenFormIsValidReturnTrue()
+    public function testIsValidWhenSetValidProfile()
     {
         $this->studentForm->setData($this->profileValid);
         $this->assertTrue($this->studentForm->isValid());
     }
 
-    public function testWhenSetValidProfileThenGetDataWillReturnProfileModel()
+    public function testGetDataReturnExpectedStudentProfileEntityWhenSetValidProfile()
     {
         $this->studentForm->setData($this->profileValid);
         $this->studentForm->isValid();
@@ -162,5 +149,4 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
             'password' => '1234',
         ], $studentProfile->getAccount());
     }
-
 }
