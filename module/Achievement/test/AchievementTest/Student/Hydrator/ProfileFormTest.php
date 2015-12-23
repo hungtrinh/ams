@@ -1,11 +1,11 @@
 <?php
 
-namespace AchievementTest\Form;
+namespace AchievementTest\Student\Hydrator;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
 
-class StudentProfileHydratorNamingStrategyTest extends PHPUnit_Framework_TestCase
+class ProfileFormTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var \Zend\Stdlib\Hydrator\HydratorInterface
@@ -15,7 +15,7 @@ class StudentProfileHydratorNamingStrategyTest extends PHPUnit_Framework_TestCas
     protected function setUp()
     {
         $hydratorManager = Bootstrap::getServiceManager()->get('HydratorManager');
-        $this->hydrator = $hydratorManager->get('Achievement\Student\Form\StudentProfileHydrator');
+        $this->hydrator = $hydratorManager->get('Achievement\Student\Hydrator\ProfileForm');
     }
 
     public function testWhenCallHydratorOnHydratorNamingStrategyWillReturnExpectedStudentModelField()

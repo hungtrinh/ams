@@ -40,7 +40,7 @@
             standard="PSR2"
             description="Run PSR2 standards over the codebase"
             haltonerror="true">
-            <fileset dir="module/Achievement">
+            <fileset dir="module">
                 <include name="**/*.php"/>
             </fileset>
             <formatter type="full" usefile="false"/>

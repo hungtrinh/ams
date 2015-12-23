@@ -1,6 +1,6 @@
 <?php
 
-namespace AchievementTest\InputFilter;
+namespace AchievementTest\Student\InputFilter;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use AchievementTest\Bootstrap;

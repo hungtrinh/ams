@@ -1,6 +1,6 @@
 <?php
 
-namespace AchievementTest\Form;
+namespace AchievementTest\Student\Form;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
@@ -97,6 +97,8 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         $this->profileValid['security'] = $this->studentForm->get('security')->getValue();
     }
 
+    
+
     public function testExpectedFormStructure()
     {
         $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
@@ -121,6 +123,17 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
     {
         $errorMessages = $this->studentForm->getMessages();
         $this->assertEquals($this->expectedEmptyFormErrorMessages, $errorMessages);
+    }
+
+    public function testFormUseAchivementStudentHydratorStudentProfile()
+    {
+        $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
+        $hydrator = $expectedStudentField->getHydrator();
+
+        $hydratorManager = $this->locator->get('HydratorManager');
+        $studentProfileHydrator = $hydratorManager->get('Achievement\Student\Hydrator\ProfileForm');
+        
+        $this->assertEquals($studentProfileHydrator, $hydrator);
     }
 
     public function testWhenSetValidStudentProfileDataThenFormIsValidReturnTrue()
@@ -149,4 +162,5 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
             'password' => '1234',
         ], $studentProfile->getAccount());
     }
+
 }

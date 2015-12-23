@@ -21,7 +21,7 @@ return [
     ],
     'hydrators' => [
         'factories' => [
-            'Achievement\Student\Form\StudentProfileHydrator' => ProfileFormHydratorFactory::class,
+            'Achievement\Student\Hydrator\ProfileForm' => ProfileFormHydratorFactory::class,
         ]
     ],
     'view_manager' => [
