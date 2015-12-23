@@ -91,7 +91,9 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
 
     private function prepaireValidProfileData()
     {
-        $this->profileValid = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
+        $this->profileValid = include(
+            "module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"
+        );
         $this->profileValid['security'] = $this->studentForm->get('security')->getValue();
     }
 

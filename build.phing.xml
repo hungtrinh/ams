@@ -34,7 +34,8 @@
                 includeemptydirs="true"/>
     </target>
 
-    <target name="phpcs">
+    <target name="phpcs"
+            description="Validation coding standard psr2">
         <phpcodesniffer
             standard="PSR2"
             description="Run PSR2 standards over the codebase"
@@ -45,5 +46,14 @@
             <formatter type="full" usefile="false"/>
         </phpcodesniffer>
     </target>
-
+    
+    <target name="agiledoc"
+            description="Phpunit generator agile doc"
+            depends="clean">
+            <echo message="Generator agile document" />
+            <exec
+            command="vendor/bin/phpunit --testdox -c module/Achievement/test/phpunit.xml"
+            passthru="true"
+            logoutput="true" />
+    </target>
 </project>

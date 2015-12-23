@@ -8,7 +8,7 @@
             <arg value="module/Achievement/test/phpunit.xml" />
         </exec>
 
-        <antcall target="open-report"></antcall>
+        <!-- <antcall target="open-report"></antcall> -->
     </target>
 
     <target name="dev-off" description="Development mode off">
@@ -43,6 +43,15 @@
         </exec>
         <exec executable="firefox">
             <arg value="module/Achievement/test/coverage/testdox.html"/>
+        </exec>
+    </target>
+
+    <target name="agiledoc" 
+            description="Phpunit generate agile document">
+        <exec executable="vendor/bin/phpunit">
+            <arg value="--testdox" />
+            <arg value="-c" />
+            <arg value="module/Achievement/test/phpunit.xml" />
         </exec>
     </target>
     
