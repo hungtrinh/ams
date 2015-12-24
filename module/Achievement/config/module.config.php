@@ -10,7 +10,7 @@ return [
             'Zend\InputFilter\InputFilterAbstractServiceFactory'
         ],
     ],
-    'input_filter_specs' => include __DIR__ . '/inputfilters.config.php',
+    'input_filter_specs' => include __DIR__ . '/inputfilters.config.php', // required input_filters Zend\InputFilter\InputFilterAbstractServiceFactory config
 
     'forms' => include __DIR__ . '/form.config.php',
 

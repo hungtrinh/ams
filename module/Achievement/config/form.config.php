@@ -215,6 +215,7 @@ return [
     'Achievement\Form\Student' => [
         'type' => 'form',
         'name' => 'add-student',
+        'input_filter' => 'Achievement\InputFilter\Student',
         'elements' => [
             [
                 'spec' => [
@@ -244,6 +245,5 @@ return [
                 ],
             ], // add new button
         ], //elements
-        'input_filter' => 'Achievement\InputFilter\Student'
     ], //Achievement\Form\Student
 ];
