@@ -1,18 +1,22 @@
 <?php
-
 namespace  AchievementTest;
 
-use PHPUnit_Extensions_Database_TestCase;
 use PDO;
+use PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection;
 
-abstract class DatabaseTestCase extends PHPUnit_Extensions_Database_TestCase
+trait DbConnectionTrait
 {
-    // only instantiate pdo once for test clean-up/fixture load
+     // only instantiate pdo once for test clean-up/fixture load
     static private $pdo = null;
 
     // only instantiate PHPUnit_Extensions_Database_DB_IDatabaseConnection once per test
     private $conn = null;
-
+    
+    /**
+     * @see \PHPUnit_Extensions_Database_TestCase_Trait::getConnection() implementation
+     * 
+     * @return PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
+     */
     final public function getConnection()
     {
         if ($this->conn === null) {
@@ -23,7 +27,7 @@ abstract class DatabaseTestCase extends PHPUnit_Extensions_Database_TestCase
                     $GLOBALS['DB_PASSWD']
                 );
             }
-            $this->conn = $this->createDefaultDBConnection(
+            $this->conn = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection(
                 self::$pdo,
                 $GLOBALS['DB_DBNAME']
             );
