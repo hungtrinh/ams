@@ -1,44 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project name="Achivemenent System Manage" default="build">
-    
-    <target name="build" description="Build system">
+<project default="build" name="Achivemenent System Manage">
+    <target depends="clean,composer" name="build" />
+    <target description="Run phpunit verbose" name="phpunit">
         <exec executable="vendor/bin/phpunit">
-            <arg value="--verbose" />
-            <arg value="-c" />
-            <arg value="module/Achievement/test/phpunit.xml" />
+            <arg value="--verbose"/>
+            <arg value="-c"/>
+            <arg value="module/Achievement/test/phpunit.xml"/>
         </exec>
-
-        <!-- <antcall target="open-report"></antcall> -->
     </target>
-
-    <target name="dev-off" description="Development mode off">
+    <target description="Development mode off" name="dev-off">
         <exec executable="php">
-            <arg value="public/index.php" />
-            <arg value="development" />
-            <arg value="disable" />
+            <arg value="public/index.php"/>
+            <arg value="development"/>
+            <arg value="disable"/>
         </exec>
     </target>
-    <target name="dev-on" description="Development mode off">
+    <target description="Development mode off" name="dev-on">
         <exec executable="php">
-            <arg value="public/index.php" />
-            <arg value="development" />
-            <arg value="enable" />
+            <arg value="public/index.php"/>
+            <arg value="development"/>
+            <arg value="enable"/>
         </exec>
     </target>
-
-    <target name="clean"
-            description="Remove all temp dir">
-        <echo message="Remove test log folder 'module/Achievement/test/logs'" />
-        <delete dir="module/Achievement/test/logs"
-                includeemptydirs="true"/>
-        <echo message="Remove test coverage folder 'module/Achievement/test/coverage'" />
-        <delete dir="module/Achievement/test/coverage"
-                includeemptydirs="true"/>
+    <target description="Cleanup build artifacts" name="clean">
+        <echo message="Remove test log folder 'module/Achievement/test/logs'"/>
+        <delete dir="module/Achievement/test/logs" includeemptydirs="true"/>
+        <echo message="Remove test coverage folder 'module/Achievement/test/coverage'"/>
+        <delete dir="module/Achievement/test/coverage" includeemptydirs="true"/>
+        <delete dir="${basedir}/vendor"/>
+        <delete file="${basedir}/composer.lock"/>
     </target>
-
-    <target name="open-report"
-            description="Open phpunit report. Run on MAC OS only">
+    <target description="Open phpunit report. Run on MAC OS only" name="open-report">
         <exec executable="firefox">
             <arg value="module/Achievement/test/coverage/index.html"/>
         </exec>
@@ -46,14 +38,29 @@
             <arg value="module/Achievement/test/coverage/testdox.html"/>
         </exec>
     </target>
-
-    <target name="agiledoc" 
-            description="Phpunit generate agile document">
+    <target description="Phpunit generate agile document" name="agiledoc">
         <exec executable="vendor/bin/phpunit">
-            <arg value="--testdox" />
-            <arg value="-c" />
-            <arg value="module/Achievement/test/phpunit.xml" />
+            <arg value="--testdox"/>
+            <arg value="-c"/>
+            <arg value="module/Achievement/test/phpunit.xml"/>
         </exec>
     </target>
-    
+    <target depends="clean" description="Install dependencies with Composer" name="composer">
+        <tstamp>
+            <format offset="-30" pattern="MM/dd/yyyy hh:mm aa" property="thirty.days.ago" unit="day"/>
+        </tstamp>
+        <delete>
+            <fileset dir="${basedir}">
+                <include name="composer.phar"/>
+                <date datetime="${thirty.days.ago}" when="before"/>
+            </fileset>
+        </delete>
+        <get dest="${basedir}/composer.phar" skipexisting="true" src="https://getcomposer.org/composer.phar"/>
+        <exec executable="php">
+            <arg value="composer.phar"/>
+            <arg value="install"/>
+            <arg value="--prefer-dist"/>
+            <arg value="-o"/>
+        </exec>
+    </target>
 </project>
