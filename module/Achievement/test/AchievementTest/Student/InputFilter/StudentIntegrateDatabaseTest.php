@@ -2,8 +2,7 @@
 
 namespace AchievementTest\Student\InputFilter;
 
-use PHPUnit_Extensions_Database_TestCase_Trait;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit_Extensions_Database_TestCase as TestCase;
 use AchievementTest\Bootstrap;
 use AchievementTest\DbConnectionTrait;
 
@@ -13,32 +12,22 @@ use AchievementTest\DbConnectionTrait;
 class StudentIntegrateDatabaseTest extends TestCase
 {
     use DbConnectionTrait;
-    use PHPUnit_Extensions_Database_TestCase_Trait {
-        PHPUnit_Extensions_Database_TestCase_Trait::setUp as dbSetup;
-        PHPUnit_Extensions_Database_TestCase_Trait::setUp as dbTearDown;
-    }
-    
     
     /**
      * @var \Zend\InputFilter\InputFilterInterface
      */
     protected $studentInputFilter;
 
-    protected function setUp() 
+    protected function setUp()
     {
         parent::setUp();
-        $this->dbSetup();
         $serviceManager = Bootstrap::getServiceManager();
         $inputFilterManger = $serviceManager->get('InputFilterManager');
         $this->studentInputFilter = $inputFilterManger->get('Achievement\InputFilter\Student');
     }
     
-    protected function tearDown() {
-        $this->dbTearDown();
-        parent::tearDown();
-    }
-    
-    protected function getDataSet() {
+    protected function getDataSet()
+    {
         return $this->createArrayDataSet([
             'user' => [
                 ['username'=>'hungtd1'],
@@ -47,8 +36,20 @@ class StudentIntegrateDatabaseTest extends TestCase
         ]);
     }
 
-    public function testTrue()
+    public function testStoreHasTwoRecordPrepaired()
     {
-        $this->assertTrue(true);
+        $this->assertEquals(2, $this->getConnection()->getRowCount('user'));
+    }
+
+    public function testStateOfTwoRecordPrepaired()
+    {
+        $queryTable = $this->getConnection()->createQueryTable('user', 'select username from user order by username desc');
+        $expectedTable = $this->createArrayDataSet([
+            'user' => [
+                ['username'=>'hungtd1'],
+                ['username'=>'binh1'],
+            ]
+        ])->getTable('user');
+        $this->assertTablesEqual($expectedTable, $queryTable);
     }
 }
