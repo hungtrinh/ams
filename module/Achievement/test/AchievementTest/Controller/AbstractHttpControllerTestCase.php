@@ -9,7 +9,7 @@ abstract class AbstractHttpControllerTestCase extends ZendControllerTestCase
     public function setUp()
     {
         $this->setApplicationConfig(
-            include __DIR__.'/../../../../../config/application.config.php'
+            include './config/application.config.php'
         );
         parent::setUp();
     }
