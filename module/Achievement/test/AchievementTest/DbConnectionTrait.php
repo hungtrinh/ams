@@ -34,4 +34,13 @@ trait DbConnectionTrait
         }
         return $this->conn;
     }
+    
+    final public function getDbAdapter()
+    {
+         return new \Zend\Db\Adapter\Adapter([
+            'driver' => 'Pdo_Sqlite',
+            'dsn' => $GLOBALS['DB_DSN']
+         ]);
+
+    }
 }

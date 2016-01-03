@@ -15,9 +15,12 @@ class StudentTest extends TestCase
 
     protected function setUp()
     {
-        $serviceManager = Bootstrap::getServiceManager();
-        $inputFilterManger = $serviceManager->get('InputFilterManager');
-        $this->studentInputFilter = $inputFilterManger->get('Achievement\InputFilter\Student');
+        Bootstrap::init();
+        $services = Bootstrap::getServiceManager();
+        $services->setAllowOverride(true);
+        $services->setService('ams', $this->prophesize(\Zend\Db\Adapter\Adapter::class)->reveal());
+        $inputFilters = $services->get('InputFilterManager');
+        $this->studentInputFilter = $inputFilters->get('Achievement\InputFilter\Student');
     }
 
     /**
@@ -148,29 +151,5 @@ class StudentTest extends TestCase
             'isEmpty',
             $this->studentInputFilter->getMessages()['student']['account']['username']
         );
-    }
-
-    public function testUsernameIsInvalidWhenDoesNotContainExactly7DigitsCharacterAnsi()
-    {
-        $inValidProfile = $this->getFixtureValidProfile();
-        $inValidProfile['student']['account']['username'] = 'invalid usernamne';
-
-        $this->assertFalse($this->studentInputFilter->setData($inValidProfile)->isValid());
-        $errorMessages = $this->studentInputFilter->getMessages();
-        $this->assertArrayHasKey(
-            'regexNotMatch',
-            $errorMessages['student']['account']['username']
-        );
-        $this->assertEquals(
-            'The input must contain only 7 digits',
-            $errorMessages['student']['account']['username']['regexNotMatch']
-        );
-
-    }
-
-    public function testIsValidWithProfileExpected()
-    {
-        $validProfile = $this->getFixtureValidProfile();
-        $this->assertTrue($this->studentInputFilter->setData($validProfile)->isValid());
     }
 }

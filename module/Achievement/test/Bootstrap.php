@@ -12,6 +12,9 @@ use RuntimeException;
  */
 class Bootstrap
 {
+    /**
+     * @var \Zend\ServiceManager\ServiceManager
+     */
     protected static $serviceManager;
 
     public static function init()
@@ -32,6 +35,7 @@ class Bootstrap
                 'module_paths' => $zf2ModulePaths,
             ),
             'modules' => array(
+                'ZF\ContentValidation',
                 'Achievement'
             )
         );
@@ -47,7 +51,10 @@ class Bootstrap
         $rootPath = dirname(static::findParentPath('module'));
         chdir($rootPath);
     }
-
+    
+    /**
+     * @return \Zend\ServiceManager\ServiceManager
+     */
     public static function getServiceManager()
     {
         return static::$serviceManager;

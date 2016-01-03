@@ -2,12 +2,11 @@
 
 namespace AchievementTest\Student\Form;
 
-use PHPUnit_Framework_TestCase;
-use AchievementTest\Bootstrap;
+//use AchievementTest\Bootstrap;
 use Achievement\Student\Model\ProfileInterface;
-use Achievement\Student\Model\Profile;
+use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
 
-class StudentFormTest extends PHPUnit_Framework_TestCase
+class StudentFormTest extends TestCase
 {
     /**
      * $studentForm get from Bootstrap::getServiceManager()->get('Achievement\Form\Student')
@@ -84,9 +83,21 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->locator =  Bootstrap::getServiceManager();
+//        Bootstrap::init(); //reset service locator
+//        $services = Bootstrap::getServiceManager();
+        parent::setUp();
+        $this->locator =  $this->getApplicationServiceLocator();
         $this->studentForm = $this->locator->get('Achievement\Form\Student');
         $this->prepaireValidProfileData();
+    }
+    
+    protected function getDataSet() {
+        return $this->createArrayDataSet([
+            'user' => [
+                ['username' => '1234568'],
+                ['username' => '8654321'],
+            ]
+        ]);
     }
 
     private function prepaireValidProfileData()
@@ -100,7 +111,6 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
     public function testHasStudentElementIsAStudentFieldset()
     {
         $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
-        $studentFieldset = $this->studentForm->get('student');
 
         $this->assertSame($expectedStudentField, $this->studentForm->get('student'));
         $this->assertInstanceOf(\Zend\Form\Element\Csrf::class, $this->studentForm->get('security'));
@@ -114,13 +124,13 @@ class StudentFormTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->studentForm->isValid());
     }
 
-    /**
-     * @depends testIsInvalidWhenSetEmptyProfile
-     */
     public function testWhenSetEmptyDataThenFormShowExpectedErrorMessage()
     {
+        $emptyProfileData = [];
+        $this->studentForm->setData($emptyProfileData);
+        $this->studentForm->isValid();
         $errorMessages = $this->studentForm->getMessages();
-        $this->assertEquals($this->expectedEmptyFormErrorMessages, $errorMessages);
+        $this->assertEquals($this->expectedEmptyFormErrorMessages, $errorMessages, print_r($errorMessages,true));
     }
 
     public function testIsValidWhenSetValidProfile()

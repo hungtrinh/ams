@@ -2,20 +2,34 @@
 
 namespace AchievementTest\Controller;
 
+
+
 class StudentWriteControllerTest extends AbstractHttpControllerTestCase
 {
-
+    
+    
     protected $mockRegisterStudentService;
 
     public function setUp()
     {
         parent::setUp();
+        
         $this->mockRegisterStudentService = $this->prophesize('Achievement\Student\Service\StudentRegister')->reveal();
         $serviceLocator = $this->getApplicationServiceLocator();
         $serviceLocator->setAllowOverride(true);
         $serviceLocator->setService('RegisterStudentService', $this->mockRegisterStudentService);
     }
 
+    protected function getDataSet()
+    {
+        return $this->createArrayDataSet([
+            'user' => [
+                ['username' => '1234568'],
+                ['username' => '8654321'],
+            ]
+        ]);
+    }
+    
     public function validNewStudentProfileProvider()
     {
         $newProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
@@ -84,7 +98,6 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $security    = $formStudent->get('security');
         $rawProfile['security'] = $security->getValue();
 
-
         $this->dispatch('/student/add', 'POST', $rawProfile);
 
         $this->assertMatchedRouteName('student/add');
@@ -149,7 +162,6 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
     {
         $this->mockRegisterStudentService
                 ->register($validProfile);
-        // var_dump($validProfile);
         $this->submitStudentProfile($validProfile);
         $this->assertRedirectTo('/student');
     }

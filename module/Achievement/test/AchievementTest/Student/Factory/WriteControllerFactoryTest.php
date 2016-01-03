@@ -21,7 +21,15 @@ class WriteControllerFactoryTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->controllerManager = Bootstrap::getServiceManager()->get('ControllerManager');
+        $studentForm = $this->prophesize('\Zend\Form\FormInterface')->reveal();
+        $studentRegisterService = $this->prophesize('Achievement\Student\Service\StudentRegisterInterface')->reveal();
+        
+        $services = Bootstrap::getServiceManager();
+        $services->setAllowOverride(true);
+        $services->setService('Achievement\Form\Student', $studentForm);
+        $services->setService('Achievement\Student\Service\StudentRegister', $studentRegisterService);
+        
+        $this->controllerManager = $services->get('ControllerManager');
         $this->factory           = new WriteControllerFactory();
     }
 

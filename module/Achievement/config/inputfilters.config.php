@@ -29,7 +29,15 @@ return [
                                     'regexNotMatch' => 'The input must contain only 7 digits'
                                 ]
                             ],
-                        ],
+                        ], // must 7 digit chars
+                        [
+                            'name' => 'ZF\\ContentValidation\\Validator\\DbNoRecordExists',
+                            'options' => [
+                                'table' => 'user',
+                                'field' => 'username',
+                                'adapter' => 'ams',
+                            ],
+                        ], // username is unique ( not duplicated)
                     ], //validators
                 ], //username
                 'password' => [
