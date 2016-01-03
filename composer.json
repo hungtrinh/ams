@@ -14,7 +14,8 @@
         "zfcampus/zf-development-mode": "2.*",
         "atukai/at-php-settings": "dev-master",
         "neilime/zf2-twb-bundle": "2.*@stable",
-        "zendframework/zend-i18n-resources": "^2.5"
+        "zendframework/zend-i18n-resources": "^2.5",
+        "zfcampus/zf-content-validation": "~1.0-dev"
     },
     "require-dev":  {
         "zendframework/zend-developer-tools": "dev-master",

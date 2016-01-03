@@ -9,6 +9,7 @@ return array(
     'modules' => array(
         'Application',
         'ZF\DevelopmentMode',
+        'ZF\ContentValidation',
         'Achievement',
         'AtPhpSettings',
         'TwbBundle',
@@ -22,4 +23,9 @@ return array(
             'config/autoload/{{,*.}global,{,*.}local}.php',
         ),
     ),
+    'config_cache_key' => 'application.config.cache',
+    'config_cache_enabled' => true,
+    'module_map_cache_key' => 'application.module.cache',
+    'module_map_cache_enabled' => true,
+    'cache_dir' => 'data/cache/',
 );
