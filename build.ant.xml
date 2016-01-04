@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="build" name="Achivemenent System Manage - Ant">
-    <target depends="clean,composer" name="build" />
+<project default="phpunit" name="Achivemenent System Manage - Ant">
+    <target depends="clean,composer" 
+        description="Build clean app" 
+        name="build" />
     <target description="Run phpunit verbose" name="phpunit">
         <exec executable="vendor/bin/phpunit">
             <arg value="--verbose"/>
