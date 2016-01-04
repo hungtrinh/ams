@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Achivemenent System Manage" default="build">
+<project name="Achivemenent System Manage - PHING" default="build">
     
     <target name="build"
             description="Build system. It's default target"
@@ -65,5 +65,12 @@
             command="vendor/bin/phpunit --verbose -c module/Achievement/test/phpunit.xml"
             passthru="true"
             logoutput="true" />
+    </target>
+
+    <target depends="clean" description="Install dependencies with Composer" name="composer">
+        <tstamp>
+            <format offset="-30" pattern="MM/dd/yyyy hh:mm aa" property="thirty.days.ago" unit="day"/>
+        </tstamp>
+        <echo message="${thirty.days.ago}" />
     </target>
 </project>

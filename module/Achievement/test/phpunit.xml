@@ -28,6 +28,7 @@
     </filter>
     
     <php>
+        <var name="DB_DRIVER" value="pdo" />
         <var name="DB_DSN" value="sqlite:./data/db/ams.sqlite" />
         <var name="DB_USER" value="" />
         <var name="DB_PASSWD" value="" />

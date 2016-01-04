@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="build" name="Achivemenent System Manage">
+<project default="build" name="Achivemenent System Manage - Ant">
     <target depends="clean,composer" name="build" />
     <target description="Run phpunit verbose" name="phpunit">
         <exec executable="vendor/bin/phpunit">

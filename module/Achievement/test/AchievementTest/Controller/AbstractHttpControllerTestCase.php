@@ -19,12 +19,22 @@ abstract class AbstractHttpControllerTestCase extends ZendControllerTestCase
         $this->setApplicationConfig(
             include './config/application.config.php'
         );
+
         parent::setUp();
         
         $this->setUpDatbase();
+        $this->setupAmsDbAdapter();
+    }
+
+    protected function setupAmsDbAdapter()
+    {
+        $services = $this->getApplicationServiceLocator();
+        $services->setAllowOverride(true);
+        $services->setService('ams', $this->getDbAdapter());
     }
     
-    protected function tearDown() {
+    protected function tearDown()
+    {
         $this->tearDownDatabase();
         parent::tearDown();
     }

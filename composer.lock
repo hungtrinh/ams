@@ -4739,16 +4739,16 @@
         },
         {
             "name": "san/san-session-toolbar",
-            "version": "0.3.0",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/samsonasik/SanSessionToolbar.git",
-                "reference": "11d2576880575cd19f017798ddfba5d3e640cea1"
+                "reference": "ecbdf4f49fea9c60fd10d416ab1bf649e4e92f1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/samsonasik/SanSessionToolbar/zipball/11d2576880575cd19f017798ddfba5d3e640cea1",
-                "reference": "11d2576880575cd19f017798ddfba5d3e640cea1",
+                "url": "https://api.github.com/repos/samsonasik/SanSessionToolbar/zipball/ecbdf4f49fea9c60fd10d416ab1bf649e4e92f1f",
+                "reference": "ecbdf4f49fea9c60fd10d416ab1bf649e4e92f1f",
                 "shasum": ""
             },
             "require": {
@@ -4758,7 +4758,7 @@
             },
             "require-dev": {
                 "phpunit/phpcov": "~2.0",
-                "satooshi/php-coveralls": "dev-master",
+                "satooshi/php-coveralls": "~1.0.0",
                 "zendframework/zend-developer-tools": "dev-master",
                 "zendframework/zend-i18n": "~2.3",
                 "zendframework/zend-log": "~2.3",
@@ -4792,7 +4792,7 @@
                 "session",
                 "zf2"
             ],
-            "time": "2015-12-03 22:10:49"
+            "time": "2016-01-01 18:55:07"
         },
         {
             "name": "snapshotpl/zf-snap-event-debugger",

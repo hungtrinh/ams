@@ -14,7 +14,6 @@ trait DbConnectionTrait
     
     /**
      * @see \PHPUnit_Extensions_Database_TestCase_Trait::getConnection() implementation
-     * 
      * @return PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
      */
     final public function getConnection()
@@ -37,10 +36,13 @@ trait DbConnectionTrait
     
     final public function getDbAdapter()
     {
-         return new \Zend\Db\Adapter\Adapter([
-            'driver' => 'Pdo_Sqlite',
-            'dsn' => $GLOBALS['DB_DSN']
-         ]);
+        return new \Zend\Db\Adapter\Adapter([
+            'driver' => $GLOBALS['DB_DRIVER'],
+            'dsn' => $GLOBALS['DB_DSN'],
 
+            'database' => $GLOBALS['DB_DBNAME'],
+            'username' => $GLOBALS['DB_USER'],
+            'password' => $GLOBALS['DB_PASSWD']
+        ]);
     }
 }
