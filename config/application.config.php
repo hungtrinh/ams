@@ -5,27 +5,27 @@
  *
  * @see https://github.com/zendframework/ZFTool
  */
-return array(
-    'modules' => array(
+return [
+    'modules' => [
         'Application',
         'ZF\DevelopmentMode',
         'ZF\ContentValidation',
         'Achievement',
         'AtPhpSettings',
         'TwbBundle',
-    ),
-    'module_listener_options' => array(
-        'module_paths' => array(
+    ],
+    'module_listener_options' => [
+        'module_paths' => [
             './module',
             './vendor',
-        ),
-        'config_glob_paths' => array(
+        ],
+        'config_glob_paths' => [
             'config/autoload/{{,*.}global,{,*.}local}.php',
-        ),
-    ),
+        ],
+    ],
     'config_cache_key' => 'application.config.cache',
     'config_cache_enabled' => true,
     'module_map_cache_key' => 'application.module.cache',
     'module_map_cache_enabled' => true,
     'cache_dir' => 'data/cache/',
-);
+];
