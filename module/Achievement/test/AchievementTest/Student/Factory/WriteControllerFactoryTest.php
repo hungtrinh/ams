@@ -4,7 +4,6 @@ namespace AchievementTest\Student\Factory;
 
 use PHPUnit_Framework_TestCase;
 use Achievement\Student\Factory\WriteControllerFactory;
-use AchievementTest\Bootstrap;
 use Achievement\Controller\StudentWriteController;
 
 /**
@@ -13,29 +12,32 @@ use Achievement\Controller\StudentWriteController;
 class WriteControllerFactoryTest extends PHPUnit_Framework_TestCase
 {
     /** @var \Achievement\Student\Factory\WriteControllerFactory */
-    protected $factory;
+    protected $writeControllerFactory;
 
     /** @var \Zend\Mvc\Controller\ControllerManager */
-    protected $controllerManager;
+    protected $controllers;
 
     protected function setUp()
     {
         parent::setUp();
-        $studentForm = $this->prophesize('\Zend\Form\FormInterface')->reveal();
+
         $studentRegisterService = $this->prophesize('Achievement\Student\Service\StudentRegisterInterface')->reveal();
-        
-        $services = Bootstrap::getServiceManager();
-        $services->setAllowOverride(true);
-        $services->setService('Achievement\Form\Student', $studentForm);
-        $services->setService('Achievement\Student\Service\StudentRegister', $studentRegisterService);
-        
-        $this->controllerManager = $services->get('ControllerManager');
-        $this->factory           = new WriteControllerFactory();
+        $studentForm            = $this->prophesize('Zend\Form\FormInterface')->reveal();
+
+        $services               = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        $controllers            = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
+
+        $services->get('Achievement\Form\Student')->willReturn($studentForm);
+        $services->get('RegisterStudentService')->willReturn($studentRegisterService);
+        $controllers->getServiceLocator()->willReturn($services->reveal());
+
+        $this->controllers = $controllers->reveal();
+        $this->writeControllerFactory           = new WriteControllerFactory();
     }
 
     public function testCallInvokeReturnStudentWriteController()
     {
-        $studentController = $this->factory->__invoke($this->controllerManager);
+        $studentController = $this->writeControllerFactory->__invoke($this->controllers);
         $this->assertInstanceOf(StudentWriteController::class, $studentController);
     }
 }
