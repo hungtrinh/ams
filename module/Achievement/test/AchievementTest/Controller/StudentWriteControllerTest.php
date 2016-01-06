@@ -2,24 +2,8 @@
 
 namespace AchievementTest\Controller;
 
-
-
 class StudentWriteControllerTest extends AbstractHttpControllerTestCase
 {
-    
-    
-    protected $mockRegisterStudentService;
-
-    public function setUp()
-    {
-        parent::setUp();
-        
-        $this->mockRegisterStudentService = $this->prophesize('Achievement\Student\Service\StudentRegister')->reveal();
-        $serviceLocator = $this->getApplicationServiceLocator();
-        $serviceLocator->setAllowOverride(true);
-        $serviceLocator->setService('RegisterStudentService', $this->mockRegisterStudentService);
-    }
-
     protected function getDataSet()
     {
         return $this->createArrayDataSet([
@@ -160,12 +144,9 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
      */
     public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent($validProfile)
     {
-        $this->mockRegisterStudentService
-                ->register($validProfile);
         $this->submitStudentProfile($validProfile);
         $this->assertRedirectTo('/student');
     }
-
 
     public function testWhenVisitListStudentPageThenMatchStudentRoute()
     {
