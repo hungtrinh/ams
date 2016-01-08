@@ -1,28 +1,52 @@
 <?php
 
-namespace AchievementTest\Controller;
+namespace ApplicationTest\Controller;
 
-class StudentWriteControllerTest extends AbstractHttpControllerTestCase
+use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase as ZendControllerTestCase;
+use Zend\Stdlib\Parameters;
+use Zend\Db\Adapter\Adapter;
+use Achievement\Student\Model\Profile;
+
+class StudentWriteControllerTest extends ZendControllerTestCase
 {
-    protected function getDataSet()
+    /**
+     * @var \Zend\ServiceManager\ServiceManager
+     */
+    protected $services;
+
+    /**
+     * @var \Achievement\Student\Service\StudentRegisterInterface
+     */
+    protected $registerStudentService;
+
+    /**
+     * @var \Zend\Form\FormInterface
+     */
+    protected $studentForm;
+
+    protected function setUp()
     {
-        return $this->createArrayDataSet([
-            'user' => [
-                ['username' => '1234568'],
-                ['username' => '8654321'],
-            ]
-        ]);
-    }
-    
-    public function validNewStudentProfileProvider()
-    {
-        $newProfile = include(realpath("module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"));
-        unset($newProfile['student']['account']['id']);
-        return [
-            [$newProfile],
-        ];
+        $this->setApplicationConfig(include "config/application.config.php");
+        parent::setUp();
+
+        $this->registerStudentService = $this->prophesize('Achievement\Student\Service\StudentRegisterInterface');
+        $this->studentForm = $this->prophesize('Zend\Form\Form');
+        $this->services = $this->getApplicationServiceLocator();
+        $this->services->setAllowOverride(true);
+        $this->services->setService('ams', $this->prophesize(Adapter::class)->reveal());
     }
 
+    protected function submitStudentProfile(array $rawProfile = [])
+    {
+        $this->dispatch('/student/add', 'POST', $rawProfile);
+
+        $this->assertMatchedRouteName('student/add');
+        $this->assertModuleName('Achievement');
+        $this->assertControllerName('Achievement\\Controller\\StudentWrite');
+        $this->assertControllerClass('StudentWriteController');
+        $this->assertActionName('add');
+    }
+   
     public function testWhenVisitPageCreateStudentProfileThenShowBlankStudentProfileForm()
     {
         $this->dispatch('/student/add');
@@ -75,88 +99,33 @@ class StudentWriteControllerTest extends AbstractHttpControllerTestCase
         $this->assertQuery("button[name='add'][type='submit']");
     }
 
-    protected function submitStudentProfile(array $rawProfile = [])
+    public function testWhenRegisterStudentSuccessThenRedirectToPageListStudent()
     {
-        $locator     = $this->getApplicationServiceLocator();
-        $formStudent = $locator->get('Achievement\Form\Student');
-        $security    = $formStudent->get('security');
-        $rawProfile['security'] = $security->getValue();
+        $assumeValidStudent = [];
+        $student = new Profile;
 
-        $this->dispatch('/student/add', 'POST', $rawProfile);
+        $this->studentForm->setData(new Parameters($assumeValidStudent))->shouldBeCalled();
+        $this->studentForm->isValid()->willReturn(true);
+        $this->studentForm->getData()->willReturn($student);
+        $this->registerStudentService->register($student)->shouldBeCalled();
 
-        $this->assertMatchedRouteName('student/add');
-        $this->assertModuleName('Achievement');
-        $this->assertControllerName('Achievement\\Controller\\StudentWrite');
-        $this->assertControllerClass('StudentWriteController');
-        $this->assertActionName('add');
-    }
+        $this->services->setService('Achievement\Form\Student', $this->studentForm->reveal());
+        $this->services->setService('RegisterStudentService', $this->registerStudentService->reveal());
 
-    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayRegistrationCodeErrorMessage()
-    {
-        $this->submitStudentProfile();
-        $this->assertQuery(".has-error input[name='student[registration-code]'][type='text']");
-    }
-
-    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayPhoneticNameErrorMessage()
-    {
-        $this->submitStudentProfile();
-        $this->assertQuery(".has-error input[name='student[phonetic-name]'][type='text']");
-    }
-
-    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayFullnameErrorMessage()
-    {
-        $this->submitStudentProfile();
-        $this->assertQuery(".has-error input[name='student[fullname]'][type='text']");
-    }
-
-    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayBirthdayErrorMessage()
-    {
-        $this->submitStudentProfile();
-        $this->assertQuery(".has-error input[name='student[dob]'][type='text']");
-    }
-
-    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayGenderErrorMessage()
-    {
-        $this->submitStudentProfile();
-        $this->assertQuery(".has-error select[name='student[gender]']");
-    }
-
-    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayGradeErrorMessage()
-    {
-        $this->submitStudentProfile();
-        $this->assertQuery(".has-error select[name='student[grade]']");
-    }
-
-    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayUsernameErrorMessage()
-    {
-        $this->submitStudentProfile();
-        $this->assertQuery(".has-error input[name='student[account][username]'][type='text']");
-    }
-
-    public function testWhenSubmitEmptyStudentProfileThenSystemDisplayPasswordErrorMessage()
-    {
-        $this->submitStudentProfile();
-        $this->assertQuery(".has-error input[name='student[account][password]'][type='password']");
-    }
-
-    /**
-     * @dataProvider validNewStudentProfileProvider
-     */
-    public function testWhenCreatedStudentProfileSuccessThenRedirectToPageListStudent($validProfile)
-    {
-        $this->submitStudentProfile($validProfile);
+        $this->submitStudentProfile($assumeValidStudent);
         $this->assertRedirectTo('/student');
     }
-
-    public function testWhenVisitListStudentPageThenMatchStudentRoute()
+    
+    public function testWhenSubmitEmptyStudentProfileThenRepresentStudentFormWithErrorMessage()
     {
-        $this->dispatch('/student');
-
-        //assert match request
-        $this->assertMatchedRouteName('student');
-        $this->assertModuleName('Achievement');
-        $this->assertControllerName('Achievement\\Controller\\StudentWrite');
-        $this->assertControllerClass('StudentWriteController');
-        $this->assertActionName('index');
+        $this->submitStudentProfile();
+        $this->assertQuery("form[name='add-student'][id='add-student'][method='POST'][action='/student/add']");
+        $this->assertQuery(".has-error input[name='student[registration-code]'][type='text']");
+        $this->assertQuery(".has-error input[name='student[phonetic-name]'][type='text']");
+        $this->assertQuery(".has-error input[name='student[fullname]'][type='text']");
+        $this->assertQuery(".has-error input[name='student[dob]'][type='text']");
+        $this->assertQuery(".has-error select[name='student[gender]']");
+        $this->assertQuery(".has-error input[name='student[account][username]'][type='text']");
+        $this->assertQuery(".has-error input[name='student[account][password]'][type='password']");
     }
 }
