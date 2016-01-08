@@ -11,12 +11,12 @@ use Zend\Mvc\Controller\ControllerManager;
 class WriteControllerFactory
 {
 
-    public function __invoke(ControllerManager $controllerManager)
+    public function __invoke(ControllerManager $controllers)
     {
-        $locator = $controllerManager->getServiceLocator();
+        $services = $controllers->getServiceLocator();
         return new StudentWriteController(
-            $locator->get('Achievement\Form\Student'),
-            $locator->get('RegisterStudentService')
+            $services->get('Achievement\Form\Student'),
+            $services->get('RegisterStudentService')
         );
     }
 }

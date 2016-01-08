@@ -7,13 +7,15 @@ use Zend\Stdlib\Hydrator\NamingStrategy\ArrayMapNamingStrategy;
 
 class ProfileFormFactory
 {
-    public function __invoke(HydratorPluginManager $locator)
+    public function __invoke(HydratorPluginManager $hydrators)
     {
         $namingStrategy = new ArrayMapNamingStrategy([
             'registrationCode'  => 'registration-code',
             'phoneticName'      => 'phonetic-name',
         ]);
-        $hydrator = $locator->get('classmethods');
+        
+        /* @var $hydrator \Zend\Stdlib\Hydrator\ClassMethods */
+        $hydrator = $hydrators->get('classmethods'); 
         $hydrator->setNamingStrategy($namingStrategy);
         return $hydrator;
     }
