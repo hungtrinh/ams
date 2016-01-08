@@ -3,23 +3,46 @@
 namespace Achievement\Student\Model;
 
 /**
+ * Student profile
+ * 
  * @implements ProfileInterface
  */
 
 class Profile implements ProfileInterface
 {
+    /**
+     * @var string
+     */
     protected $registrationCode;
-
+    
+    /**
+     * @var string
+     */
     protected $phoneticName;
-
+    
+    /**
+     * @var string
+     */
     protected $fullname;
-
+    
+    /**
+     * @var \DateTime
+     */
     protected $dob;
-
+    
+    /**
+     * @var string
+     */
     protected $gender;
-
+    
+    /**
+     * @var string
+     */
     protected $grade;
-
+    
+    /**
+     * @var string
+     */
     protected $account;
 
     /**
@@ -83,7 +106,7 @@ class Profile implements ProfileInterface
     /**
      * Sets the value of fullame.
      *
-     * @param mixed $fullame the fullame
+     * @param mixed $fullname the fullame
      *
      * @return self
      */
@@ -169,7 +192,7 @@ class Profile implements ProfileInterface
     /**
      * Gets the value of account.
      *
-     * @return mixed
+     * @return string
      */
     public function getAccount()
     {
