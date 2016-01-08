@@ -24,7 +24,7 @@ class StudentFormTest extends TestCase
      * And then $form->isValid($validData) === false for test case B
      * (because system empty SESSION after test case A)
      */
-    protected $backupGlobalsBlacklist = array( '_SESSION' );
+//    protected $backupGlobalsBlacklist = array( '_SESSION' );
 
     /**
      * @var \Zend\Form\FormInterface
@@ -83,15 +83,14 @@ class StudentFormTest extends TestCase
 
     protected function setUp()
     {
-//        Bootstrap::init(); //reset service locator
-//        $services = Bootstrap::getServiceManager();
         parent::setUp();
         $this->locator =  $this->getApplicationServiceLocator();
         $this->studentForm = $this->locator->get('Achievement\Form\Student');
         $this->prepaireValidProfileData();
     }
     
-    protected function getDataSet() {
+    protected function getDataSet()
+    {
         return $this->createArrayDataSet([
             'user' => [
                 ['username' => '1234568'],
@@ -130,7 +129,7 @@ class StudentFormTest extends TestCase
         $this->studentForm->setData($emptyProfileData);
         $this->studentForm->isValid();
         $errorMessages = $this->studentForm->getMessages();
-        $this->assertEquals($this->expectedEmptyFormErrorMessages, $errorMessages, print_r($errorMessages,true));
+        $this->assertEquals($this->expectedEmptyFormErrorMessages, $errorMessages, print_r($errorMessages, true));
     }
 
     public function testIsValidWhenSetValidProfile()

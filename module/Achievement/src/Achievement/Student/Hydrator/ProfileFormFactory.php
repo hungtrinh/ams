@@ -15,7 +15,7 @@ class ProfileFormFactory
         ]);
         
         /* @var $hydrator \Zend\Stdlib\Hydrator\ClassMethods */
-        $hydrator = $hydrators->get('classmethods'); 
+        $hydrator = $hydrators->get('classmethods');
         $hydrator->setNamingStrategy($namingStrategy);
         return $hydrator;
     }

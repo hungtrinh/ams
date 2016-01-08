@@ -4,7 +4,6 @@ namespace Achievement\Student\Model;
 
 /**
  * Student profile
- * 
  * @implements ProfileInterface
  */
 

@@ -3,9 +3,10 @@
 namespace AchievementTest\Student\Service;
 
 use PHPUnit_Framework_TestCase;
-use AchievementTest\Bootstrap;
 use Achievement\Student\Model\Profile as StudentProfile;
 use Achievement\Student\Service\StudentRegisterInterface;
+use Achievement\Student\Service\StudentRegister;
+use Achievement\Student\Mapper\ProfilePersitInterface;
 
 class StudentRegisterTest extends PHPUnit_Framework_TestCase
 {
@@ -13,10 +14,17 @@ class StudentRegisterTest extends PHPUnit_Framework_TestCase
      * @var \Achievement\Student\Service\RegisterInterface
      */
     protected $registerService;
+    
+    /**
+     *
+     * @var \Achievement\Student\Mapper\ProfileMapperInterface | \Prophecy\Prophecy\ObjectProphecy
+     */
+    protected $profileMapper;
 
     protected function setUp()
     {
-        $this->registerService = Bootstrap::getServiceManager()->get('RegisterStudentService');
+        $this->profileMapper = $this->prophesize(ProfilePersitInterface::class);
+        $this->registerService = new StudentRegister($this->profileMapper->reveal());
     }
 
     public function testIsAnInstanceOfRegisterInterface()
@@ -27,10 +35,10 @@ class StudentRegisterTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function testRegisterWillReturnNull()
+    public function testRegisterNewProfileWillDelegateCallAddNewMethodOnProfileMapperClass()
     {
         $student = new StudentProfile();
-        $result = $this->registerService->register($student);
-        $this->assertNull($result);
+        $this->profileMapper->addNew($student)->shouldBeCalled();
+        $this->registerService->register($student);
     }
 }

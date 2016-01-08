@@ -4,11 +4,8 @@ namespace AchievementTest\Student\InputFilter;
 
 use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
 
-/**
- * @group db
- */
-class StudentIntegrateDatabaseTest extends TestCase {
-
+class StudentIntegrateDatabaseTest extends TestCase
+{
     /**
      * @var \Zend\InputFilter\InputFilterInterface
      */

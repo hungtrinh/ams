@@ -1,7 +1,9 @@
 <?php
-use Achievement\Account\Validator\UsernameUniqueFactory;
+
 use Achievement\Student\Factory\WriteControllerFactory;
-use Achievement\Student\Service\StudentRegister;
+use Achievement\Student\Service\StudentRegisterFactory;
+use Achievement\Student\Mapper\ProfilePersitInterface;
+use Achievement\Student\Mapper\ProfilePersitTableGateway;
 use Achievement\Student\Hydrator\ProfileFormFactory;
 
 return [
@@ -10,13 +12,15 @@ return [
             'Zend\InputFilter\InputFilterAbstractServiceFactory'
         ],
     ],
-    'input_filter_specs' => include __DIR__ . '/inputfilters.config.php', // required input_filters Zend\InputFilter\InputFilterAbstractServiceFactory config
+    
+    //required input_filters Zend\InputFilter\InputFilterAbstractServiceFactory config
+    'input_filter_specs' => include __DIR__ . '/inputfilters.config.php',
 
     'forms' => include __DIR__ . '/form.config.php',
 
     'validators' => [
         'factories' => [
-            'username_unique' => UsernameUniqueFactory::class,
+            
         ],
     ],
     'hydrators' => [
@@ -36,7 +40,10 @@ return [
      ],
     'service_manager' => [
         'invokables' => [
-            'RegisterStudentService' => StudentRegister::class,
+            ProfilePersitInterface::class => ProfilePersitTableGateway::class,
+        ],
+        'factories' => [
+            'RegisterStudentService' => StudentRegisterFactory::class,
         ]
     ],
     'router' => [
