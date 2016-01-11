@@ -23,7 +23,7 @@ interface ProfileInterface
     public function getFullname();
     
     /**
-     * @return \DateTime
+     * @return \DateTime | null
      */
     public function getDob();
     

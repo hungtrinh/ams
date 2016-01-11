@@ -4,6 +4,8 @@ namespace AchievementTest\Student\Hydrator;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
+use Achievement\Student\Model\Profile;
+use DateTime;
 
 class ProfileFormTest extends PHPUnit_Framework_TestCase
 {
@@ -14,8 +16,11 @@ class ProfileFormTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $hydratorManager = Bootstrap::getServiceManager()->get('HydratorManager');
-        $this->hydrator = $hydratorManager->get('Achievement\Student\Hydrator\ProfileForm');
+        Bootstrap::init();
+        $services = Bootstrap::getServiceManager();
+        $hydrators = $services->get('HydratorManager');
+        $profileFormHydratorName = 'Achievement\Student\Hydrator\ProfileForm';
+        $this->hydrator = $hydrators->get($profileFormHydratorName);
     }
 
     public function testWhenCallHydratorOnHydratorNamingStrategyWillReturnExpectedStudentModelField()
@@ -42,5 +47,29 @@ class ProfileFormTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('gender', $namingStrategy->extract('gender'));
         $this->assertEquals('grade', $namingStrategy->extract('grade'));
         $this->assertEquals('account', $namingStrategy->extract('account'));
+    }
+    
+    public function testWhenCallHydrateWithNullDobThenNothingBindToDobOnEntity()
+    {
+        $studentProfile = new Profile();
+        $this->hydrator->hydrate(['dob' => null], $studentProfile);
+        
+        $this->assertNull($studentProfile->getDob());
+    }
+    
+    public function testWhenCallHydrateWithEmptyStringDobThenNothingBindToDobOnEntity()
+    {
+        $studentProfile = new Profile();
+        $this->hydrator->hydrate(['dob' => ''], $studentProfile);
+        $this->assertNull($studentProfile->getDob());
+    }
+    
+    public function testWhenCallHydrateWithYmdStringDobThenBindDateTimeObjectToEntity()
+    {
+        $studentProfile = new Profile();
+        $dobRaw = '1985-12-31';
+        $dobExpected = DateTime::createFromFormat('Y-m-d', $dobRaw);
+        $this->hydrator->hydrate(['dob' => $dobRaw], $studentProfile);
+        $this->assertEquals($dobExpected, $studentProfile->getDob());
     }
 }

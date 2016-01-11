@@ -2,6 +2,8 @@
 
 namespace Achievement\Student\Model;
 
+use DateTime;
+
 /**
  * Student profile
  * @implements ProfileInterface
@@ -119,7 +121,7 @@ class Profile implements ProfileInterface
     /**
      * Gets the value of dob.
      *
-     * @return mixed
+     * @return \DateTime | null
      */
     public function getDob()
     {
@@ -129,12 +131,16 @@ class Profile implements ProfileInterface
     /**
      * Sets the value of dob.
      *
-     * @param mixed $dob the dob
+     * @param null | \DateTime $dob the dob
      *
      * @return self
      */
     public function setDob($dob)
     {
+        if (null !== $dob && ! $dob instanceof DateTime) {
+            throw new InvalidArgumentException;
+        }
+        
         $this->dob = $dob;
 
         return $this;
