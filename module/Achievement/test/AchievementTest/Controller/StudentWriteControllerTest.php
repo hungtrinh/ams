@@ -43,8 +43,8 @@ class StudentWriteControllerTest extends ZendControllerTestCase
 
         $this->assertMatchedRouteName('student/add');
         $this->assertModuleName('Achievement');
-        $this->assertControllerName('Achievement\\Controller\\StudentWrite');
-        $this->assertControllerClass('StudentWriteController');
+        $this->assertControllerName('Achievement\\Controller\\StudentPersit');
+        $this->assertControllerClass('StudentPersitController');
         $this->assertActionName('add');
     }
    
@@ -55,8 +55,8 @@ class StudentWriteControllerTest extends ZendControllerTestCase
         //assert match request
         $this->assertMatchedRouteName('student/add');
         $this->assertModuleName('Achievement');
-        $this->assertControllerName('Achievement\\Controller\\StudentWrite');
-        $this->assertControllerClass('StudentWriteController');
+        $this->assertControllerName('Achievement\\Controller\\StudentPersit');
+        $this->assertControllerClass('StudentPersitController');
         $this->assertActionName('add');
 
         /**

@@ -35,7 +35,7 @@ return [
      ],//view_manager
     'controllers' => [
         'factories' => [
-            'Achievement\Controller\StudentWrite' => WriteControllerFactory::class,
+            'Achievement\Controller\StudentPersit' => WriteControllerFactory::class,
         ]
      ],
     'service_manager' => [
@@ -64,7 +64,7 @@ return [
                         'options' => [
                             'route' => '/add',
                             'defaults' => [
-                                'controller' => 'Achievement\Controller\StudentWrite',
+                                'controller' => 'Achievement\Controller\StudentPersit',
                                 'action' => 'add',
                             ]//defaults
                         ], //options

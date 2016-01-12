@@ -6,7 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\FormInterface;
 use Achievement\Student\Service\StudentRegisterInterface;
 
-class StudentWriteController extends AbstractActionController
+class StudentPersitController extends AbstractActionController
 {
     /**
      * Student form

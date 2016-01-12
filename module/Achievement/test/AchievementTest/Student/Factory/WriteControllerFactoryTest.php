@@ -4,7 +4,7 @@ namespace AchievementTest\Student\Factory;
 
 use PHPUnit_Framework_TestCase;
 use Achievement\Student\Factory\WriteControllerFactory;
-use Achievement\Controller\StudentWriteController;
+use Achievement\Controller\StudentPersitController;
 use Achievement\Student\Form\ProfileForm;
 
 /**
@@ -39,6 +39,6 @@ class WriteControllerFactoryTest extends PHPUnit_Framework_TestCase
     public function testCallInvokeReturnStudentWriteController()
     {
         $studentController = $this->writeControllerFactory->__invoke($this->controllers);
-        $this->assertInstanceOf(StudentWriteController::class, $studentController);
+        $this->assertInstanceOf(StudentPersitController::class, $studentController);
     }
 }

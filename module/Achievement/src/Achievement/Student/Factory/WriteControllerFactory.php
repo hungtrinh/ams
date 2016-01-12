@@ -2,7 +2,7 @@
 
 namespace Achievement\Student\Factory;
 
-use Achievement\Controller\StudentWriteController;
+use Achievement\Controller\StudentPersitController;
 use Achievement\Student\Form\ProfileForm;
 use Zend\Mvc\Controller\ControllerManager;
 
@@ -15,7 +15,7 @@ class WriteControllerFactory
     public function __invoke(ControllerManager $controllers)
     {
         $services = $controllers->getServiceLocator();
-        return new StudentWriteController(
+        return new StudentPersitController(
             $services->get(ProfileForm::class),
             $services->get('RegisterStudentService')
         );
