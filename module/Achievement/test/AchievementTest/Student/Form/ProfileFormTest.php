@@ -8,7 +8,7 @@ use Achievement\Student\Form\ProfileForm;
 use Zend\Form\Element;
 use DateTime;
 
-class StudentFormTest extends TestCase
+class ProfileFormTest extends TestCase
 {
     /**
      * @var \Zend\Form\FormInterface
