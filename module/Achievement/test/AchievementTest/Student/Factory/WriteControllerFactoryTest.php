@@ -5,6 +5,7 @@ namespace AchievementTest\Student\Factory;
 use PHPUnit_Framework_TestCase;
 use Achievement\Student\Factory\WriteControllerFactory;
 use Achievement\Controller\StudentWriteController;
+use Achievement\Student\Form\ProfileForm;
 
 /**
  * Test factory create Achievement\Controller\StudentWriteController in right way
@@ -27,7 +28,7 @@ class WriteControllerFactoryTest extends PHPUnit_Framework_TestCase
         $services               = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
         $controllers            = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
 
-        $services->get('Achievement\Form\Student')->willReturn($studentForm);
+        $services->get(ProfileForm::class)->willReturn($studentForm);
         $services->get('RegisterStudentService')->willReturn($studentRegisterService);
         $controllers->getServiceLocator()->willReturn($services->reveal());
 

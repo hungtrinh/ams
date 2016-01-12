@@ -6,6 +6,7 @@ use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase as ZendControlle
 use Zend\Stdlib\Parameters;
 use Zend\Db\Adapter\Adapter;
 use Achievement\Student\Model\Profile;
+use Achievement\Student\Form\ProfileForm;
 
 class StudentWriteControllerTest extends ZendControllerTestCase
 {
@@ -109,7 +110,7 @@ class StudentWriteControllerTest extends ZendControllerTestCase
         $this->studentForm->getData()->willReturn($student);
         $this->registerStudentService->register($student)->shouldBeCalled();
 
-        $this->services->setService('Achievement\Form\Student', $this->studentForm->reveal());
+        $this->services->setService(ProfileForm::class, $this->studentForm->reveal());
         $this->services->setService('RegisterStudentService', $this->registerStudentService->reveal());
 
         $this->submitStudentProfile($assumeValidStudent);

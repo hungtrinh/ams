@@ -69,7 +69,7 @@ class StudentFormTest extends TestCase
     {
         parent::setUp();
         $this->locator =  $this->getApplicationServiceLocator();
-        $this->studentForm = $this->locator->get('Achievement\Form\Student');
+        $this->studentForm = $this->locator->get(ProfileForm::class);
         $this->prepaireValidProfileData();
     }
     

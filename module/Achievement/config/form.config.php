@@ -214,7 +214,7 @@ return [
         ], //elements
     ], //Achievement\Form\StudentFieldset
 
-    'Achievement\Form\Student' => [
+    ProfileForm::class => [
         'type' => 'form',
         'name' => 'add-student',
         'input_filter' => 'Achievement\InputFilter\Student',
