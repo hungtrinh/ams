@@ -1,6 +1,6 @@
 <?php
 
-use Achievement\Student\Factory\WriteControllerFactory;
+use Achievement\Controller\StudentPersitControllerFactory;
 use Achievement\Student\Service\StudentRegisterFactory;
 use Achievement\Student\Mapper\ProfilePersitInterface;
 use Achievement\Student\Mapper\ProfilePersitTableGateway;
@@ -35,7 +35,7 @@ return [
      ],//view_manager
     'controllers' => [
         'factories' => [
-            'Achievement\Controller\StudentPersit' => WriteControllerFactory::class,
+            'Achievement\Controller\StudentPersit' => StudentPersitControllerFactory::class,
         ]
      ],
     'service_manager' => [

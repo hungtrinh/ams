@@ -11,7 +11,7 @@
         </testsuite>
     </testsuites>
 
-    <!-- <logging>
+<!--     <logging>
         <log type="coverage-html" target="coverage"/>
         <log type="testdox-html" target="coverage/testdox.html"/>
         <log type="testdox-text" target="coverage/testdox.txt"/>

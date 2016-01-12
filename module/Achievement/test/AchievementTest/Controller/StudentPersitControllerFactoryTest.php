@@ -1,19 +1,20 @@
 <?php
 
-namespace AchievementTest\Student\Factory;
+namespace AchievementTest\Controller;
 
 use PHPUnit_Framework_TestCase;
-use Achievement\Student\Factory\WriteControllerFactory;
+use Achievement\Student\Factory\factory;
+use Achievement\Controller\StudentPersitControllerFactory;
 use Achievement\Controller\StudentPersitController;
 use Achievement\Student\Form\ProfileForm;
 
 /**
  * Test factory create Achievement\Controller\StudentWriteController in right way
  */
-class WriteControllerFactoryTest extends PHPUnit_Framework_TestCase
+class StudentPersitFactoryTest extends PHPUnit_Framework_TestCase
 {
-    /** @var \Achievement\Student\Factory\WriteControllerFactory */
-    protected $writeControllerFactory;
+    /** @var \Achievement\Controller\StudentPersitControllerFactory */
+    protected $factory;
 
     /** @var \Zend\Mvc\Controller\ControllerManager */
     protected $controllers;
@@ -24,7 +25,6 @@ class WriteControllerFactoryTest extends PHPUnit_Framework_TestCase
 
         $studentRegisterService = $this->prophesize('Achievement\Student\Service\StudentRegisterInterface')->reveal();
         $studentForm            = $this->prophesize('Zend\Form\FormInterface')->reveal();
-
         $services               = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
         $controllers            = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
 
@@ -33,12 +33,12 @@ class WriteControllerFactoryTest extends PHPUnit_Framework_TestCase
         $controllers->getServiceLocator()->willReturn($services->reveal());
 
         $this->controllers = $controllers->reveal();
-        $this->writeControllerFactory           = new WriteControllerFactory();
+        $this->factory     = new StudentPersitControllerFactory();
     }
 
     public function testCallInvokeReturnStudentWriteController()
     {
-        $studentController = $this->writeControllerFactory->__invoke($this->controllers);
+        $studentController = $this->factory->__invoke($this->controllers);
         $this->assertInstanceOf(StudentPersitController::class, $studentController);
     }
 }

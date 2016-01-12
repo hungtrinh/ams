@@ -8,7 +8,7 @@ use Zend\Db\Adapter\Adapter;
 use Achievement\Student\Model\Profile;
 use Achievement\Student\Form\ProfileForm;
 
-class StudentWriteControllerTest extends ZendControllerTestCase
+class StudentPersitControllerTest extends ZendControllerTestCase
 {
     /**
      * @var \Zend\ServiceManager\ServiceManager

@@ -1,15 +1,15 @@
 <?php
 
-namespace Achievement\Student\Factory;
+namespace Achievement\Controller;
 
 use Achievement\Controller\StudentPersitController;
 use Achievement\Student\Form\ProfileForm;
 use Zend\Mvc\Controller\ControllerManager;
 
 /**
- * Make StudentWriteController
+ * Make StudentPersitController
  */
-class WriteControllerFactory
+class StudentPersitControllerFactory
 {
 
     public function __invoke(ControllerManager $controllers)

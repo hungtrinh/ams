@@ -4739,16 +4739,16 @@
         },
         {
             "name": "san/san-session-toolbar",
-            "version": "0.3.2",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/samsonasik/SanSessionToolbar.git",
-                "reference": "ecbdf4f49fea9c60fd10d416ab1bf649e4e92f1f"
+                "reference": "c0f847a6de7910c3d03a603137cb87cee7e082dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/samsonasik/SanSessionToolbar/zipball/ecbdf4f49fea9c60fd10d416ab1bf649e4e92f1f",
-                "reference": "ecbdf4f49fea9c60fd10d416ab1bf649e4e92f1f",
+                "url": "https://api.github.com/repos/samsonasik/SanSessionToolbar/zipball/c0f847a6de7910c3d03a603137cb87cee7e082dd",
+                "reference": "c0f847a6de7910c3d03a603137cb87cee7e082dd",
                 "shasum": ""
             },
             "require": {
@@ -4792,7 +4792,7 @@
                 "session",
                 "zf2"
             ],
-            "time": "2016-01-01 18:55:07"
+            "time": "2016-01-11 07:37:38"
         },
         {
             "name": "snapshotpl/zf-snap-event-debugger",
