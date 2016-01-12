@@ -2,8 +2,9 @@
 
 namespace Achievement\Student\Form;
 
-interface StudentForm
+interface Profile
 {
-    const STUDENT = 'student';
+    const STUDENT  = 'student';
     const SECURITY = 'security';
+    const SUBMIT   = 'add';
 }
