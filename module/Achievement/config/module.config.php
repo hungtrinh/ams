@@ -1,10 +1,12 @@
 <?php
 
 use Achievement\Controller\StudentPersitControllerFactory;
+use Achievement\Student\Service\StudentRegisterInterface;
 use Achievement\Student\Service\StudentRegisterFactory;
 use Achievement\Student\Mapper\ProfilePersitInterface;
 use Achievement\Student\Mapper\ProfilePersitTableGateway;
 use Achievement\Student\Hydrator\ProfileFormFactory;
+
 
 return [
     'input_filters' => [
@@ -43,8 +45,11 @@ return [
             ProfilePersitInterface::class => ProfilePersitTableGateway::class,
         ],
         'factories' => [
-            'RegisterStudentService' => StudentRegisterFactory::class,
-        ]
+            StudentRegisterInterface::class => StudentRegisterFactory::class,
+        ],
+        'aliases' => [
+            'RegisterStudentService' => StudentRegisterInterface::class,
+        ],
     ],
     'router' => [
         'routes' => [
