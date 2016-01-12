@@ -2,32 +2,14 @@
 
 namespace AchievementTest\Student\Form;
 
-//use AchievementTest\Bootstrap;
 use Achievement\Student\Model\ProfileInterface;
 use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
-use DateTime;
+use Achievement\Student\Form\StudentForm;
 use Zend\Form\Element;
+use DateTime;
 
 class StudentFormTest extends TestCase
 {
-    /**
-     * $studentForm get from Bootstrap::getServiceManager()->get('Achievement\Form\Student')
-     * will return same instance in all test case (get from same ServiceManager instance)
-     *
-     * When user (form) call getValue on csrf element first time
-     * then csrf validator will check if not exist csrf token hash
-     * then generate csrf hash and csrf token store in $_SESSION.
-     *
-     * So  $form->isValid($validData) === true for test case A
-     *
-     * After Run tesk case default phpunit destroy all global variable.
-     * (this line below tell phpunit please backup SESSION for next test case)
-     *
-     * And then $form->isValid($validData) === false for test case B
-     * (because system empty SESSION after test case A)
-     */
-//    protected $backupGlobalsBlacklist = array( '_SESSION' );
-
     /**
      * @var \Zend\Form\FormInterface
      */
@@ -106,15 +88,15 @@ class StudentFormTest extends TestCase
         $this->profileValid = include(
             "module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"
         );
-        $this->profileValid['security'] = $this->studentForm->get('security')->getValue();
+        $this->profileValid['security'] = $this->studentForm->get(StudentForm::SECURITY)->getValue();
     }
 
     public function testHasStudentElementIsAStudentFieldset()
     {
         $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
 
-        $this->assertSame($expectedStudentField, $this->studentForm->get('student'));
-        $this->assertInstanceOf(Element\Csrf::class, $this->studentForm->get('security'));
+        $this->assertSame($expectedStudentField, $this->studentForm->get(StudentForm::STUDENT));
+        $this->assertInstanceOf(Element\Csrf::class, $this->studentForm->get(StudentForm::SECURITY));
         $this->assertInstanceOf(Element\Submit::class, $this->studentForm->get('add'));
     }
 
@@ -159,5 +141,15 @@ class StudentFormTest extends TestCase
             'username' => '1234567',
             'password' => '1234',
         ], $studentProfile->getAccount());
+    }
+
+    public function testHasConstStudentSupportAccessToStudentElement()
+    {
+        $this->assertEquals('student', StudentForm::STUDENT);
+    }
+
+    public function testHasConstSecuritySupportAccessToSecurityElement()
+    {
+        $this->assertEquals('security', StudentForm::SECURITY);
     }
 }

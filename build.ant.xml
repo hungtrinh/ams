@@ -4,7 +4,7 @@
         description="Build clean app" 
         name="build" />
     <target description="Run phpunit verbose" name="phpunit">
-        <exec executable="vendor/bin/phpunit">
+        <exec executable="vendor/bin/phpunit" taskname="PHPUnit">
             <arg value="--verbose"/>
             <arg value="-c"/>
             <arg value="module/Achievement/test/phpunit.xml"/>
@@ -41,7 +41,7 @@
         </exec>
     </target>
     <target description="Phpunit generate agile document" name="agiledoc">
-        <exec executable="vendor/bin/phpunit">
+        <exec executable="vendor/bin/phpunit" taskname="PHPUnit">
             <arg value="--testdox"/>
             <arg value="-c"/>
             <arg value="module/Achievement/test/phpunit.xml"/>
@@ -58,7 +58,7 @@
             </fileset>
         </delete>
         <get dest="${basedir}/composer.phar" skipexisting="true" src="https://getcomposer.org/composer.phar"/>
-        <exec executable="php">
+        <exec executable="php" taskname="composer">
             <arg value="composer.phar"/>
             <arg value="install"/>
             <arg value="--prefer-dist"/>
