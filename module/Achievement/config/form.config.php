@@ -1,5 +1,5 @@
 <?php
-use Achievement\Student\Form\Profile;
+use Achievement\Student\Form\ProfileForm;
 
 return [
     'Achievement\Form\Sibling' => [
@@ -222,7 +222,7 @@ return [
             [
                 'spec' => [
                     'type' => 'Achievement\Form\StudentFieldset',
-                    'name' => Profile::STUDENT,
+                    'name' => ProfileForm::STUDENT,
                     'options' => [
                         'use_as_base_fieldset' => true,
                     ],
@@ -231,13 +231,13 @@ return [
             [
                 'spec' => [
                     'type' => 'csrf',
-                    'name' => Profile::SECURITY,
+                    'name' => ProfileForm::SECURITY,
                 ],
             ], //security
             [
                 'spec' => [
                     'type' => 'submit',
-                    'name' => Profile::SUBMIT,
+                    'name' => ProfileForm::SUBMIT,
                     'options' => [
                         'exclude' => true,
                     ],

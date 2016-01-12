@@ -2,7 +2,7 @@
 
 namespace Achievement\Student\Form;
 
-interface Profile
+interface ProfileForm
 {
     const STUDENT  = 'student';
     const SECURITY = 'security';

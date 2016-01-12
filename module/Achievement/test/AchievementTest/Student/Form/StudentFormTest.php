@@ -4,7 +4,7 @@ namespace AchievementTest\Student\Form;
 
 use Achievement\Student\Model\ProfileInterface;
 use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
-use Achievement\Student\Form\Profile;
+use Achievement\Student\Form\ProfileForm;
 use Zend\Form\Element;
 use DateTime;
 
@@ -88,16 +88,16 @@ class StudentFormTest extends TestCase
         $this->profileValid = include(
             "module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php"
         );
-        $this->profileValid['security'] = $this->studentForm->get(Profile::SECURITY)->getValue();
+        $this->profileValid['security'] = $this->studentForm->get(ProfileForm::SECURITY)->getValue();
     }
 
     public function testHasStudentElementIsAStudentFieldset()
     {
         $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
 
-        $this->assertSame($expectedStudentField, $this->studentForm->get(Profile::STUDENT));
-        $this->assertInstanceOf(Element\Csrf::class, $this->studentForm->get(Profile::SECURITY));
-        $this->assertInstanceOf(Element\Submit::class, $this->studentForm->get(Profile::SUBMIT));
+        $this->assertSame($expectedStudentField, $this->studentForm->get(ProfileForm::STUDENT));
+        $this->assertInstanceOf(Element\Csrf::class, $this->studentForm->get(ProfileForm::SECURITY));
+        $this->assertInstanceOf(Element\Submit::class, $this->studentForm->get(ProfileForm::SUBMIT));
     }
 
     public function testIsInvalidWhenSetEmptyProfile()
@@ -145,16 +145,16 @@ class StudentFormTest extends TestCase
 
     public function testHasConstStudentSupportAccessToStudentElement()
     {
-        $this->assertEquals('student', Profile::STUDENT);
+        $this->assertEquals('student', ProfileForm::STUDENT);
     }
 
     public function testHasConstSecuritySupportAccessToSecurityElement()
     {
-        $this->assertEquals('security', Profile::SECURITY);
+        $this->assertEquals('security', ProfileForm::SECURITY);
     }
 
     public function testHasConstSubmitSupportAccessToSubmitElement()
     {
-        $this->assertEquals('add', Profile::SUBMIT);
+        $this->assertEquals('add', ProfileForm::SUBMIT);
     }
 }
