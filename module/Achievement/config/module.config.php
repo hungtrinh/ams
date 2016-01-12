@@ -6,7 +6,8 @@ use Achievement\Student\Service\StudentRegisterFactory;
 use Achievement\Student\Mapper\ProfilePersitInterface;
 use Achievement\Student\Mapper\ProfilePersitTableGateway;
 use Achievement\Student\Hydrator\ProfileFormFactory;
-
+use Achievement\Student\Form\Element\CourseSelectFactory;
+use Achievement\Student\Form\Element;
 
 return [
     'input_filters' => [
@@ -14,22 +15,18 @@ return [
             'Zend\InputFilter\InputFilterAbstractServiceFactory'
         ],
     ],
-    
-    //required input_filters Zend\InputFilter\InputFilterAbstractServiceFactory config
     'input_filter_specs' => include __DIR__ . '/inputfilters.config.php',
-
-    'forms' => include __DIR__ . '/form.config.php',
-
-    'validators' => [
-        'factories' => [
-            
-        ],
-    ],
     'hydrators' => [
         'factories' => [
             'Achievement\Student\Hydrator\ProfileForm' => ProfileFormFactory::class,
         ]
     ],
+    'form_elements' => [
+        'factories' => [
+            Element::COURSE_SELECT => CourseSelectFactory::class,
+        ],
+    ],
+    'forms' => include __DIR__ . '/form.config.php',
     'view_manager' => [
          'template_path_stack' => [
              __DIR__ . '/../view',

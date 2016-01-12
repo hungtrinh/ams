@@ -2,6 +2,7 @@
 use Achievement\Student\Form\ProfileForm;
 use Achievement\Student\Form\ProfileFieldset;
 use Achievement\Student\Model\Profile as ProfileModel;
+use Achievement\Student\Form\Element;
 
 return [
     'Achievement\Form\Sibling' => [
@@ -196,15 +197,10 @@ return [
                             'elements' => [
                                 [
                                     'spec' => [
-                                        'type' => 'select',
+                                        'type' => Element::COURSE_SELECT,
                                         'name' => 'code',
                                         'options' => [
                                             'label' => 'Course code',
-                                            'value_options' => [
-                                                '1' => '1',
-                                                '2' => '2',
-                                                '3' => '3',
-                                            ],
                                         ],
                                     ],
                                 ], //code
