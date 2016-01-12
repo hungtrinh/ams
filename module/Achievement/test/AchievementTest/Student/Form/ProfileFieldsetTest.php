@@ -7,7 +7,7 @@ use AchievementTest\Bootstrap;
 use Achievement\Student\Form\ProfileFieldset;
 use Zend\Form\FieldsetInterface;
 
-class StudentFieldsetTest extends TestCase
+class ProfileFieldsetTest extends TestCase
 {
     /**
      * @var \Zend\Form\FieldsetInterface
