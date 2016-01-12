@@ -55,7 +55,7 @@ class StudentPersitController extends AbstractActionController
                 'studentForm' => $this->studentForm,
             ];
         }
-        $this->params();
+        
         $studentValid = $this->studentForm->getData();
         $this->registerService->register($studentValid);
 
