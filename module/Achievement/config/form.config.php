@@ -1,5 +1,7 @@
 <?php
 use Achievement\Student\Form\ProfileForm;
+use Achievement\Student\Form\ProfileFieldset;
+use Achievement\Student\Model\Profile as ProfileModel;
 
 return [
     'Achievement\Form\Sibling' => [
@@ -83,16 +85,16 @@ return [
         ], // elements
     ], //Achievement\Form\AccountBasicFieldset
 
-    'Achievement\Form\StudentFieldset' => [
+    ProfileFieldset::class => [
         'type' => 'fieldset',
         'name' => 'student',
         'hydrator' => 'Achievement\Student\Hydrator\ProfileForm',
-        'object' => \Achievement\Student\Model\Profile::class,
+        'object' => ProfileModel::class,
         'elements' => [
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => 'registration-code',
+                    'name' => ProfileFieldset::REGISTRATION_CODE,
                     'options' => [
                         'label' => 'Registration code',
                     ],
@@ -104,7 +106,7 @@ return [
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => 'fullname',
+                    'name' => ProfileFieldset::FULLNAME,
                     'options' => [
                         'label' => 'Full name',
                     ],
@@ -113,7 +115,7 @@ return [
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => 'phonetic-name',
+                    'name' => ProfileFieldset::PHONETIC_NAME,
                     'options' => [
                         'label' => 'Phonetic name',
                     ],
@@ -122,7 +124,7 @@ return [
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => 'dob',
+                    'name' => ProfileFieldset::DATE_OF_BIRTH,
                     'options' => [
                         'label' => 'Date of birth',
                     ],
@@ -131,7 +133,7 @@ return [
             [
                 'spec' => [
                     'type' => 'select',
-                    'name' => 'gender',
+                    'name' => ProfileFieldset::GENDER,
                     'options' => [
                         'label' => 'Gender',
                         'value_options' => [
@@ -144,7 +146,7 @@ return [
             [
                 'spec' => [
                     'type' => 'select',
-                    'name' => 'grade',
+                    'name' => ProfileFieldset::GRADE,
                     'options' => [
                         'label' => 'School year',
                         'value_options' => [
@@ -158,7 +160,7 @@ return [
             [
                 'spec' => [
                     'type' => 'collection',
-                    'name' => 'siblings',
+                    'name' => ProfileFieldset::SIBLINGS,
                     'options' => [
                         'label' => 'Siblings',
                         'count' => 1,
@@ -173,7 +175,7 @@ return [
             [
                 'spec' => [
                     'type' => 'Achievement\Form\AccountBasicFieldset',
-                    'name' => 'account',
+                    'name' => ProfileFieldset::ACCOUNT,
                     'options' => [
                         'label'                => 'Account',
                         'use_as_base_fieldset' => true,
@@ -183,7 +185,7 @@ return [
             [
                 'spec' => [
                     'type' => 'collection',
-                    'name' => 'courses',
+                    'name' => ProfileFieldset::COURSES,
                     'options' => [
                         'label' => 'Courses',
                         'count' => 5,
@@ -212,7 +214,7 @@ return [
                 ],
             ], //course
         ], //elements
-    ], //Achievement\Form\StudentFieldset
+    ], //ProfileFieldset::class
 
     ProfileForm::class => [
         'type' => 'form',
@@ -221,7 +223,7 @@ return [
         'elements' => [
             [
                 'spec' => [
-                    'type' => 'Achievement\Form\StudentFieldset',
+                    'type' => ProfileFieldset::class,
                     'name' => ProfileForm::STUDENT,
                     'options' => [
                         'use_as_base_fieldset' => true,
@@ -247,5 +249,5 @@ return [
                 ],
             ], // add new button
         ], //elements
-    ], //Achievement\Form\Student
+    ], //ProfileForm::class
 ];

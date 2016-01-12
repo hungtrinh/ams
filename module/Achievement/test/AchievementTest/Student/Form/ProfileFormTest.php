@@ -5,6 +5,7 @@ namespace AchievementTest\Student\Form;
 use Achievement\Student\Model\ProfileInterface;
 use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
 use Achievement\Student\Form\ProfileForm;
+use Achievement\Student\Form\ProfileFieldset;
 use Zend\Form\Element;
 use DateTime;
 
@@ -93,7 +94,7 @@ class ProfileFormTest extends TestCase
 
     public function testHasStudentElementIsAStudentFieldset()
     {
-        $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
+        $expectedStudentField = $this->locator->get(ProfileFieldset::class);
 
         $this->assertSame($expectedStudentField, $this->studentForm->get(ProfileForm::STUDENT));
         $this->assertInstanceOf(Element\Csrf::class, $this->studentForm->get(ProfileForm::SECURITY));

@@ -4,6 +4,7 @@ namespace AchievementTest\Student\Form;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use AchievementTest\Bootstrap;
+use Achievement\Student\Form\ProfileFieldset;
 use Zend\Form\FieldsetInterface;
 
 class StudentFieldsetTest extends TestCase
@@ -17,7 +18,7 @@ class StudentFieldsetTest extends TestCase
     {
         parent::setUp();
         $forms = Bootstrap::getServiceManager();
-        $this->studentFieldset = $forms->get('Achievement\Form\StudentFieldset');
+        $this->studentFieldset = $forms->get(ProfileFieldset::class);
     }
 
     public function testIsAnInstanceOfFieldsetInterface()
@@ -31,5 +32,50 @@ class StudentFieldsetTest extends TestCase
         $expectedHydrator = $hydrators->get('Achievement\Student\Hydrator\ProfileForm');
         $hydrator = $this->studentFieldset->getHydrator();
         $this->assertEquals($expectedHydrator, $hydrator);
+    }
+
+    public function testHasConstRegistrationCode()
+    {
+        $this->assertEquals('registration-code', ProfileFieldset::REGISTRATION_CODE);
+    }
+
+    public function testHasConstFullname()
+    {
+        $this->assertEquals('fullname', ProfileFieldset::FULLNAME);
+    }
+
+    public function testHasConstPhoneticName()
+    {
+        $this->assertEquals('phonetic-name', ProfileFieldset::PHONETIC_NAME);
+    }
+
+    public function testHasConstDob()
+    {
+        $this->assertEquals('dob', ProfileFieldset::DATE_OF_BIRTH);
+    }
+
+    public function testHasConstGender()
+    {
+        $this->assertEquals('gender', ProfileFieldset::GENDER);
+    }
+
+    public function testHasConstGrade()
+    {
+        $this->assertEquals('grade', ProfileFieldset::GRADE);
+    }
+
+    public function testHasConstSiblings()
+    {
+        $this->assertEquals('siblings', ProfileFieldset::SIBLINGS);
+    }
+
+    public function testHasConstAccount()
+    {
+        $this->assertEquals('account', ProfileFieldset::ACCOUNT);
+    }
+
+    public function testHasConstCourses()
+    {
+        $this->assertEquals('courses', ProfileFieldset::COURSES);
     }
 }
