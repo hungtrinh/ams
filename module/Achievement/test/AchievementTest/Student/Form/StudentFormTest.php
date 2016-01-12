@@ -6,6 +6,7 @@ namespace AchievementTest\Student\Form;
 use Achievement\Student\Model\ProfileInterface;
 use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
 use DateTime;
+use Zend\Form\Element;
 
 class StudentFormTest extends TestCase
 {
@@ -113,8 +114,8 @@ class StudentFormTest extends TestCase
         $expectedStudentField = $this->locator->get('Achievement\Form\StudentFieldset');
 
         $this->assertSame($expectedStudentField, $this->studentForm->get('student'));
-        $this->assertInstanceOf(\Zend\Form\Element\Csrf::class, $this->studentForm->get('security'));
-        $this->assertInstanceOf(\Zend\Form\Element\Submit::class, $this->studentForm->get('add'));
+        $this->assertInstanceOf(Element\Csrf::class, $this->studentForm->get('security'));
+        $this->assertInstanceOf(Element\Submit::class, $this->studentForm->get('add'));
     }
 
     public function testIsInvalidWhenSetEmptyProfile()
