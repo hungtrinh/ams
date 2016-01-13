@@ -19,13 +19,13 @@ return [
     'hydrators' => [
         'factories' => [
             'Achievement\Student\Hydrator\ProfileForm' => ProfileFormFactory::class,
-        ]
-    ],
+        ],//factories
+    ],//hydrators
     'form_elements' => [
         'factories' => [
             Element::COURSE_SELECT => CourseSelectFactory::class,
-        ],
-    ],
+        ],//factories
+    ],//form_elements
     'forms' => include __DIR__ . '/form.config.php',
     'view_manager' => [
          'template_path_stack' => [
@@ -35,19 +35,19 @@ return [
     'controllers' => [
         'factories' => [
             'Achievement\Controller\StudentPersit' => StudentPersitControllerFactory::class,
-        ]
-     ],
+        ],//factories
+     ],//controllers
     'service_manager' => [
         'invokables' => [
             ProfilePersitInterface::class => ProfilePersitTableGateway::class,
-        ],
+        ],//invokables
         'factories' => [
             StudentRegisterInterface::class => StudentRegisterFactory::class,
-        ],
+        ],//factories
         'aliases' => [
             'RegisterStudentService' => StudentRegisterInterface::class,
-        ],
-    ],
+        ],//aliases
+    ],//service_manager
     'router' => [
         'routes' => [
             'student' => [
@@ -74,5 +74,5 @@ return [
                 ], //child_routes
             ], //route
         ], //routes
-    ], //router
+    ],//router
 ];
