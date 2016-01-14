@@ -57,9 +57,9 @@ class ProfileFormTest extends TestCase
                 'password' => [
                     'isEmpty' => "Value is required and can't be empty",
                 ],
-            ],
-        ],
-    ];
+            ], //account
+        ], //student
+    ]; //expectedEmptyFormErrorMessages
 
     /**
      * @var \Zend\ServiceManager\ServiceLocatorInterface

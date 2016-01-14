@@ -34,6 +34,10 @@ trait DbConnectionTrait
         return $this->conn;
     }
     
+    /**
+     * Make db adapter support test with zend 2 app
+     * @return \Zend\Db\Adapter\Adapter
+     */
     final public function getDbAdapter()
     {
         return new \Zend\Db\Adapter\Adapter([
