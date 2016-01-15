@@ -1,13 +1,5 @@
 <?php
-
 namespace Achievement;
-
-use Achievement\Student\Form\ProfileForm;
-use Achievement\Student\Form\ProfileFieldset;
-use Achievement\Student\Model\Profile as ProfileModel;
-use Achievement\Student\Form\Element;
-use Achievement\Student\Hydrator;
-use Achievement\Account\Form\AccountBasicFieldset;
 
 return [
     'Achievement\Form\Sibling' => [
@@ -57,21 +49,21 @@ return [
         ],//elements
     ],//Achievement\Form\Sibling
 
-    AccountBasicFieldset::class => [
+    Account\Form\AccountBasicFieldset::class => [
         'type' => 'fieldset',
         'name' => 'accountbasic',
-        'hydrator' => 'AccountBasicHydrator',
+        'hydrator' => Account\Hydrator::ACCOUNT_BASIC_HYDRATOR,
         'elements' => [
             [
                 'spec' => [
                     'type' => 'hidden',
-                    'name' => AccountBasicFieldset::ID,
+                    'name' => Account\Form\AccountBasicFieldset::ID,
                 ],//spec
             ],//userid
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => AccountBasicFieldset::USERNAME,
+                    'name' => Account\Form\AccountBasicFieldset::USERNAME,
                     'options' => [
                         'label' => 'Username',
                     ],
@@ -83,24 +75,25 @@ return [
             [
                 'spec' => [
                     'type' => 'password',
-                    'name' => AccountBasicFieldset::PASSWORD,
+                    'name' => Account\Form\AccountBasicFieldset::PASSWORD,
                     'options' => [
                         'label' => 'Password',
                     ],
                 ],//spec
             ],//username
         ],//elements
-    ],//AccountBasicFieldset::class
-    ProfileFieldset::class => [
+    ],//Account\Form\AccountBasicFieldset::class
+
+    Student\Form\ProfileFieldset::class => [
         'type' => 'fieldset',
         'name' => 'student',
-        'hydrator' => Hydrator::PROFILE_FORM_HYDRATOR,
-        'object' => ProfileModel::class,
+        'hydrator' => Student\Hydrator::PROFILE_FORM_HYDRATOR,
+        'object' => Student\Model\Profile::class,
         'elements' => [
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => ProfileFieldset::REGISTRATION_CODE,
+                    'name' => Student\Form\ProfileFieldset::REGISTRATION_CODE,
                     'options' => [
                         'label' => 'Registration code',
                     ],
@@ -108,38 +101,38 @@ return [
                         'maxlength' => 7,
                     ],
                 ],//spec
-            ],//ProfileFieldset::REGISTRATION_CODE
+            ],//Student\Form\ProfileFieldset::REGISTRATION_CODE
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => ProfileFieldset::FULLNAME,
+                    'name' => Student\Form\ProfileFieldset::FULLNAME,
                     'options' => [
                         'label' => 'Full name',
                     ],
                 ],//spec
-            ],//ProfileFieldset::FULLNAME
+            ],//Student\Form\ProfileFieldset::FULLNAME
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => ProfileFieldset::PHONETIC_NAME,
+                    'name' => Student\Form\ProfileFieldset::PHONETIC_NAME,
                     'options' => [
                         'label' => 'Phonetic name',
                     ],
                 ],//spec
-            ],//ProfileFieldset::PHONETIC_NAME
+            ],//Student\Form\ProfileFieldset::PHONETIC_NAME
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => ProfileFieldset::DATE_OF_BIRTH,
+                    'name' => Student\Form\ProfileFieldset::DATE_OF_BIRTH,
                     'options' => [
                         'label' => 'Date of birth',
                     ],
                 ],//spec
-            ],//ProfileFieldset::DATE_OF_BIRTH
+            ],//Student\Form\ProfileFieldset::DATE_OF_BIRTH
             [
                 'spec' => [
                     'type' => 'select',
-                    'name' => ProfileFieldset::GENDER,
+                    'name' => Student\Form\ProfileFieldset::GENDER,
                     'options' => [
                         'label' => 'Gender',
                         'value_options' => [
@@ -148,11 +141,11 @@ return [
                         ],
                     ],
                 ],//spec
-            ],//ProfileFieldset::GENDER
+            ],//Student\Form\ProfileFieldset::GENDER
             [
                 'spec' => [
                     'type' => 'select',
-                    'name' => ProfileFieldset::GRADE,
+                    'name' => Student\Form\ProfileFieldset::GRADE,
                     'options' => [
                         'label' => 'School year',
                         'value_options' => [
@@ -162,21 +155,21 @@ return [
                         ],
                     ],
                 ],//spec
-            ],//ProfileFieldset::GRADE
+            ],//Student\Form\ProfileFieldset::GRADE
             [
                 'spec' => [
-                    'type' => AccountBasicFieldset::class,
-                    'name' => ProfileFieldset::ACCOUNT,
+                    'type' => Account\Form\AccountBasicFieldset::class,
+                    'name' => Student\Form\ProfileFieldset::ACCOUNT,
                     'options' => [
                         'label'                => 'Account',
                         'use_as_base_fieldset' => true,
                     ],
                 ],//spec
-            ],//ProfileFieldset::ACCOUNT
+            ],//Student\Form\ProfileFieldset::ACCOUNT
             [
                 'spec' => [
                     'type' => 'collection',
-                    'name' => ProfileFieldset::SIBLINGS,
+                    'name' => Student\Form\ProfileFieldset::SIBLINGS,
                     'options' => [
                         'label' => 'Siblings',
                         'count' => 1,
@@ -187,11 +180,11 @@ return [
                         ],
                     ],
                 ],//spec
-            ],//ProfileFieldset::SIBLINGS
+            ],//Student\Form\ProfileFieldset::SIBLINGS
             [
                 'spec' => [
                     'type' => 'collection',
-                    'name' => ProfileFieldset::COURSES,
+                    'name' => Student\Form\ProfileFieldset::COURSES,
                     'options' => [
                         'label' => 'Courses',
                         'count' => 5,
@@ -202,45 +195,45 @@ return [
                             'elements' => [
                                 [
                                     'spec' => [
-                                        'type' => Element::COURSE_SELECT,
+                                        'type' => Student\Form\Element::COURSE_SELECT,
                                         'name' => 'code',
                                         'options' => [
                                             'label' => 'Course code',
                                         ],
                                     ],//spec
-                                ],//Element::COURSE_SELECT
+                                ],//Student\Form\Element::COURSE_SELECT
                             ],//elements
                         ],//target_element
                     ],//options
                 ],//spec
-            ],//ProfileFieldset::COURSES
+            ],//Student\Form\ProfileFieldset::COURSES
         ],//elements
-    ],//ProfileFieldset::class
+    ],//Student\Form\ProfileFieldset::class
 
-    ProfileForm::class => [
+    Student\Form\ProfileForm::class => [
         'type' => 'form',
         'name' => 'add-student',
         'input_filter' => 'Achievement\InputFilter\Student',
         'elements' => [
             [
                 'spec' => [
-                    'type' => ProfileFieldset::class,
-                    'name' => ProfileForm::STUDENT,
+                    'type' => Student\Form\ProfileFieldset::class,
+                    'name' => Student\Form\ProfileForm::STUDENT,
                     'options' => [
                         'use_as_base_fieldset' => true,
                     ],
                 ],
-            ],//ProfileForm::STUDENT
+            ],//Student\Form\ProfileForm::STUDENT
             [
                 'spec' => [
                     'type' => 'csrf',
-                    'name' => ProfileForm::SECURITY,
+                    'name' => Student\Form\ProfileForm::SECURITY,
                 ],
-            ],//ProfileForm::SECURITY
+            ],//Student\Form\ProfileForm::SECURITY
             [
                 'spec' => [
                     'type' => 'submit',
-                    'name' => ProfileForm::SUBMIT,
+                    'name' => Student\Form\ProfileForm::SUBMIT,
                     'options' => [
                         'exclude' => true,
                     ],
@@ -250,5 +243,5 @@ return [
                 ],//spec
             ],//add new button
         ],//elements
-    ],//ProfileForm::class
+    ],//Student\Form\ProfileForm::class
 ];

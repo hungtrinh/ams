@@ -4,6 +4,7 @@ namespace AchievementTest\Account\Form;
 use PHPUnit_Framework_TestCase as TestCase;
 use Achievement\Account\Form\AccountBasicFieldset;
 use AchievementTest\Bootstrap;
+use Achievement\Account\Hydrator;
 
 class AccountBasicFieldsetTest extends TestCase
 {
@@ -29,7 +30,7 @@ class AccountBasicFieldsetTest extends TestCase
         $hydrators = $services->get('HydratorManager');
 
         $accountBasicFieldset = $services->get(AccountBasicFieldset::class);
-        $expectedHydrator = $hydrators->get('AccountBasicHydrator');
+        $expectedHydrator = $hydrators->get(Hydrator::ACCOUNT_BASIC_HYDRATOR);
         $hydratorUseByAccountFieldset = $accountBasicFieldset->getHydrator();
         $this->assertEquals($expectedHydrator, $hydratorUseByAccountFieldset);
     }

@@ -10,8 +10,6 @@ use Achievement\Student\Mapper\ProfilePersitTableGateway;
 use Achievement\Student\Hydrator\ProfileFormFactory;
 use Achievement\Student\Hydrator\ProfileFormHydratorFactory;
 use Achievement\Student\Form\Element\CourseSelectFactory;
-use Achievement\Student\Form\Element;
-use Achievement\Student\Hydrator;
 
 return [
     'input_filters' => [
@@ -25,25 +23,15 @@ return [
             'AccountBasicHydrator' => 'classmethods',
         ],//invokables
         'factories' => [
-            Hydrator::PROFILE_FORM_HYDRATOR => ProfileFormHydratorFactory::class,
+            Student\Hydrator::PROFILE_FORM_HYDRATOR => ProfileFormHydratorFactory::class,
         ],//factories
     ],//hydrators
     'form_elements' => [
         'factories' => [
-            Element::COURSE_SELECT => CourseSelectFactory::class,
+            Student\Form\Element::COURSE_SELECT => CourseSelectFactory::class,
         ],//factories
     ],//form_elements
     'forms' => include __DIR__ . '/form.config.php',
-    'view_manager' => [
-         'template_path_stack' => [
-             __DIR__ . '/../view',
-         ],//template_path_stack
-     ],//view_manager
-    'controllers' => [
-        'factories' => [
-            'Achievement\Controller\StudentPersit' => StudentPersitControllerFactory::class,
-        ],//factories
-     ],//controllers
     'service_manager' => [
         'invokables' => [
             ProfilePersitInterface::class => ProfilePersitTableGateway::class,
@@ -55,6 +43,16 @@ return [
             'RegisterStudentService' => StudentRegisterInterface::class,
         ],//aliases
     ],//service_manager
+    'view_manager' => [
+         'template_path_stack' => [
+             __DIR__ . '/../view',
+         ],//template_path_stack
+     ],//view_manager
+    'controllers' => [
+        'factories' => [
+            'Achievement\Controller\StudentPersit' => StudentPersitControllerFactory::class,
+        ],//factories
+     ],//controllers
     'router' => [
         'routes' => [
             'student' => [
@@ -62,7 +60,7 @@ return [
                 'options' => [
                     'route' => '/student',
                     'defaults' => [
-                        'controller' => 'Achievement\Controller\StudentWrite',
+                        'controller' => 'Achievement\Controller\StudentPersit',
                         'action' => 'index',
                     ], //defaults
                 ], //options
