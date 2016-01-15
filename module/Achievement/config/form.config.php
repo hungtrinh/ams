@@ -1,9 +1,13 @@
 <?php
+
+namespace Achievement;
+
 use Achievement\Student\Form\ProfileForm;
 use Achievement\Student\Form\ProfileFieldset;
 use Achievement\Student\Model\Profile as ProfileModel;
 use Achievement\Student\Form\Element;
 use Achievement\Student\Hydrator;
+use Achievement\Account\Form\AccountBasicFieldset;
 
 return [
     'Achievement\Form\Sibling' => [
@@ -53,20 +57,20 @@ return [
         ],//elements
     ],//Achievement\Form\Sibling
 
-    'Achievement\Form\AccountBasicFieldset' => [
+    AccountBasicFieldset::class => [
         'type' => 'fieldset',
         'name' => 'accountbasic',
         'elements' => [
             [
                 'spec' => [
                     'type' => 'hidden',
-                    'name' => 'id',
+                    'name' => AccountBasicFieldset::ID,
                 ],//spec
             ],//userid
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => 'username',
+                    'name' => AccountBasicFieldset::USERNAME,
                     'options' => [
                         'label' => 'Username',
                     ],
@@ -78,15 +82,14 @@ return [
             [
                 'spec' => [
                     'type' => 'password',
-                    'name' => 'password',
+                    'name' => AccountBasicFieldset::PASSWORD,
                     'options' => [
                         'label' => 'Password',
                     ],
                 ],//spec
             ],//username
         ],//elements
-    ],//Achievement\Form\AccountBasicFieldset
-
+    ],//AccountBasicFieldset::class
     ProfileFieldset::class => [
         'type' => 'fieldset',
         'name' => 'student',
@@ -161,7 +164,7 @@ return [
             ],//ProfileFieldset::GRADE
             [
                 'spec' => [
-                    'type' => 'Achievement\Form\AccountBasicFieldset',
+                    'type' => AccountBasicFieldset::class,
                     'name' => ProfileFieldset::ACCOUNT,
                     'options' => [
                         'label'                => 'Account',
