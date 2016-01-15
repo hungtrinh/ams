@@ -14,6 +14,6 @@ interface ProfileFieldset
     const GENDER            = 'gender';
     const GRADE             = 'grade';
     const SIBLINGS          = 'siblings';
-    const ACCOUNT          = 'account';
-    const COURSES          = 'courses';
+    const ACCOUNT           = 'account';
+    const COURSES           = 'courses';
 }

@@ -15,13 +15,45 @@ class ProfileFormTest extends PHPUnit_Framework_TestCase
      */
     protected $hydrator;
 
+    protected $rawProfile = [
+        'registration-code'  => '1234567',
+        'phonetic-name'  => 'Yoshikuni',
+        'fullname'  => '吉国',
+        'dob' => '1985-01-18',
+        'gender' => 'male',
+        'grade' => 1,
+        'account' => [
+            'id' => 1,
+            'username' => '1234567',
+            'password' => '1234',
+        ],
+        'courses' => [
+            ['code' => 1],
+            ['code' => 2],
+            ['code' => 3],
+        ],//courses
+        'siblings' => [
+            [
+                'fullname' => 'Trinh Duc Anh',
+                'dob' => '1982-01-02',
+                'work' => 'By himself',
+                'relationship' => 'brother'
+            ],
+            [
+                'fullname' => 'Trinh Thi Nhan',
+                'dob' => '1981-01-02',
+                'work' => 'By herself',
+                'relationship' => 'sister'
+            ]
+        ],//siblings
+    ];
+
     protected function setUp()
     {
         Bootstrap::init();
         $services = Bootstrap::getServiceManager();
         $hydrators = $services->get('HydratorManager');
-        $profileFormHydratorName = Hydrator::PROFILE_FORM_HYDRATOR;
-        $this->hydrator = $hydrators->get($profileFormHydratorName);
+        $this->hydrator = $hydrators->get(Hydrator::PROFILE_FORM_HYDRATOR);
     }
 
     public function testWhenCallHydratorOnHydratorNamingStrategyWillReturnExpectedStudentModelField()
@@ -65,12 +97,34 @@ class ProfileFormTest extends PHPUnit_Framework_TestCase
         $this->assertNull($studentProfile->getDob());
     }
     
-    public function testWhenCallHydrateWithYmdStringDobThenBindDateTimeObjectToEntity()
+    public function testWhenCallHydrateWithYmdStringThenRecieveDateTimeObjectInModel()
     {
         $studentProfile = new Profile();
         $dobRaw = '1985-12-31';
         $dobExpected = DateTime::createFromFormat('Y-m-d', $dobRaw);
         $this->hydrator->hydrate(['dob' => $dobRaw], $studentProfile);
         $this->assertEquals($dobExpected, $studentProfile->getDob());
+    }
+
+    public function testWhenCallHydrateWithRawStudentProfileThenReturnProfileModel()
+    {
+        $studentProfile = new Profile();
+        $this->hydrator->hydrate($this->rawProfile, $studentProfile);
+
+        $this->assertEquals('1234567', $studentProfile->getRegistrationCode());
+        $this->assertEquals('Yoshikuni', $studentProfile->getPhoneticName());
+        $this->assertEquals('吉国', $studentProfile->getFullname());
+        $this->assertEquals(DateTime::createFromFormat('Y-m-d', '1985-01-18'), $studentProfile->getDob());
+        $this->assertEquals('male', $studentProfile->getGender());
+        $this->assertEquals([
+            'id' => 1,
+            'username' => '1234567',
+            'password' => '1234',
+        ], $studentProfile->getAccount());
+        $this->assertEquals([
+            'id' => 1,
+            'username' => '1234567',
+            'password' => '1234',
+        ], $studentProfile->getAccount());
     }
 }
