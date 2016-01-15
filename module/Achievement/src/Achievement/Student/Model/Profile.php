@@ -27,7 +27,7 @@ class Profile implements ProfileInterface
     protected $fullname;
     
     /**
-     * @var \DateTime
+     * @var \DateTime | null
      */
     protected $dob;
     

@@ -16,8 +16,8 @@ return [
                     'options' => [
                         'label' => 'Full name',
                     ],
-                ],
-            ], //fullname
+                ],//spec
+            ],//fullname
             [
                 'spec' => [
                     'type' => 'text',
@@ -25,8 +25,8 @@ return [
                     'options' => [
                         'label' => 'Date of birth',
                     ],
-                ],
-            ], //dob
+                ],//spec
+            ],//dob
             [
                 'spec' => [
                     'type' => 'select',
@@ -36,10 +36,10 @@ return [
                         'value_options' => [
                             'sister' => 'Sister',
                             'brother' => 'Brother',
-                        ],
-                    ],
-                ],
-            ], //relationship
+                        ],//value_options
+                    ],//options
+                ],//spec
+            ],//relationship
             [
                 'spec' => [
                     'type' => 'text',
@@ -47,10 +47,10 @@ return [
                     'options' => [
                         'label' => 'Work',
                     ],
-                ],
-            ], //work
+                ],//spec
+            ],//work
         ],//elements
-    ], //Achievement\Form\Sibling
+    ],//Achievement\Form\Sibling
 
     'Achievement\Form\AccountBasicFieldset' => [
         'type' => 'fieldset',
@@ -60,8 +60,8 @@ return [
                 'spec' => [
                     'type' => 'hidden',
                     'name' => 'id',
-                ],
-            ], //userid
+                ],//spec
+            ],//userid
             [
                 'spec' => [
                     'type' => 'text',
@@ -72,8 +72,8 @@ return [
                     'attributes' => [
                         'maxlength' => 7,
                     ],
-                ],
-            ], //username
+                ],//spec
+            ],//username
             [
                 'spec' => [
                     'type' => 'password',
@@ -81,10 +81,10 @@ return [
                     'options' => [
                         'label' => 'Password',
                     ],
-                ],
-            ], //username
-        ], // elements
-    ], //Achievement\Form\AccountBasicFieldset
+                ],//spec
+            ],//username
+        ],//elements
+    ],//Achievement\Form\AccountBasicFieldset
 
     ProfileFieldset::class => [
         'type' => 'fieldset',
@@ -102,8 +102,8 @@ return [
                     'attributes' => [
                         'maxlength' => 7,
                     ],
-                ],
-            ], //registration-code
+                ],//spec
+            ],//ProfileFieldset::REGISTRATION_CODE
             [
                 'spec' => [
                     'type' => 'text',
@@ -111,8 +111,8 @@ return [
                     'options' => [
                         'label' => 'Full name',
                     ],
-                ],
-            ], //fullname
+                ],//spec
+            ],//ProfileFieldset::FULLNAME
             [
                 'spec' => [
                     'type' => 'text',
@@ -120,8 +120,8 @@ return [
                     'options' => [
                         'label' => 'Phonetic name',
                     ],
-                ],
-            ], //phonetic-name
+                ],//spec
+            ],//ProfileFieldset::PHONETIC_NAME
             [
                 'spec' => [
                     'type' => 'text',
@@ -129,8 +129,8 @@ return [
                     'options' => [
                         'label' => 'Date of birth',
                     ],
-                ],
-            ], //dob
+                ],//spec
+            ],//ProfileFieldset::DATE_OF_BIRTH
             [
                 'spec' => [
                     'type' => 'select',
@@ -142,8 +142,8 @@ return [
                             'female' => 'Female',
                         ],
                     ],
-                ],
-            ], //gender
+                ],//spec
+            ],//ProfileFieldset::GENDER
             [
                 'spec' => [
                     'type' => 'select',
@@ -156,8 +156,18 @@ return [
                             '3' => '3',
                         ],
                     ],
-                ],
-            ], //grade
+                ],//spec
+            ],//ProfileFieldset::GRADE
+            [
+                'spec' => [
+                    'type' => 'Achievement\Form\AccountBasicFieldset',
+                    'name' => ProfileFieldset::ACCOUNT,
+                    'options' => [
+                        'label'                => 'Account',
+                        'use_as_base_fieldset' => true,
+                    ],
+                ],//spec
+            ],//ProfileFieldset::ACCOUNT
             [
                 'spec' => [
                     'type' => 'collection',
@@ -171,18 +181,8 @@ return [
                             'type' => 'Achievement\Form\Sibling',
                         ],
                     ],
-                ],
-            ], //siblings
-            [
-                'spec' => [
-                    'type' => 'Achievement\Form\AccountBasicFieldset',
-                    'name' => ProfileFieldset::ACCOUNT,
-                    'options' => [
-                        'label'                => 'Account',
-                        'use_as_base_fieldset' => true,
-                    ],
-                ],
-            ], //account
+                ],//spec
+            ],//ProfileFieldset::SIBLINGS
             [
                 'spec' => [
                     'type' => 'collection',
@@ -202,15 +202,15 @@ return [
                                         'options' => [
                                             'label' => 'Course code',
                                         ],
-                                    ],
-                                ], //code
+                                    ],//spec
+                                ],//Element::COURSE_SELECT
                             ],//elements
-                        ],
-                    ],
-                ],
-            ], //course
-        ], //elements
-    ], //ProfileFieldset::class
+                        ],//target_element
+                    ],//options
+                ],//spec
+            ],//ProfileFieldset::COURSES
+        ],//elements
+    ],//ProfileFieldset::class
 
     ProfileForm::class => [
         'type' => 'form',
@@ -225,13 +225,13 @@ return [
                         'use_as_base_fieldset' => true,
                     ],
                 ],
-            ], //student fieldset
+            ],//ProfileForm::STUDENT
             [
                 'spec' => [
                     'type' => 'csrf',
                     'name' => ProfileForm::SECURITY,
                 ],
-            ], //security
+            ],//ProfileForm::SECURITY
             [
                 'spec' => [
                     'type' => 'submit',
@@ -242,8 +242,8 @@ return [
                     'attributes' => [
                         'value' => 'Add new',
                     ],
-                ],
-            ], // add new button
-        ], //elements
-    ], //ProfileForm::class
+                ],//spec
+            ],//add new button
+        ],//elements
+    ],//ProfileForm::class
 ];
