@@ -5,6 +5,7 @@ namespace AchievementTest\Student\Hydrator;
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
 use Achievement\Student\Model\Profile;
+use Achievement\Student\Hydrator;
 use DateTime;
 
 class ProfileFormTest extends PHPUnit_Framework_TestCase
@@ -19,7 +20,7 @@ class ProfileFormTest extends PHPUnit_Framework_TestCase
         Bootstrap::init();
         $services = Bootstrap::getServiceManager();
         $hydrators = $services->get('HydratorManager');
-        $profileFormHydratorName = 'Achievement\Student\Hydrator\ProfileFormHydrator';
+        $profileFormHydratorName = Hydrator::PROFILE_FORM_HYDRATOR;
         $this->hydrator = $hydrators->get($profileFormHydratorName);
     }
 

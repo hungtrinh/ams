@@ -3,6 +3,7 @@ use Achievement\Student\Form\ProfileForm;
 use Achievement\Student\Form\ProfileFieldset;
 use Achievement\Student\Model\Profile as ProfileModel;
 use Achievement\Student\Form\Element;
+use Achievement\Student\Hydrator;
 
 return [
     'Achievement\Form\Sibling' => [
@@ -89,7 +90,7 @@ return [
     ProfileFieldset::class => [
         'type' => 'fieldset',
         'name' => 'student',
-        'hydrator' => 'Achievement\Student\Hydrator\ProfileFormHydrator',
+        'hydrator' => Hydrator::PROFILE_FORM_HYDRATOR,
         'object' => ProfileModel::class,
         'elements' => [
             [

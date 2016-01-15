@@ -9,6 +9,7 @@ use Achievement\Student\Hydrator\ProfileFormFactory;
 use Achievement\Student\Hydrator\ProfileFormHydratorFactory;
 use Achievement\Student\Form\Element\CourseSelectFactory;
 use Achievement\Student\Form\Element;
+use Achievement\Student\Hydrator;
 
 return [
     'input_filters' => [
@@ -19,7 +20,7 @@ return [
     'input_filter_specs' => include __DIR__ . '/inputfilters.config.php',
     'hydrators' => [
         'factories' => [
-            'Achievement\Student\Hydrator\ProfileFormHydrator' => ProfileFormHydratorFactory::class,
+            Hydrator::PROFILE_FORM_HYDRATOR => ProfileFormHydratorFactory::class,
         ],//factories
     ],//hydrators
     'form_elements' => [

@@ -5,6 +5,7 @@ namespace AchievementTest\Student\Form;
 use PHPUnit_Framework_TestCase as TestCase;
 use AchievementTest\Bootstrap;
 use Achievement\Student\Form\ProfileFieldset;
+use Achievement\Student\Hydrator;
 use Zend\Form\FieldsetInterface;
 
 class ProfileFieldsetTest extends TestCase
@@ -29,7 +30,7 @@ class ProfileFieldsetTest extends TestCase
     public function testUseStudentFormHydrator()
     {
         $hydrators = Bootstrap::getServiceManager()->get('HydratorManager');
-        $expectedHydrator = $hydrators->get('Achievement\Student\Hydrator\ProfileFormHydrator');
+        $expectedHydrator = $hydrators->get(Hydrator::PROFILE_FORM_HYDRATOR);
         $hydrator = $this->studentFieldset->getHydrator();
         $this->assertEquals($expectedHydrator, $hydrator);
     }
