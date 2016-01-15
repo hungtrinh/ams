@@ -53,6 +53,7 @@ return [
         'type' => 'fieldset',
         'name' => 'accountbasic',
         'hydrator' => Account\Hydrator::ACCOUNT_BASIC_HYDRATOR,
+        'object' => Account\Model\AccountBasicModel::class,
         'elements' => [
             [
                 'spec' => [

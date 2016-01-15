@@ -8,6 +8,25 @@ use Achievement\Account\Hydrator;
 
 class AccountBasicFieldsetTest extends TestCase
 {
+    /**
+     * @var \Zend\Form\FieldsetInterface
+     */
+    protected $accountFieldset;
+
+    /**
+     * @var \Zend\ServiceManager\ServiceManager
+     */
+    protected $services;
+
+    protected function setUp()
+    {
+        parent::setUp();
+        Bootstrap::init();
+        $services = Bootstrap::getServiceManager();
+        $this->services = $services;
+        $this->accountFieldset = $services->get(AccountBasicFieldset::class);
+    }
+
     public function testHasConstIdSupportAccessAccountIdElement()
     {
         $this->assertEquals('id', AccountBasicFieldset::ID);
@@ -25,13 +44,22 @@ class AccountBasicFieldsetTest extends TestCase
 
     public function testDefaultUseAccountBasicHydrator()
     {
-        Bootstrap::init();
-        $services = Bootstrap::getServiceManager();
-        $hydrators = $services->get('HydratorManager');
-
-        $accountBasicFieldset = $services->get(AccountBasicFieldset::class);
+        $hydrators = $this->services->get('HydratorManager');
         $expectedHydrator = $hydrators->get(Hydrator::ACCOUNT_BASIC_HYDRATOR);
-        $hydratorUseByAccountFieldset = $accountBasicFieldset->getHydrator();
+        $hydratorUseByAccountFieldset = $this->accountFieldset->getHydrator();
         $this->assertEquals($expectedHydrator, $hydratorUseByAccountFieldset);
+    }
+
+    public function testIsAnInstanceOfZendFormFieldsetInterface()
+    {
+        $this->assertInstanceOf(\Zend\Form\FieldsetInterface::class, $this->accountFieldset);
+    }
+
+    public function testUseAccountBasicModel()
+    {
+        $this->assertInstanceOf(
+            \Achievement\Account\Model\AccountBasicModel::class,
+            $this->accountFieldset->getObject()
+        );
     }
 }

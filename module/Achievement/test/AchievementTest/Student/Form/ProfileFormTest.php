@@ -131,17 +131,19 @@ class ProfileFormTest extends TestCase
         $studentProfile = $this->studentForm->getData();
         $this->assertInstanceOf(ProfileInterface::class, $studentProfile, print_r($studentProfile, true));
 
+        $expectedAccount = new \Achievement\Account\Model\AccountBasicModel;
+        $expectedAccount->setId($this->profileValid['student']['account']['id']);
+        $expectedAccount->setUsername($this->profileValid['student']['account']['username']);
+        $expectedAccount->setPassword($this->profileValid['student']['account']['password']);
+
         $this->assertEquals('1234567', $studentProfile->getRegistrationCode());
         $this->assertEquals('Yoshikuni', $studentProfile->getPhoneticName());
         $this->assertEquals('吉国', $studentProfile->getFullname());
         $this->assertEquals(DateTime::createFromFormat('Y-m-d', '1985-01-18'), $studentProfile->getDob());
         $this->assertEquals('male', $studentProfile->getGender());
         $this->assertEquals(1, $studentProfile->getGrade());
-        $this->assertEquals([
-            'id' => 1,
-            'username' => '1234567',
-            'password' => '1234',
-        ], $studentProfile->getAccount());
+        $this->assertEquals($expectedAccount, $studentProfile->getAccount());
+
     }
 
     public function testHasConstStudentSupportAccessToStudentElement()
