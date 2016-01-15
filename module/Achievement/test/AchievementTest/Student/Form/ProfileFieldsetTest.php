@@ -29,7 +29,7 @@ class ProfileFieldsetTest extends TestCase
     public function testUseStudentFormHydrator()
     {
         $hydrators = Bootstrap::getServiceManager()->get('HydratorManager');
-        $expectedHydrator = $hydrators->get('Achievement\Student\Hydrator\ProfileForm');
+        $expectedHydrator = $hydrators->get('Achievement\Student\Hydrator\ProfileFormHydrator');
         $hydrator = $this->studentFieldset->getHydrator();
         $this->assertEquals($expectedHydrator, $hydrator);
     }

@@ -6,7 +6,7 @@ use Zend\Stdlib\Hydrator\HydratorPluginManager;
 use Zend\Stdlib\Hydrator\NamingStrategy\ArrayMapNamingStrategy;
 use Zend\Stdlib\Hydrator\Strategy\DateTimeFormatterStrategy;
 
-class ProfileFormFactory
+class ProfileFormHydratorFactory
 {
     public function __invoke(HydratorPluginManager $hydrators)
     {

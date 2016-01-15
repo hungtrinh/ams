@@ -6,6 +6,7 @@ use Achievement\Student\Service\StudentRegisterFactory;
 use Achievement\Student\Mapper\ProfilePersitInterface;
 use Achievement\Student\Mapper\ProfilePersitTableGateway;
 use Achievement\Student\Hydrator\ProfileFormFactory;
+use Achievement\Student\Hydrator\ProfileFormHydratorFactory;
 use Achievement\Student\Form\Element\CourseSelectFactory;
 use Achievement\Student\Form\Element;
 
@@ -18,7 +19,7 @@ return [
     'input_filter_specs' => include __DIR__ . '/inputfilters.config.php',
     'hydrators' => [
         'factories' => [
-            'Achievement\Student\Hydrator\ProfileForm' => ProfileFormFactory::class,
+            'Achievement\Student\Hydrator\ProfileFormHydrator' => ProfileFormHydratorFactory::class,
         ],//factories
     ],//hydrators
     'form_elements' => [

@@ -4,10 +4,10 @@ namespace AchievementTest\Student\Hydrator;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
-use Achievement\Student\Hydrator\ProfileFormFactory;
+use Achievement\Student\Hydrator\ProfileFormHydratorFactory;
 use Zend\Stdlib\Hydrator;
 
-class ProfileFormFactoryTest extends PHPUnit_Framework_TestCase
+class ProfileFormHydratorFactoryTest extends PHPUnit_Framework_TestCase
 {
     protected $hydratorManager;
 
@@ -17,7 +17,7 @@ class ProfileFormFactoryTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->hydratorManager = Bootstrap::getServiceManager()->get('HydratorManager');
-        $this->factory           = new ProfileFormFactory();
+        $this->factory           = new ProfileFormHydratorFactory();
     }
 
     public function testCallInvokeReturnClassMethodHydratorInstance()

@@ -89,7 +89,7 @@ return [
     ProfileFieldset::class => [
         'type' => 'fieldset',
         'name' => 'student',
-        'hydrator' => 'Achievement\Student\Hydrator\ProfileForm',
+        'hydrator' => 'Achievement\Student\Hydrator\ProfileFormHydrator',
         'object' => ProfileModel::class,
         'elements' => [
             [

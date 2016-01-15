@@ -19,7 +19,7 @@ class ProfileFormTest extends PHPUnit_Framework_TestCase
         Bootstrap::init();
         $services = Bootstrap::getServiceManager();
         $hydrators = $services->get('HydratorManager');
-        $profileFormHydratorName = 'Achievement\Student\Hydrator\ProfileForm';
+        $profileFormHydratorName = 'Achievement\Student\Hydrator\ProfileFormHydrator';
         $this->hydrator = $hydrators->get($profileFormHydratorName);
     }
 
