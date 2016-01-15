@@ -60,6 +60,7 @@ return [
     AccountBasicFieldset::class => [
         'type' => 'fieldset',
         'name' => 'accountbasic',
+        'hydrator' => 'AccountBasicHydrator',
         'elements' => [
             [
                 'spec' => [

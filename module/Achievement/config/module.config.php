@@ -1,5 +1,7 @@
 <?php
 
+namespace Achievement;
+
 use Achievement\Controller\StudentPersitControllerFactory;
 use Achievement\Student\Service\StudentRegisterInterface;
 use Achievement\Student\Service\StudentRegisterFactory;
@@ -19,6 +21,9 @@ return [
     ],
     'input_filter_specs' => include __DIR__ . '/inputfilters.config.php',
     'hydrators' => [
+        'aliases' => [
+            'AccountBasicHydrator' => 'classmethods',
+        ],//invokables
         'factories' => [
             Hydrator::PROFILE_FORM_HYDRATOR => ProfileFormHydratorFactory::class,
         ],//factories
