@@ -1,12 +1,13 @@
 <?php
 
-namespace AchievementTest\Student\InputFilter;
+namespace AchievementTest\Student;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use AchievementTest\Bootstrap;
 use Zend\InputFilter\InputFilterInterface;
+use Achievement\Student\InputFilter;
 
-class StudentTest extends TestCase
+class ProfileFormInputFilterTest extends TestCase
 {
     /**
      * @var \Zend\InputFilter\InputFilterInterface
@@ -20,7 +21,7 @@ class StudentTest extends TestCase
         $services->setAllowOverride(true);
         $services->setService('ams', $this->prophesize(\Zend\Db\Adapter\Adapter::class)->reveal());
         $inputFilters = $services->get('InputFilterManager');
-        $this->studentInputFilter = $inputFilters->get('Achievement\InputFilter\Student');
+        $this->studentInputFilter = $inputFilters->get(InputFilter::STUDENT_FORM_INPUT_FILTER);
     }
 
     /**

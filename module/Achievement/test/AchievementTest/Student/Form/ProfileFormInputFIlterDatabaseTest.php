@@ -1,10 +1,11 @@
 <?php
 
-namespace AchievementTest\Student\InputFilter;
+namespace AchievementTest\Student\Form;
 
 use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
+use Achievement\Student\InputFilter;
 
-class StudentIntegrateDatabaseTest extends TestCase
+class ProfileFormInputFIlterDatabaseTest extends TestCase
 {
     /**
      * @var \Zend\InputFilter\InputFilterInterface
@@ -17,7 +18,7 @@ class StudentIntegrateDatabaseTest extends TestCase
         $serviceManager = $this->getApplicationServiceLocator();
 
         $inputFilterManger = $serviceManager->get('InputFilterManager');
-        $this->studentInputFilter = $inputFilterManger->get('Achievement\InputFilter\Student');
+        $this->studentInputFilter = $inputFilterManger->get(InputFilter::STUDENT_FORM_INPUT_FILTER);
     }
 
     protected function getDataSet()

@@ -214,7 +214,7 @@ return [
     Student\Form\ProfileForm::class => [
         'type' => 'form',
         'name' => 'add-student',
-        'input_filter' => 'Achievement\InputFilter\Student',
+        'input_filter' => Student\InputFilter::STUDENT_FORM_INPUT_FILTER,
         'elements' => [
             [
                 'spec' => [

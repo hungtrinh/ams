@@ -3,7 +3,7 @@
 namespace Achievement;
 
 return [
-    'Achievement\InputFilter\Student' => [
+    Student\InputFilter::STUDENT_FORM_INPUT_FILTER => [
         'student' => [
             'type' => 'InputFilter',
             'registration-code' => [
