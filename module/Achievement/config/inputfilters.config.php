@@ -1,5 +1,7 @@
 <?php
 
+namespace Achievement;
+
 return [
     'Achievement\InputFilter\Student' => [
         'student' => [

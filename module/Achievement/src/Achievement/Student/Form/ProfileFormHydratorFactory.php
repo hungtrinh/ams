@@ -1,6 +1,6 @@
 <?php
 
-namespace Achievement\Student\Hydrator;
+namespace Achievement\Student\Form;
 
 use Zend\Stdlib\Hydrator\HydratorPluginManager;
 use Zend\Stdlib\Hydrator\NamingStrategy\ArrayMapNamingStrategy;

@@ -1,6 +1,6 @@
 <?php
 
-namespace AchievementTest\Student\Hydrator;
+namespace AchievementTest\Student\Form;
 
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
@@ -8,7 +8,7 @@ use Achievement\Student\Model\Profile;
 use Achievement\Student\Hydrator;
 use DateTime;
 
-class ProfileFormTest extends PHPUnit_Framework_TestCase
+class ProfileFormHydratorTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var \Zend\Stdlib\Hydrator\HydratorInterface

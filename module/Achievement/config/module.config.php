@@ -2,15 +2,6 @@
 
 namespace Achievement;
 
-use Achievement\Controller\StudentPersitControllerFactory;
-use Achievement\Student\Service\StudentRegisterInterface;
-use Achievement\Student\Service\StudentRegisterFactory;
-use Achievement\Student\Mapper\ProfilePersitInterface;
-use Achievement\Student\Mapper\ProfilePersitTableGateway;
-use Achievement\Student\Hydrator\ProfileFormFactory;
-use Achievement\Student\Hydrator\ProfileFormHydratorFactory;
-use Achievement\Student\Form\Element\CourseSelectFactory;
-
 return [
     'input_filters' => [
         'abstract_factories' => [
@@ -23,24 +14,24 @@ return [
             'AccountBasicHydrator' => 'classmethods',
         ],//invokables
         'factories' => [
-            Student\Hydrator::PROFILE_FORM_HYDRATOR => ProfileFormHydratorFactory::class,
+            Student\Hydrator::PROFILE_FORM_HYDRATOR => Student\Form\ProfileFormHydratorFactory::class,
         ],//factories
     ],//hydrators
     'form_elements' => [
         'factories' => [
-            Student\Form\Element::COURSE_SELECT => CourseSelectFactory::class,
+            Student\Form\Element::COURSE_SELECT => Student\Form\Element\CourseSelectFactory::class,
         ],//factories
     ],//form_elements
     'forms' => include __DIR__ . '/form.config.php',
     'service_manager' => [
         'invokables' => [
-            ProfilePersitInterface::class => ProfilePersitTableGateway::class,
+            Student\Mapper\ProfilePersitInterface::class => Student\Mapper\ProfilePersitTableGateway::class,
         ],//invokables
         'factories' => [
-            StudentRegisterInterface::class => StudentRegisterFactory::class,
+            Student\Service\StudentRegisterInterface::class => Student\Service\StudentRegisterFactory::class,
         ],//factories
         'aliases' => [
-            'RegisterStudentService' => StudentRegisterInterface::class,
+            'RegisterStudentService' => Student\Service\StudentRegisterInterface::class,
         ],//aliases
     ],//service_manager
     'view_manager' => [
@@ -50,7 +41,7 @@ return [
      ],//view_manager
     'controllers' => [
         'factories' => [
-            'Achievement\Controller\StudentPersit' => StudentPersitControllerFactory::class,
+            'Achievement\Controller\StudentPersit' => Controller\StudentPersitControllerFactory::class,
         ],//factories
      ],//controllers
     'router' => [
