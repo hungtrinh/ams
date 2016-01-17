@@ -32,11 +32,11 @@
     </filter>
     
     <php>
-        <var name="DB_DRIVER" value="pdo" />
-        <var name="DB_DSN" value="sqlite:./data/db/ams.sqlite" />
-        <var name="DB_USER" value="" />
-        <var name="DB_PASSWD" value="" />
-        <var name="DB_DBNAME" value="" />
+        <var name="DB_DRIVER" value="pdo_mysql" />
+        <var name="DB_DSN" value="mysql:host=127.0.0.1;dbname=ams_test" />
+        <var name="DB_USER" value="root" />
+        <var name="DB_PASSWD" value="root" />
+        <var name="DB_DBNAME" value="ams_test" />
     </php>
     
 </phpunit>

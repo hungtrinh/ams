@@ -45,7 +45,9 @@ class ZfcUserTable extends AbstractMigration
                 'limit' => 128,
                 'null' => false,
             ])
-            ->addColumn('state', AdapterInterface::PHINX_TYPE_INTEGER)
+            ->addColumn('state', AdapterInterface::PHINX_TYPE_INTEGER, [
+                'null' => true,
+            ])
             ->addIndex(['username'], ['unique' => true])
             ->addIndex(['email'], ['unique' => true])
             ->create();

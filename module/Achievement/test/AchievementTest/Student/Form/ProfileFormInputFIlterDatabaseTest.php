@@ -25,8 +25,8 @@ class ProfileFormInputFIlterDatabaseTest extends TestCase
     {
         return $this->createArrayDataSet([
             'user' => [
-                ['username' => '1234568'],
-                ['username' => '7654321'],
+                ['username' => '1234568', 'password'=>'123456'],
+                ['username' => '7654321', 'password'=>'123456'],
             ]
         ]);
     }

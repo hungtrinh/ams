@@ -78,8 +78,8 @@ class ProfileFormTest extends TestCase
     {
         return $this->createArrayDataSet([
             'user' => [
-                ['username' => '1234568'],
-                ['username' => '8654321'],
+                ['username' => '1234568', 'password' => '1234567'],
+                ['username' => '8654321', 'password' => '1234567'],
             ]
         ]);
     }
