@@ -65,4 +65,15 @@
             <arg value="-o"/>
         </exec>
     </target>
+    <target description="Update code" name="update">
+        <exec executable="git" taskname="git">
+            <arg value="pull" />
+        </exec>
+        <exec executable="vendor/bin/phinx" taskname="phinx">
+            <arg value="migrate" />
+            <arg value="-e" />
+            <arg value="testing" />
+        </exec>
+        <antcall target="phpunit" />
+    </target>
 </project>

@@ -73,4 +73,11 @@
         </tstamp>
         <echo message="${thirty.days.ago}" />
     </target>
+
+    <target description="Update code" name="update">
+        <exec command="git pull" />
+        <exec executable="vendor/bin/phinx migrate -e testing" />
+        <phingcall target="phpunit" />
+    </target>
+
 </project>

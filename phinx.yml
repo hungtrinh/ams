@@ -24,5 +24,10 @@ environments:
         charset: utf8
 
     testing:
-        adapter: sqlite
-        name: %%PHINX_CONFIG_DIR%%/data/db/ams.sqlite
+        adapter: mysql
+        host: 127.0.0.1
+        name: ams_test
+        user: root
+        pass: 'root'
+        port: 3306
+        charset: utf8
