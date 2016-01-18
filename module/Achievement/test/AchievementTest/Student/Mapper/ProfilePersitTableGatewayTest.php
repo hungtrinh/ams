@@ -31,7 +31,10 @@ class ProfilePersitTableGatewayTest extends TestCase
         $services = Bootstrap::getServiceManager();
         $this->profilePersitTableGateway = $services->get(ProfilePersitInterface::class);
     }
-
+    
+    /**
+     * @return PHPUnit_Extensions_Database_DataSet_IDataSet
+     */
     protected function getDataSet()
     {
         return $this->createArrayDataSet([
@@ -39,7 +42,10 @@ class ProfilePersitTableGatewayTest extends TestCase
             'student' => [],
         ]);
     }
-
+    
+    /**
+     * @return \Achievement\Student\Model\ProfileInterface
+     */
     protected function createProfileValid()
     {
         $rawProfile = include "module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php";

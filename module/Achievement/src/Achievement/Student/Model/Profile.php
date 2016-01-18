@@ -2,6 +2,7 @@
 
 namespace Achievement\Student\Model;
 
+use Achievement\Account\Model\AccountBasicInterface;
 use DateTime;
 
 /**
@@ -42,7 +43,7 @@ class Profile implements ProfileInterface
     protected $grade;
     
     /**
-     * @var string
+     * @var \Achievement\Account\Model\AccountBasicInterface
      */
     protected $account;
 
@@ -97,7 +98,7 @@ class Profile implements ProfileInterface
     /**
      * Gets the value of fullame.
      *
-     * @return mixed
+     * @return string
      */
     public function getFullname()
     {
@@ -149,7 +150,7 @@ class Profile implements ProfileInterface
     /**
      * Gets the value of gender.
      *
-     * @return mixed
+     * @return string
      */
     public function getGender()
     {
@@ -197,7 +198,7 @@ class Profile implements ProfileInterface
     /**
      * Gets the value of account.
      *
-     * @return string
+     * @return \Achievement\Account\Model\AccountBasicInterface
      */
     public function getAccount()
     {
@@ -211,7 +212,7 @@ class Profile implements ProfileInterface
      *
      * @return self
      */
-    public function setAccount($account)
+    public function setAccount(AccountBasicInterface $account)
     {
         $this->account = $account;
 

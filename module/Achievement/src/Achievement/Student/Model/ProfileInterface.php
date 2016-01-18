@@ -38,7 +38,7 @@ interface ProfileInterface
     public function getGrade();
     
     /**
-     * @return string
+     * @return \Achievement\Account\Model\AccountBasicInterface
      */
     public function getAccount();
 }

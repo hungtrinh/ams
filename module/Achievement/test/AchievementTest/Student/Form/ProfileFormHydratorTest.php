@@ -109,6 +109,7 @@ class ProfileFormHydratorTest extends PHPUnit_Framework_TestCase
     public function testWhenCallHydrateWithRawStudentProfileThenReturnProfileModel()
     {
         $studentProfile = new Profile();
+        unset($this->rawProfile['account']);
         $this->hydrator->hydrate($this->rawProfile, $studentProfile);
 
         $this->assertEquals('1234567', $studentProfile->getRegistrationCode());
@@ -116,15 +117,5 @@ class ProfileFormHydratorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('吉国', $studentProfile->getFullname());
         $this->assertEquals(DateTime::createFromFormat('Y-m-d', '1985-01-18'), $studentProfile->getDob());
         $this->assertEquals('male', $studentProfile->getGender());
-        $this->assertEquals([
-            'id' => 1,
-            'username' => '1234567',
-            'password' => '1234',
-        ], $studentProfile->getAccount());
-        $this->assertEquals([
-            'id' => 1,
-            'username' => '1234567',
-            'password' => '1234',
-        ], $studentProfile->getAccount());
     }
 }
