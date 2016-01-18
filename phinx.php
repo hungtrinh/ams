@@ -11,9 +11,9 @@ return [
         'development' => [
             'adapter' => 'mysql',
             'host' => 'localhost',
-            'name' => 'ams_dev',
-            'user' => 'root',
-            'pass' => '',
+            'name' => 'ams',
+            'user' => 'ams',
+            'pass' => 'ams',
             'port' => '3306',
             'charset' => 'utf8',
         ],//development
@@ -21,8 +21,8 @@ return [
             'adapter' => 'mysql',
             'host' => '127.0.0.1',
             'name' => 'ams_test',
-            'user' => 'root',
-            'pass' => '',
+            'user' => 'ams_test',
+            'pass' => 'ams_test',
             'port' => '3306',
             'charset' => 'utf8',
         ],//testing
