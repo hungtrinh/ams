@@ -22,7 +22,7 @@ return [
             'host' => '127.0.0.1',
             'name' => 'ams_test',
             'user' => 'root',
-            'pass' => 'root',
+            'pass' => '',
             'port' => '3306',
             'charset' => 'utf8',
         ],//testing

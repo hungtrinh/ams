@@ -9,5 +9,8 @@ namespace Achievement\Student\Form;
  */
 interface Element
 {
+    /**
+     * service name - management by FormElementManager
+     */
     const COURSE_SELECT = 'courseselect';
 }

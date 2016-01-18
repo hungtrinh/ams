@@ -2,14 +2,14 @@
 namespace Achievement;
 
 return [
-    'Achievement\Form\Sibling' => [
+    Student\Form\SiblingFieldset::class => [
         'type' => 'fieldset',
-        'name' => 'sibling',
+        'name' => Student\Form\SiblingFieldset::NAME,
         'elements' => [
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => 'fullname',
+                    'name' => Student\Form\SiblingFieldset::FULLNAME,
                     'options' => [
                         'label' => 'Full name',
                     ],
@@ -18,7 +18,7 @@ return [
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => 'dob',
+                    'name' => Student\Form\SiblingFieldset::DOB,
                     'options' => [
                         'label' => 'Date of birth',
                     ],
@@ -27,7 +27,7 @@ return [
             [
                 'spec' => [
                     'type' => 'select',
-                    'name' => 'relationship',
+                    'name' => Student\Form\SiblingFieldset::RELATIONSHIP,
                     'options' => [
                         'label' => 'Relationship',
                         'value_options' => [
@@ -40,7 +40,7 @@ return [
             [
                 'spec' => [
                     'type' => 'text',
-                    'name' => 'work',
+                    'name' => Student\Form\SiblingFieldset::WORK,
                     'options' => [
                         'label' => 'Work',
                     ],
@@ -177,7 +177,7 @@ return [
                         'should_create_template' => false,
                         'allow_add' => true,
                         'target_element' => [
-                            'type' => 'Achievement\Form\Sibling',
+                            'type' => Student\Form\SiblingFieldset::class,
                         ],
                     ],
                 ],//spec

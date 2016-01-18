@@ -8,7 +8,18 @@ namespace Achievement\Student\Form;
  */
 interface ProfileForm
 {
+    /**
+     * Student element name
+     */
     const STUDENT  = 'student';
+
+    /**
+     * security (csrf) element name
+     */
     const SECURITY = 'security';
+
+    /**
+     * submit element name
+     */
     const SUBMIT   = 'add';
 }

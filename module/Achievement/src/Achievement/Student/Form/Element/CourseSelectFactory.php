@@ -4,8 +4,16 @@ namespace Achievement\Student\Form\Element;
 
 use Zend\Form\FormElementManager;
 
+/**
+ * Create an Zend\Form\Element\Select instance
+ * prepaire list all course get from persistent
+ */
 class CourseSelectFactory
 {
+    /**
+     * @param  FormElementManager $formElements
+     * @return \Zend\Form\Element\Select
+     */
     public function __invoke(FormElementManager $formElements)
     {
         $select = $formElements->get('select');
