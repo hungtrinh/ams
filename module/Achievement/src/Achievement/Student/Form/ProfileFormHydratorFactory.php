@@ -15,6 +15,10 @@ use Zend\Stdlib\Hydrator\Strategy\DateTimeFormatterStrategy;
  */
 class ProfileFormHydratorFactory
 {
+    /**
+     * @param HydratorPluginManager $hydrators
+     * @return \Zend\Std\Hydrator\ClassMethods
+     */
     public function __invoke(HydratorPluginManager $hydrators)
     {
         $namingStrategy = new ArrayMapNamingStrategy([

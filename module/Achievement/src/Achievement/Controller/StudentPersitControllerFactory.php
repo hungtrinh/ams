@@ -11,7 +11,10 @@ use Zend\Mvc\Controller\ControllerManager;
  */
 class StudentPersitControllerFactory
 {
-
+    /**
+     * @param  ControllerManager $controllers
+     * @return \Achievement\Controller\StudentPersitController
+     */
     public function __invoke(ControllerManager $controllers)
     {
         $services = $controllers->getServiceLocator();
