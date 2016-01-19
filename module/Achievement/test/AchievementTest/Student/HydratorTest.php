@@ -11,4 +11,9 @@ class HydatorTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals('ProfileFormHydrator', Hydrator::PROFILE_FORM_HYDRATOR);
     }
+
+    public function testHasConstProfileMapperHydratorSupportAccessGetHydratorByHydratorManager()
+    {
+        $this->assertEquals('ProfileMapperHydrator', Hydrator::PROFILE_MAPPER_HYDRATOR);
+    }
 }

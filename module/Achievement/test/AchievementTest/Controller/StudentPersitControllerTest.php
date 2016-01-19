@@ -50,6 +50,8 @@ class StudentPersitControllerTest extends ZendControllerTestCase
    
     public function testWhenVisitPageCreateStudentProfileThenShowBlankStudentProfileForm()
     {
+        $this->services->setService('RegisterStudentService', $this->registerStudentService->reveal());
+
         $this->dispatch('/student/add');
 
         //assert match request
@@ -119,6 +121,7 @@ class StudentPersitControllerTest extends ZendControllerTestCase
     
     public function testWhenSubmitEmptyStudentProfileThenRepresentStudentFormWithErrorMessage()
     {
+        $this->services->setService('RegisterStudentService', $this->registerStudentService->reveal());
         $this->submitStudentProfile();
         $this->assertQuery("form[name='add-student'][id='add-student'][method='POST'][action='/student/add']");
         $this->assertQuery(".has-error input[name='student[registration-code]'][type='text']");

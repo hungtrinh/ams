@@ -53,6 +53,14 @@ class StudentTable extends AbstractMigration
                 'null' => true,
                 'comment' => 'date of birth',
             ])
+            ->addColumn('gender', AdapterInterface::PHINX_TYPE_STRING, [
+                'null' => true,
+                'comment' => 'sex',
+            ])
+            ->addColumn('grade', AdapterInterface::PHINX_TYPE_INTEGER, [
+                'null' => true,
+                'comment' => 'Grade',
+            ])
             ->addIndex(['user'], ['unique' => true])
             ->create();
     }

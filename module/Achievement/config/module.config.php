@@ -11,10 +11,11 @@ return [
     'input_filter_specs' => include __DIR__ . '/inputfilters.config.php',
     'hydrators' => [
         'aliases' => [
-            'AccountBasicHydrator' => 'classmethods',
+            Account\Hydrator::ACCOUNT_BASIC_HYDRATOR => 'classmethods',
         ],//invokables
         'factories' => [
             Student\Hydrator::PROFILE_FORM_HYDRATOR => Student\Form\ProfileFormHydratorFactory::class,
+            Student\Hydrator::PROFILE_MAPPER_HYDRATOR => Student\Mapper\ProfilePersitHydratorFactory::class,
         ],//factories
     ],//hydrators
     'form_elements' => [
@@ -25,10 +26,10 @@ return [
     'forms' => include __DIR__ . '/form.config.php',
     'service_manager' => [
         'invokables' => [
-            Student\Mapper\ProfilePersitInterface::class => Student\Mapper\ProfilePersitTableGateway::class,
         ],//invokables
         'factories' => [
             Student\Service\StudentRegisterInterface::class => Student\Service\StudentRegisterFactory::class,
+            Student\Mapper\ProfilePersitInterface::class => Student\Mapper\ProfilePersitFactory::class,
         ],//factories
         'aliases' => [
             'RegisterStudentService' => Student\Service\StudentRegisterInterface::class,

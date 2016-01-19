@@ -29,6 +29,8 @@ class ProfilePersitTableGatewayTest extends TestCase
         parent::setUp();
         $this->profileValid = $this->createProfileValid();
         $services = Bootstrap::getServiceManager();
+        $services->setAllowOverride(true);
+        $services->setService('ams', $this->getDbAdapter());
         $this->profilePersitTableGateway = $services->get(ProfilePersitInterface::class);
     }
     
@@ -76,18 +78,22 @@ class ProfilePersitTableGatewayTest extends TestCase
                 [
                     'user_id' => 1,
                     'username' => $rawProfile['student']['account']['username'],
+                    'email' => null,
+                    'display_name' => null,
                     'password' => $rawProfile['student']['account']['password'],
+                    'state' => null,
                 ],
             ],
             'student' => [
                 [
                     'id' => 1,
+                    'user' => $rawProfile['student']['account']['username'],
+                    'registration_code' => $rawProfile['student']['registration-code'],
                     'fullname' => $rawProfile['student']['fullname'],
                     'phonetic_name' => $rawProfile['student']['phonetic-name'],
+                    'dob' => $rawProfile['student']['dob'],
                     'gender' => $rawProfile['student']['gender'],
                     'grade' => $rawProfile['student']['grade'],
-                    'dob' => $rawProfile['student']['dob'],
-                    'registration_code' => $rawProfile['student']['registration-code'],
                 ],
             ]
         ]);
