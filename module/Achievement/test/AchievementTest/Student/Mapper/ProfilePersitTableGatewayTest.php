@@ -105,7 +105,6 @@ class ProfilePersitTableGatewayTest extends TestCase
         $this->assertTableRowCount('student', 1);
         
         $actualDataset = $this->getConnection()->createDataSet(['user','student']);
-       
         $this->assertDataSetsEqual($this->createExpectedDataSet(), $actualDataset);
     }
 }
