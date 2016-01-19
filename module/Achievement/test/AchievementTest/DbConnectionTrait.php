@@ -23,7 +23,8 @@ trait DbConnectionTrait
                 self::$pdo = new PDO(
                     $GLOBALS['DB_DSN'],
                     $GLOBALS['DB_USER'],
-                    $GLOBALS['DB_PASSWD']
+                    $GLOBALS['DB_PASSWD'],
+                    [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"]
                 );
             }
             $this->conn = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection(
@@ -46,7 +47,10 @@ trait DbConnectionTrait
 
             'database' => $GLOBALS['DB_DBNAME'],
             'username' => $GLOBALS['DB_USER'],
-            'password' => $GLOBALS['DB_PASSWD']
+            'password' => $GLOBALS['DB_PASSWD'],
+            'driver_options' => [
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
+            ],
         ]);
     }
 }
