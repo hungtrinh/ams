@@ -27,8 +27,10 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
      */
     protected $hydrator;
 
-    public function __construct(AdapterInterface $adapter, HydratorInterface $studenMapperHydrator)
-    {
+    public function __construct(
+        AdapterInterface $adapter,
+        HydratorInterface $studenMapperHydrator
+    ) {
         $this->adapter  = $adapter;
         $this->hydrator = $studenMapperHydrator;
     }
@@ -48,13 +50,11 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
             $userId = $userTable->getLastInsertValue();
             $profileRaw['user'] = $profile->getAccount()->getUsername();
             $studentTable->insert($profileRaw);
-
             
             $profile->getAccount()->setId($userId);
 
             $this->adapter->getDriver()->getConnection()->commit();
         } catch (\Exception $e) {
-            echo $e;
             $this->adapter->getDriver()->getConnection()->rollback();
         }
         return $profile;
