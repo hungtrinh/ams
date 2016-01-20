@@ -5,6 +5,7 @@ namespace AchievementTest\Student\Mapper;
 use PHPUnit_Framework_TestCase as TestCase;
 use AchievementTest\Bootstrap;
 use Achievement\Student\Hydrator;
+use Achievement\Student\Model\Profile;
 
 class ProfileMapperHydratorFunctionalTest extends TestCase
 {
@@ -18,6 +19,8 @@ class ProfileMapperHydratorFunctionalTest extends TestCase
      */
     protected $profile;
 
+    protected $expectedProfileStruct;
+
     protected function setUp()
     {
         parent::setUp();
@@ -25,12 +28,7 @@ class ProfileMapperHydratorFunctionalTest extends TestCase
         $hydrators = $services->get('HydratorManager');
         $this->profileMapperHydrator = $hydrators->get(Hydrator::PROFILE_MAPPER_HYDRATOR);
         $this->profile = include "module/Achievement/test/AchievementTest/_fixtures/ValidProfileModel.php";
-    }
-
-    public function testWhenCallExtractThenReturnSqlProfileColumnStruct()
-    {
-        $persitProfile = $this->profileMapperHydrator->extract($this->profile);
-        $expectedProfileStruct = [
+        $this->expectedProfileStruct = [
             'fullname' => $this->profile->getFullname(),
             'phonetic_name' => $this->profile->getPhoneticName(),
             'dob' => $this->profile->getDob()->format('Y-m-d'),
@@ -43,7 +41,19 @@ class ProfileMapperHydratorFunctionalTest extends TestCase
                 'password' => $this->profile->getAccount()->getPassword(),
             ]
         ];
+    }
 
-        $this->assertEquals($expectedProfileStruct, $persitProfile);
+    public function testWhenCallExtractThenReturnSqlProfileColumnStruct()
+    {
+        $persitProfile = $this->profileMapperHydrator->extract($this->profile);
+        $this->assertEquals($this->expectedProfileStruct, $persitProfile);
+    }
+
+    public function testWhenCallHydrateThenReturnProfileEntity()
+    {
+        $profile = new Profile();
+        $profileActual = $this->profileMapperHydrator->hydrate($this->expectedProfileStruct, $profile);
+        $this->assertEquals($this->profile, $profileActual);
+        $this->assertEquals($this->profile, $profile);
     }
 }

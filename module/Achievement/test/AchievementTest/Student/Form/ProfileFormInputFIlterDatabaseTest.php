@@ -5,7 +5,7 @@ namespace AchievementTest\Student\Form;
 use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
 use Achievement\Student\InputFilter;
 
-class ProfileFormInputFIlterDatabaseTest extends TestCase
+class ProfileFormInputFilterDatabaseTest extends TestCase
 {
     /**
      * @var \Zend\InputFilter\InputFilterInterface

@@ -6,7 +6,7 @@ use Zend\Stdlib\Hydrator\HydratorPluginManager;
 use Zend\Stdlib\Hydrator\NamingStrategy\ArrayMapNamingStrategy;
 use Zend\Stdlib\Hydrator\Strategy\DateTimeFormatterStrategy;
 use Zend\Stdlib\Hydrator\Strategy\ClosureStrategy;
-use Zend\Stdlib\Hydrator\Aggregate\AggregateHydrator;
+use Achievement\Account\Model\AccountBasicModel;
 
 /**
  * Create an concrete hydrator object support convert:
@@ -27,6 +27,7 @@ class ProfilePersitHydratorFactory
             'registrationCode'  => 'registration_code',
             'phoneticName'      => 'phonetic_name',
         ]);
+        $account = new AccountBasicModel;
         
         /* @var $hydrator \Zend\Stdlib\Hydrator\ClassMethods */
         $hydrator = $hydrators->get('classmethods');
@@ -34,8 +35,8 @@ class ProfilePersitHydratorFactory
         $extractAccount = function ($account) use ($hydrator) {
             return $hydrator->extract($account);
         };
-        $hydrateAccount = function ($data) use ($hydrator) {
-            return $hydrator->hydrate($data);
+        $hydrateAccount = function ($data) use ($hydrator, $account) {
+            return $hydrator->hydrate($data, $account);
         };
 
         $classmethods = new \Zend\Stdlib\Hydrator\ClassMethods();
@@ -43,8 +44,6 @@ class ProfilePersitHydratorFactory
         $hydrator->addStrategy('dob', new DateTimeFormatterStrategy('Y-m-d'));
         $hydrator->addStrategy('account', new ClosureStrategy($extractAccount, $hydrateAccount));
 
-        $profileMapperHydrator = new AggregateHydrator();
-        $profileMapperHydrator->add($hydrator);
-        return $profileMapperHydrator;
+        return $hydrator;
     }
 }

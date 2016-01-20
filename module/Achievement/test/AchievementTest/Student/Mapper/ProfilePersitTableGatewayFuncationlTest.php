@@ -11,7 +11,7 @@ use Achievement\Student\Mapper\ProfilePersitInterface;
 use PHPUnit_Extensions_Database_TestCase as TestCase;
 use DateTime;
 
-class ProfilePersitTableGatewayTest extends TestCase
+class ProfilePersitTableGatewayFuncationlTest extends TestCase
 {
     use DbConnectionTrait;
     /**
@@ -112,5 +112,18 @@ class ProfilePersitTableGatewayTest extends TestCase
         
         $actualDataset = $this->getConnection()->createDataSet(['user','student']);
         $this->assertDataSetsEqual($this->createExpectedDataSet(), $actualDataset);
+    }
+
+    public function testWhenAddNewProfileMissingAccountPartInfoThenNoThingKeepTrack()
+    {
+        $this->assertTableRowCount('user', 0);
+        $this->assertTableRowCount('student', 0);
+
+        $invalidProfile = clone $this->profileValid;
+        $invalidProfile->setAccount(new AccountBasicModel());
+        $this->profilePersitTableGateway->addNew($invalidProfile);
+        
+        $this->assertTableRowCount('user', 0);
+        $this->assertTableRowCount('student', 0);
     }
 }
