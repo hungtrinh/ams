@@ -3,6 +3,7 @@
 namespace Achievement\Controller;
 
 use Achievement\Controller\StudentPersitController;
+use Achievement\Student\Service\StudentRegisterInterface;
 use Achievement\Student\Form\ProfileForm;
 use Zend\Mvc\Controller\ControllerManager;
 
@@ -20,7 +21,7 @@ class StudentPersitControllerFactory
         $services = $controllers->getServiceLocator();
         return new StudentPersitController(
             $services->get(ProfileForm::class),
-            $services->get('RegisterStudentService')
+            $services->get(StudentRegisterInterface::class)
         );
     }
 }

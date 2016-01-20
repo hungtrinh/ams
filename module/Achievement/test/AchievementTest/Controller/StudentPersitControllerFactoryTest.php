@@ -7,6 +7,7 @@ use Achievement\Student\Factory\factory;
 use Achievement\Controller\StudentPersitControllerFactory;
 use Achievement\Controller\StudentPersitController;
 use Achievement\Student\Form\ProfileForm;
+use Achievement\Student\Service\StudentRegisterInterface;
 
 /**
  * Test factory create Achievement\Controller\StudentWriteController in right way
@@ -29,7 +30,7 @@ class StudentPersitFactoryTest extends PHPUnit_Framework_TestCase
         $controllers            = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
 
         $services->get(ProfileForm::class)->willReturn($studentForm);
-        $services->get('RegisterStudentService')->willReturn($studentRegisterService);
+        $services->get(StudentRegisterInterface::class)->willReturn($studentRegisterService);
         $controllers->getServiceLocator()->willReturn($services->reveal());
 
         $this->controllers = $controllers->reveal();

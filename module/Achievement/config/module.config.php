@@ -32,7 +32,6 @@ return [
             Student\Mapper\ProfilePersitInterface::class => Student\Mapper\ProfilePersitFactory::class,
         ],//factories
         'aliases' => [
-            'RegisterStudentService' => Student\Service\StudentRegisterInterface::class,
         ],//aliases
     ],//service_manager
     'view_manager' => [

@@ -7,6 +7,7 @@ use Zend\Stdlib\Parameters;
 use Zend\Db\Adapter\Adapter;
 use Achievement\Student\Model\Profile;
 use Achievement\Student\Form\ProfileForm;
+use Achievement\Student\Service\StudentRegisterInterface;
 
 class StudentPersitControllerTest extends ZendControllerTestCase
 {
@@ -50,7 +51,7 @@ class StudentPersitControllerTest extends ZendControllerTestCase
    
     public function testWhenVisitPageCreateStudentProfileThenShowBlankStudentProfileForm()
     {
-        $this->services->setService('RegisterStudentService', $this->registerStudentService->reveal());
+        $this->services->setService(StudentRegisterInterface::class, $this->registerStudentService->reveal());
 
         $this->dispatch('/student/add');
 
@@ -113,7 +114,7 @@ class StudentPersitControllerTest extends ZendControllerTestCase
         $this->registerStudentService->register($student)->shouldBeCalled();
 
         $this->services->setService(ProfileForm::class, $this->studentForm->reveal());
-        $this->services->setService('RegisterStudentService', $this->registerStudentService->reveal());
+        $this->services->setService(StudentRegisterInterface::class, $this->registerStudentService->reveal());
 
         $this->submitStudentProfile($assumeValidStudent);
         $this->assertRedirectTo('/student');
@@ -121,7 +122,7 @@ class StudentPersitControllerTest extends ZendControllerTestCase
     
     public function testWhenSubmitEmptyStudentProfileThenRepresentStudentFormWithErrorMessage()
     {
-        $this->services->setService('RegisterStudentService', $this->registerStudentService->reveal());
+        $this->services->setService(StudentRegisterInterface::class, $this->registerStudentService->reveal());
         $this->submitStudentProfile();
         $this->assertQuery("form[name='add-student'][id='add-student'][method='POST'][action='/student/add']");
         $this->assertQuery(".has-error input[name='student[registration-code]'][type='text']");
