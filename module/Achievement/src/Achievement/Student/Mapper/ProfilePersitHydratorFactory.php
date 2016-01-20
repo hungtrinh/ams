@@ -5,6 +5,7 @@ namespace Achievement\Student\Mapper;
 use Zend\Stdlib\Hydrator\HydratorPluginManager;
 use Zend\Stdlib\Hydrator\NamingStrategy\ArrayMapNamingStrategy;
 use Zend\Stdlib\Hydrator\Strategy\DateTimeFormatterStrategy;
+use Zend\Stdlib\Hydrator\Strategy\ClosureStrategy;
 use Zend\Stdlib\Hydrator\Aggregate\AggregateHydrator;
 
 /**
@@ -29,9 +30,18 @@ class ProfilePersitHydratorFactory
         
         /* @var $hydrator \Zend\Stdlib\Hydrator\ClassMethods */
         $hydrator = $hydrators->get('classmethods');
+
+        $extractAccount = function ($account) use ($hydrator) {
+            return $hydrator->extract($account);
+        };
+        $hydrateAccount = function ($data) use ($hydrator) {
+            return $hydrator->hydrate($data);
+        };
+
         $classmethods = new \Zend\Stdlib\Hydrator\ClassMethods();
         $hydrator->setNamingStrategy($namingStrategy);
         $hydrator->addStrategy('dob', new DateTimeFormatterStrategy('Y-m-d'));
+        $hydrator->addStrategy('account', new ClosureStrategy($extractAccount, $hydrateAccount));
 
         $profileMapperHydrator = new AggregateHydrator();
         $profileMapperHydrator->add($hydrator);

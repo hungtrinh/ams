@@ -43,14 +43,10 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
             $profileRaw = $this->hydrator->extract($profile);
             $userRaw = $profileRaw['account'];
             unset($profileRaw['account']);
-            
-            $userTable->insert([
-                'username' => $userRaw->getUsername(),
-                'password' => $userRaw->getPassword()
-            ]);
-            
+            unset($userRaw['id']);
+            $userTable->insert($userRaw);
             $userId = $userTable->getLastInsertValue();
-            $profileRaw['user'] = $userRaw->getUsername();
+            $profileRaw['user'] = $profile->getAccount()->getUsername();
             $studentTable->insert($profileRaw);
 
             
