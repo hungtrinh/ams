@@ -35,28 +35,67 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
         $this->hydrator = $studenMapperHydrator;
     }
 
+    /**
+     * Persit an student profile
+     *
+     * @param ProfileInterface $profile
+     *
+     * @return null | ProfileInterface null when persit not success
+     */
     public function addNew(ProfileInterface $profile)
     {
-        $userTable    = new TableGateway(self::USER_TABLE_NAME, $this->adapter);
-        $studentTable = new TableGateway(self::STUDENT_TABLE_NAME, $this->adapter);
         try {
             $this->adapter->getDriver()->getConnection()->beginTransaction();
-
-            $profileRaw = $this->hydrator->extract($profile);
-            $userRaw = $profileRaw['account'];
-            unset($profileRaw['account']);
-            unset($userRaw['id']);
-            $userTable->insert($userRaw);
-            $userId = $userTable->getLastInsertValue();
-            $profileRaw['user'] = $profile->getAccount()->getUsername();
-            $studentTable->insert($profileRaw);
             
+            $studentProfile = $this->extractAccountAndProfilePersitFormat($profile);
+            $this->insertProfile($studentProfile['profile']);
+            $userId = $this->insertAccount($studentProfile['account']);
             $profile->getAccount()->setId($userId);
 
             $this->adapter->getDriver()->getConnection()->commit();
         } catch (\Exception $e) {
             $this->adapter->getDriver()->getConnection()->rollback();
+            return null;
         }
         return $profile;
+    }
+
+    /**
+     * Extract from profile objct in app format to profile persit data format
+     * @return ['profile' => [], 'account' => []]
+     */
+    private function extractAccountAndProfilePersitFormat($profile)
+    {
+        $profileRaw = $this->hydrator->extract($profile);
+        $profileRaw['user'] = $profile->getAccount()->getUsername();
+        $userRaw = $profileRaw['account'];
+        unset($profileRaw['account']);
+        unset($userRaw['id']);
+        return [
+            'profile' => $profileRaw,
+            'account' => $userRaw,
+        ];
+    }
+
+    /**
+     * Insert user account to persistent
+     * @return int autoincrement id
+     */
+    private function insertAccount($userRaw)
+    {
+        $userTable    = new TableGateway(self::USER_TABLE_NAME, $this->adapter);
+        $userTable->insert($userRaw);
+        return$userTable->getLastInsertValue();
+    }
+
+    /**
+     * Insert user profile to persistent
+     * @return null | int autoincrement id
+     */
+    private function insertProfile($profileRaw)
+    {
+        $studentTable = new TableGateway(self::STUDENT_TABLE_NAME, $this->adapter);
+        $studentTable->insert($profileRaw);
+        return null;
     }
 }
