@@ -31,11 +31,35 @@ class SiblingFieldsetTest extends TestCase
         $this->assertEquals('work', SiblingFieldset::WORK);
     }
 
-    public function testCanGetSiblingFieldsetBySiblingFieldsetClassName()
+    /**
+     * @return \Zend\Form\FieldsetInterface::class
+     */
+    protected function createSiblingFieldset()
     {
+        \AchievementTest\Bootstrap::init();
         $services = \AchievementTest\Bootstrap::getServiceManager();
-        $siblingFieldset = $services->get(SiblingFieldset::class);
+        return $services->get(SiblingFieldset::class);
+    }
 
-        $this->assertInstanceOf(\Zend\Form\FieldsetInterface::class, $siblingFieldset);
+    public function testCancreateSiblingFieldsetBySiblingFieldsetClassName()
+    {
+        $this->assertInstanceOf(\Zend\Form\FieldsetInterface::class, $this->createSiblingFieldset());
+    }
+
+    public function testWhenInjectValidSiblingCollectionThenGetDataReturnListSiblibModel()
+    {
+        $siblingFieldset = $this->createSiblingFieldset();
+        $siblingFieldset->populateValues([
+            SiblingFieldset::FULLNAME     => 'trinh duc hung',
+            SiblingFieldset::DOB          => '1985-18-01',
+            SiblingFieldset::RELATIONSHIP => 'sister',
+            SiblingFieldset::WORK         => 'Vnext software',
+        ]);
+
+        /**
+         * @var $sibling \Achievement\Student\Model\Sibling
+         */
+        $sibling = $siblingFieldset->getObject();
+        $this->assertEquals('trinh duc hung', $sibling->getFullname());
     }
 }
