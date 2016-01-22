@@ -11,15 +11,15 @@
         </testsuite>
     </testsuites>
 
-<!--     <logging>
+    <!-- <logging>
         <log type="coverage-html" target="coverage"/>
         <log type="testdox-html" target="coverage/testdox.html"/>
         <log type="testdox-text" target="coverage/testdox.txt"/>
-        <log type="coverage-clover" target="logs/clover.xml"/>
+        <log type="coverage-clover" target="logs/bclover.xml"/>
         <log type="coverage-crap4j" target="logs/crap4j.xml"/>
         <log type="coverage-xml" target="logs/coverage"/>
         <log type="junit" target="logs/junit.xml" logIncompleteSkipped="false"/>
-    </logging>  -->
+    </logging> -->
 
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">

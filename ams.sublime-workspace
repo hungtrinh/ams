@@ -4,8 +4,12 @@
 		"selected_items":
 		[
 			[
+				"pro",
+				"profilePersitMapper〔variable〕"
+			],
+			[
 				"Achi",
-				"AchievementTest\\Bootstrap〔class〕"
+				"Achievement\\Module〔class〕"
 			],
 			[
 				"profi",
@@ -22,10 +26,6 @@
 			[
 				"getG",
 				"getGrade〔function〕"
-			],
-			[
-				"pro",
-				"$profile	mixed"
 			],
 			[
 				"get",
@@ -524,62 +524,6 @@
 			"settings":
 			{
 				"buffer_size": 1481,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/test/AchievementTest/Student/Model/ProfileTest.php",
-			"settings":
-			{
-				"buffer_size": 528,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/test/AchievementTest/Student/Mapper/ProfileMapperHydratorFunctionalTest.php",
-			"settings":
-			{
-				"buffer_size": 2127,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/src/Achievement/Controller/StudentPersitControllerFactory.php",
-			"settings":
-			{
-				"buffer_size": 735,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/config/module.config.php",
-			"settings":
-			{
-				"buffer_size": 2694,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/src/Achievement/Student/Model/Profile.php",
-			"settings":
-			{
-				"buffer_size": 3760,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "module/Achievement/src/Achievement/Student/Mapper/ProfilePersitHydratorFactory.php",
-			"settings":
-			{
-				"buffer_size": 1781,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "vendor/zendframework/zend-stdlib/src/Hydrator/ClassMethods.php",
-			"settings":
-			{
-				"buffer_size": 8726,
 				"line_ending": "Unix"
 			}
 		}
@@ -1197,38 +1141,35 @@
 	"expanded_folders":
 	[
 		"/home/hungtd/Projects/ams",
-		"/home/hungtd/Projects/ams/module",
-		"/home/hungtd/Projects/ams/module/Achievement",
-		"/home/hungtd/Projects/ams/module/Achievement/src",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Account",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Model",
-		"/home/hungtd/Projects/ams/module/Achievement/test",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Model",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Service",
-		"/home/hungtd/Projects/ams/vendor",
-		"/home/hungtd/Projects/ams/vendor/zendframework",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator"
+		"/home/hungtd/Projects/ams/config"
 	],
 	"file_history":
 	[
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/ClassMethods.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/StudentPersitControllerFactoryTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Mapper/ProfilePersitTableGatewayFuncationlTest.php",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-test/src/PHPUnit/Controller/AbstractControllerTestCase.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Mapper/ProfilePersitInterface.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/phpunit.xml",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/AbstractHttpControllerTestCase.php",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-test/src/PHPUnit/Controller/AbstractHttpControllerTestCase.php",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-mvc/src/Controller/Plugin/AcceptableViewModelSelector.php",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-mvc/src/Controller/AbstractController.php",
+		"/home/hungtd/Projects/ams/vendor/zfcampus/zf-content-negotiation/test/AcceptListenerTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Mapper/ProfilePersitTableGatewayTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Mapper/ProfilePersitTableGateway.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Form/ProfileFormInputFIlterDatabaseTest.php",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/ClassMethods.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Mapper/ProfilePersitHydratorFactory.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Model/Profile.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Controller/StudentPersitControllerFactory.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Model/ProfileTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Mapper/ProfileMapperHydratorFunctionalTest.php",
+		"/home/hungtd/Projects/ams/module/Achievement/config/module.config.php",
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/StudentPersitControllerFactoryTest.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/StudentPersitControllerTest.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Service/StudentRegisterInterface.php",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Mapper/ProfilePersitTableGateway.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Mapper/ProfilePersitTableGatewayTest.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/Aggregate/AggregateHydrator.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/Strategy/DateTimeFormatterStrategy.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/Fieldset.php",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Mapper/ProfilePersitHydratorFactory.php",
 		"/home/hungtd/Projects/ams/data/db/migrations/20160117033159_student_table.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/DbConnectionTrait.php",
 		"/home/hungtd/Projects/ams/config/autoload/global.php",
@@ -1236,9 +1177,7 @@
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Account/Form/AccountBasicFieldsetTest.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/Form.php",
 		"/home/hungtd/Projects/ams/vendor/robmorgan/phinx/src/Phinx/Db/Adapter/AdapterInterface.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Mapper/ProfileMapperHydratorFunctionalTest.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Mapper/ProfilePersitFactoryTest.php",
-		"/home/hungtd/Projects/ams/module/Achievement/config/module.config.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Mapper/ProfilePersitFactory.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/HydratorAwareInterface.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/HydratorAwareTrait.php",
@@ -1257,20 +1196,17 @@
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/_fixtures/validStudentProfile.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Form/ProfileFormHydratorTest.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/ElementPrepareAwareInterface.php",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Mapper/ProfilePersitInterface.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Form/SiblingFieldsetTest.php",
 		"/home/hungtd/Projects/ams/.gitignore",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/ProfileFormHydratorFactory.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Form/ProfileFormTest.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/StrategyEnabledInterface.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/SiblingFieldset.php",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Controller/StudentPersitControllerFactory.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/ProfileForm.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/Element.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/Element/CourseSelectFactory.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/ProfileFieldset.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/ArraySerializable.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/phpunit.xml",
 		"/home/hungtd/Projects/ams/phinx.php",
 		"/home/hungtd/Projects/ams/HISTORY.md",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Account/Model/AccountBasicInterface.php",
@@ -1280,7 +1216,6 @@
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/HydratorPluginManager.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-mvc/src/Service/HydratorManagerFactory.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Hydrator/ProfileFormHydratorTest.php",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Model/Profile.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Form/ProfileFieldsetTest.php",
 		"/home/hungtd/.config/sublime-text-3/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
 		"/home/hungtd/.config/sublime-text-3/Packages/User/SublimeCodeIntel.sublime-settings",
@@ -1307,8 +1242,6 @@
 		"/home/hungtd/Projects/ams/build.xml",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/StudentWriterSpecificationTest.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-inputfilter/src/InputFilterPluginManager.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-test/src/PHPUnit/Controller/AbstractHttpControllerTestCase.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-test/src/PHPUnit/Controller/AbstractControllerTestCase.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/StudentWriteControllerFuntionalTest.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-http/src/Client.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/ExceptionTest.php",
@@ -1339,13 +1272,7 @@
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Form/StudentProfileHydratorNamingStrategyTest.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-mvc/src/Controller/ControllerManager.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Form/StudentFormTest.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/InputFilter/StudentTest.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-session/src/ValidatorChain.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-inputfilter/src/Input.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-inputfilter/src/Factory.php",
-		"/home/hungtd/Documents/truncateWave.sh",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/Element/Text.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/Factory.php"
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/InputFilter/StudentTest.php"
 	],
 	"find":
 	{
@@ -1356,6 +1283,7 @@
 		"height": 158.0,
 		"where_history":
 		[
+			"/home/hungtd/Projects/ams/",
 			"/home/hungtd/Projects/ams/module/Achievement/",
 			"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest",
 			"/home/hungtd/Projects/ams/module/Achievement/config",
@@ -1409,6 +1337,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"expectedEmptyFormErrorMessages",
+			"AcceptableViewModelSelector",
 			"RegisterStudentService",
 			"'RegisterStudentService'",
 			"AccountBasicHydrator",
@@ -1534,9 +1464,7 @@
 			"$get",
 			"hydrate",
 			";",
-			"Katakana",
-			"katakana",
-			"studentWriteController"
+			"Katakana"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -1605,7 +1533,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1627,239 +1555,22 @@
 						],
 						"settings":
 						{
-							"history_list_is_closing": true,
 							"syntax": "Packages/XML/XML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 63.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "module/Achievement/test/AchievementTest/Student/Model/ProfileTest.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 528,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								525,
-								525
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"open_with_edit": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 35.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "module/Achievement/test/AchievementTest/Student/Mapper/ProfileMapperHydratorFunctionalTest.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2127,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2116,
-								2116
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 749.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 3,
-					"file": "module/Achievement/src/Achievement/Controller/StudentPersitControllerFactory.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 735,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								324,
-								324
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "module/Achievement/config/module.config.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2694,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								342,
-								342
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "module/Achievement/src/Achievement/Student/Model/Profile.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3760,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2469,
-								2469
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1323.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "module/Achievement/src/Achievement/Student/Mapper/ProfilePersitHydratorFactory.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1781,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								288,
-								288
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "vendor/zendframework/zend-stdlib/src/Hydrator/ClassMethods.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8726,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6392,
-								6392
-							]
-						],
-						"settings":
-						{
-							"history_list_is_closing": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3605.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1931,6 +1642,26 @@
 		"selected_items":
 		[
 			[
+				"profilepersittablegateway",
+				"module/Achievement/src/Achievement/Student/Mapper/ProfilePersitTableGateway.php"
+			],
+			[
+				"acceptableviewmodelselector",
+				"vendor/zendframework/zend-mvc/src/Controller/Plugin/AcceptableViewModelSelector.php"
+			],
+			[
+				"profileforminputfilterdatabase",
+				"module/Achievement/test/AchievementTest/Student/Form/ProfileFormInputFIlterDatabaseTest.php"
+			],
+			[
+				"phpunit.xml",
+				"module/Achievement/test/phpunit.xml"
+			],
+			[
+				"profilepersittable.",
+				"module/Achievement/src/Achievement/Student/Mapper/ProfilePersitTableGateway.php"
+			],
+			[
 				"profile.php",
 				"module/Achievement/src/Achievement/Student/Model/Profile.php"
 			],
@@ -1945,10 +1676,6 @@
 			[
 				"module.config",
 				"module/Achievement/config/module.config.php"
-			],
-			[
-				"profilepersittablegateway",
-				"module/Achievement/src/Achievement/Student/Mapper/ProfilePersitTableGateway.php"
 			],
 			[
 				"form.php",
@@ -2073,10 +1800,6 @@
 			[
 				"profileformhy",
 				"module/Achievement/test/AchievementTest/Student/Hydrator/ProfileFormHydratorTest.php"
-			],
-			[
-				"phpunit.xml",
-				"module/Achievement/test/phpunit.xml"
 			],
 			[
 				"hydratortest.php",
@@ -2429,18 +2152,6 @@
 			[
 				"inputfilter/abstr",
 				"vendor/zendframework/zend-inputfilter/src/InputFilterAbstractServiceFactory.php"
-			],
-			[
-				"factory",
-				"vendor/zendframework/zend-inputfilter/src/Factory.php"
-			],
-			[
-				"inputfilter/abstra",
-				"vendor/zendframework/zend-inputfilter/src/InputFilterAbstractServiceFactory.php"
-			],
-			[
-				"form/abstractfac",
-				"vendor/zendframework/zend-form/src/FormAbstractServiceFactory.php"
 			]
 		],
 		"width": 0.0
