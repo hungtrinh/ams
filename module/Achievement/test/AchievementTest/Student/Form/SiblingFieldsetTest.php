@@ -30,4 +30,12 @@ class SiblingFieldsetTest extends TestCase
     {
         $this->assertEquals('work', SiblingFieldset::WORK);
     }
+
+    public function testCanGetSiblingFieldsetBySiblingFieldsetClassName()
+    {
+        $services = \AchievementTest\Bootstrap::getServiceManager();
+        $siblingFieldset = $services->get(SiblingFieldset::class);
+
+        $this->assertInstanceOf(\Zend\Form\FieldsetInterface::class, $siblingFieldset);
+    }
 }

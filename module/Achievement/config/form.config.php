@@ -5,6 +5,8 @@ return [
     Student\Form\SiblingFieldset::class => [
         'type' => 'fieldset',
         'name' => Student\Form\SiblingFieldset::NAME,
+        'hydrator' => 'classmethods',
+        'object' => Student\Model\Sibling::class,
         'elements' => [
             [
                 'spec' => [
