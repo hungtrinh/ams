@@ -6,6 +6,7 @@ use Achievement\Student\Model\ProfileInterface;
 use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
 use Achievement\Student\Form\ProfileForm;
 use Achievement\Student\Form\ProfileFieldset;
+use Achievement\Account\Model\AccountBasicModel;
 use Zend\Form\Element;
 use DateTime;
 
@@ -23,6 +24,11 @@ class ProfileFormTest extends TestCase
      */
     protected $profileValid;
 
+    /**
+     * Full fill student form
+     * @var []
+     */
+    protected $fullfillProfileValid;
     /**
      * Expected errors message when user submit empty form
      * @var []
@@ -72,8 +78,12 @@ class ProfileFormTest extends TestCase
         $this->locator =  $this->getApplicationServiceLocator();
         $this->studentForm = $this->locator->get(ProfileForm::class);
         $this->prepaireValidProfileData();
+        $this->prepaireFullFillValidProfileData();
     }
     
+    /**
+     * Prepaire database record
+     */
     protected function getDataSet()
     {
         return $this->createArrayDataSet([
@@ -92,7 +102,26 @@ class ProfileFormTest extends TestCase
         $this->profileValid['security'] = $this->studentForm->get(ProfileForm::SECURITY)->getValue();
     }
 
-    public function testHasStudentElementIsAStudentFieldset()
+    protected function prepaireFullFillValidProfileData()
+    {
+        $this->fullfillProfileValid = $this->profileValid;
+        $this->fullfillProfileValid['student']['siblings'] = [
+            [
+                'fullname' => 'binh',
+                'dob' => '1982-07-15',
+                'work' => 'programmer',
+                'relationship' => 'brother'
+            ],
+            [
+                'fullname' => 'quynh',
+                'dob' => '1979-12-15',
+                'work' => 'officer',
+                'relationship' => 'sister'
+            ],
+        ];
+    }
+
+    public function testHasStudentIsAStudentFieldset()
     {
         $expectedStudentField = $this->locator->get(ProfileFieldset::class);
 
@@ -130,20 +159,14 @@ class ProfileFormTest extends TestCase
 
         $studentProfile = $this->studentForm->getData();
         $this->assertInstanceOf(ProfileInterface::class, $studentProfile, print_r($studentProfile, true));
-
-        $expectedAccount = new \Achievement\Account\Model\AccountBasicModel;
-        $expectedAccount->setId($this->profileValid['student']['account']['id']);
-        $expectedAccount->setUsername($this->profileValid['student']['account']['username']);
-        $expectedAccount->setPassword($this->profileValid['student']['account']['password']);
-
+        $expectedAccount = AccountBasicModel::createFromArray($this->profileValid['student']['account']);
         $this->assertEquals('1234567', $studentProfile->getRegistrationCode());
         $this->assertEquals('Yoshikuni', $studentProfile->getPhoneticName());
         $this->assertEquals('吉国', $studentProfile->getFullname());
-        $this->assertEquals(DateTime::createFromFormat('Y-m-d', '1985-01-18'), $studentProfile->getDob());
+        $this->assertEquals('1985-01-18', $studentProfile->getDob()->format('Y-m-d'));
         $this->assertEquals('male', $studentProfile->getGender());
         $this->assertEquals(1, $studentProfile->getGrade());
         $this->assertEquals($expectedAccount, $studentProfile->getAccount());
-
     }
 
     public function testHasConstStudentSupportAccessToStudentElement()
@@ -159,5 +182,13 @@ class ProfileFormTest extends TestCase
     public function testHasConstSubmitSupportAccessToSubmitElement()
     {
         $this->assertEquals('add', ProfileForm::SUBMIT);
+    }
+
+    public function testWhenSubmitFullFormWithValidProfileThenGetFormDataReturnExpectedProfileEntity()
+    {
+        $this->studentForm->setData($this->fullfillProfileValid);
+        $this->assertTrue($this->studentForm->isValid());
+        $profile = $this->studentForm->getData();
+        $this->assertNotNull($profile->getSiblings());
     }
 }

@@ -55,7 +55,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
             $this->adapter->getDriver()->getConnection()->commit();
         } catch (\Exception $e) {
             $this->adapter->getDriver()->getConnection()->rollback();
-            return null;
+            throw $e;
         }
         return $profile;
     }

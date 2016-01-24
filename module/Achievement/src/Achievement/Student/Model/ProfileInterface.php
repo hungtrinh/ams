@@ -41,4 +41,9 @@ interface ProfileInterface
      * @return \Achievement\Account\Model\AccountBasicInterface
      */
     public function getAccount();
+
+    /**
+     * @return []\Achievement\Student\Model\Sibling
+     */
+    public function getSiblings();
 }

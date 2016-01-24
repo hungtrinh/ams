@@ -48,6 +48,11 @@ class Profile implements ProfileInterface
     protected $account;
 
     /**
+     * @var []\Achievement\Student\Model\Sibling | null
+     */
+    protected $siblings;
+
+    /**
      * Gets the value of registrationCode.
      *
      * @return mixed
@@ -215,6 +220,28 @@ class Profile implements ProfileInterface
     public function setAccount(AccountBasicInterface $account)
     {
         $this->account = $account;
+
+        return $this;
+    }
+
+    /**
+     * @return []\Achievement\Student\Model\Sibling | null
+     */
+    public function getSiblings()
+    {
+        return $this->siblings;
+    }
+
+    /**
+     * Set the value of siblings
+     *
+     * @param []\Achievement\Student\Model\Sibling | null
+     *
+     * @return self
+     */
+    public function setSiblings($siblings)
+    {
+        $this->siblings = $siblings;
 
         return $this;
     }

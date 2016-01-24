@@ -93,4 +93,24 @@ class AccountBasicModel implements AccountBasicInterface
 
         return $this;
     }
+
+    /**
+     * Create an account basic from model
+     * @param array $rawAccount
+     * @return AccountBasicModel
+     */
+    public static function createFromArray(array $rawAccount = [])
+    {
+        $account = new AccountBasicModel;
+        if (isset($rawAccount['id'])) {
+            $account->setId($rawAccount['id']);
+        }
+        if (isset($rawAccount['username'])) {
+            $account->setUsername($rawAccount['username']);
+        }
+        if (isset($rawAccount['password'])) {
+            $account->setPassword($rawAccount['password']);
+        }
+        return $account;
+    }
 }
