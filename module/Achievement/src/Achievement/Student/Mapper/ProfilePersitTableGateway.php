@@ -70,6 +70,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
         $profileRaw['user'] = $profile->getAccount()->getUsername();
         $userRaw = $profileRaw['account'];
         unset($profileRaw['account']);
+        unset($profileRaw['siblings']);
         unset($userRaw['id']);
         return [
             'profile' => $profileRaw,

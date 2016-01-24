@@ -121,8 +121,11 @@ class ProfilePersitTableGatewayFuncationlTest extends TestCase
 
         $invalidProfile = clone $this->profileValid;
         $invalidProfile->setAccount(new AccountBasicModel());
-        $this->profilePersitTableGateway->addNew($invalidProfile);
-        
+        try {
+            $this->profilePersitTableGateway->addNew($invalidProfile);    
+        } catch (\Exception $e) {
+
+        }
         $this->assertTableRowCount('user', 0);
         $this->assertTableRowCount('student', 0);
     }

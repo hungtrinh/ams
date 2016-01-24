@@ -95,6 +95,7 @@ class ProfileFormInputFilterDatabaseTest extends TestCase
     public function testIsValidWithProfileExpected()
     {
         $validProfile = $this->getFixtureValidProfile();
-        $this->assertTrue($this->studentInputFilter->setData($validProfile)->isValid());
+        $this->studentInputFilter->setData($validProfile);
+        $this->assertTrue($this->studentInputFilter->isValid());
     }
 }

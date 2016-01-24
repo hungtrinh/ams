@@ -39,7 +39,8 @@ class ProfileMapperHydratorFunctionalTest extends TestCase
                 'id' => $this->profile->getAccount()->getId(),
                 'username' => $this->profile->getAccount()->getUsername(),
                 'password' => $this->profile->getAccount()->getPassword(),
-            ]
+            ],
+            'siblings' => null,
         ];
     }
 
