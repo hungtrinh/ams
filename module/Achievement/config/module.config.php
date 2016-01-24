@@ -16,6 +16,7 @@ return [
         'factories' => [
             Student\Hydrator::PROFILE_FORM_HYDRATOR => Student\Form\ProfileFormHydratorFactory::class,
             Student\Hydrator::PROFILE_MAPPER_HYDRATOR => Student\Mapper\ProfilePersitHydratorFactory::class,
+            Student\Hydrator::SIBLINGS_HYDRATOR => Student\Form\SiblingFieldsetHydratorFactory::class,
         ],//factories
     ],//hydrators
     'form_elements' => [

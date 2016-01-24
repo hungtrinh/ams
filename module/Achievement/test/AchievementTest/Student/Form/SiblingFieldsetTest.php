@@ -8,6 +8,17 @@ use Achievement\Student\Form\SiblingFieldset;
 class SiblingFieldsetTest extends TestCase
 {
     /**
+     * @var \Zend\Form\FieldsetInterface
+     */
+    protected $siblingFieldset;
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->siblingFieldset = $this->getSiblingFieldsetFromServiceManager();
+    }
+
+    /**
      * @test
      * @return boolean [description]
      */
@@ -34,32 +45,39 @@ class SiblingFieldsetTest extends TestCase
     /**
      * @return \Zend\Form\FieldsetInterface::class
      */
-    protected function createSiblingFieldset()
+    protected function getSiblingFieldsetFromServiceManager()
     {
         \AchievementTest\Bootstrap::init();
         $services = \AchievementTest\Bootstrap::getServiceManager();
         return $services->get(SiblingFieldset::class);
     }
 
-    public function testCancreateSiblingFieldsetBySiblingFieldsetClassName()
+    public function testCangetSiblingFieldsetFromServiceManagerBySiblingFieldsetClassName()
     {
-        $this->assertInstanceOf(\Zend\Form\FieldsetInterface::class, $this->createSiblingFieldset());
+        $this->assertInstanceOf(\Zend\Form\FieldsetInterface::class, $this->siblingFieldset);
+    }
+
+    public function testContainExpectedHydrator()
+    {
+        $hydrator = $this->siblingFieldset->getHydrator();
+        $this->assertInstanceOf(\Zend\Stdlib\Hydrator\ClassMethods::class, $hydrator);
+    }
+
+    public function testHasObjectSibling()
+    {
+        $siblingModel = $this->siblingFieldset->getObject();
+        $this->assertInstanceOf(\Achievement\Student\Model\Sibling::class, $siblingModel);
     }
 
     public function testWhenInjectValidSiblingCollectionThenGetDataReturnListSiblibModel()
     {
-        $siblingFieldset = $this->createSiblingFieldset();
-        $siblingFieldset->populateValues([
+        $siblingRaw = [
             SiblingFieldset::FULLNAME     => 'trinh duc hung',
             SiblingFieldset::DOB          => '1985-18-01',
             SiblingFieldset::RELATIONSHIP => 'sister',
             SiblingFieldset::WORK         => 'Vnext software',
-        ]);
-
-        /**
-         * @var $sibling \Achievement\Student\Model\Sibling
-         */
-        $sibling = $siblingFieldset->getObject();
+        ];
+        $sibling = $this->siblingFieldset->bindValues($siblingRaw);
         $this->assertEquals('trinh duc hung', $sibling->getFullname());
     }
 }
