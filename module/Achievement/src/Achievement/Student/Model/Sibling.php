@@ -28,19 +28,7 @@ class Sibling
      */
     protected $work;
 
-    /**
-     * @param \DateTime | null $dob
-     */
-    public function setDob($dob)
-    {
-        if (null !== $dob && ! $dob instanceof DateTime) {
-            throw new InvalidArgumentException('dob is null or datetime type');
-        }
-        $this->dob = $dob;
-
-        return $this;
-    }
-
+    
     /**
      * @return \DateTime | null
      */
@@ -78,7 +66,20 @@ class Sibling
     {
         return $this->work;
     }
+    
+    /**
+     * @param \DateTime | null $dob
+     */
+    public function setDob($dob)
+    {
+        if (null !== $dob && ! $dob instanceof DateTime) {
+            throw new InvalidArgumentException('dob is null or datetime type');
+        }
+        $this->dob = $dob;
 
+        return $this;
+    }
+    
     /**
      * Sets the value of fullname.
      *
@@ -86,7 +87,7 @@ class Sibling
      *
      * @return self
      */
-    protected function setFullname($fullname)
+    public function setFullname($fullname)
     {
         if (empty($fullname)) {
             throw InvalidArgumentException('fullname required');
@@ -103,7 +104,7 @@ class Sibling
      *
      * @return self
      */
-    protected function setRelationship($relationship)
+    public function setRelationship($relationship)
     {
         $this->relationship = $relationship;
 
@@ -117,7 +118,7 @@ class Sibling
      *
      * @return self
      */
-    protected function setWork($work)
+    public function setWork($work)
     {
         $this->work = $work;
 

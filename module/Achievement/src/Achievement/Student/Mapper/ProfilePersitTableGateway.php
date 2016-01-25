@@ -55,7 +55,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
             $this->adapter->getDriver()->getConnection()->commit();
         } catch (\Exception $e) {
             $this->adapter->getDriver()->getConnection()->rollback();
-            return null;
+            throw $e;
         }
         return $profile;
     }
@@ -70,6 +70,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
         $profileRaw['user'] = $profile->getAccount()->getUsername();
         $userRaw = $profileRaw['account'];
         unset($profileRaw['account']);
+        unset($profileRaw['siblings']);
         unset($userRaw['id']);
         return [
             'profile' => $profileRaw,
