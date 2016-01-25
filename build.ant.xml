@@ -74,6 +74,9 @@
             <arg value="-e" />
             <arg value="testing" />
         </exec>
+        <exec executable="vendor/bin/phinx" taskname="phinx">
+            <arg value="migrate" />
+        </exec>
         <antcall target="phpunit" />
     </target>
 </project>

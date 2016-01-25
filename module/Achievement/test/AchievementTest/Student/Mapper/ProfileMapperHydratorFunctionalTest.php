@@ -27,7 +27,10 @@ class ProfileMapperHydratorFunctionalTest extends TestCase
         $services = Bootstrap::getServiceManager();
         $hydrators = $services->get('HydratorManager');
         $this->profileMapperHydrator = $hydrators->get(Hydrator::PROFILE_MAPPER_HYDRATOR);
-        $this->profile = include "module/Achievement/test/AchievementTest/_fixtures/ValidProfileModel.php";
+        $this->profile = include "module/Achievement/test/AchievementTest/_fixtures/fullProfileModelValid.php";
+
+        /* @var $siblings [] \Achivement\Student\Model\Sibling */
+        $siblings = $this->profile->getSiblings();
         $this->expectedProfileStruct = [
             'fullname' => $this->profile->getFullname(),
             'phonetic_name' => $this->profile->getPhoneticName(),
@@ -40,7 +43,20 @@ class ProfileMapperHydratorFunctionalTest extends TestCase
                 'username' => $this->profile->getAccount()->getUsername(),
                 'password' => $this->profile->getAccount()->getPassword(),
             ],
-            'siblings' => null,
+            'siblings' => [
+                [
+                    'fullname' => $siblings[0]->getFullname(),
+                    'dob' => $siblings[0]->getDob()->format("Y-m-d"),
+                    'work' => $siblings[0]->getWork(),
+                    'relationship' => $siblings[0]->getRelationship(),
+                ],
+                [
+                    'fullname' => $siblings[1]->getFullname(),
+                    'dob' => $siblings[1]->getDob()->format("Y-m-d"),
+                    'work' => $siblings[1]->getWork(),
+                    'relationship' => $siblings[1]->getRelationship(),
+                ]
+            ],
         ];
     }
 

@@ -42,6 +42,7 @@ class ProfilePersitTableGatewayFuncationlTest extends TestCase
         return $this->createArrayDataSet([
             'user' => [],
             'student' => [],
+            'sibling' => [],
         ]);
     }
     
@@ -122,11 +123,19 @@ class ProfilePersitTableGatewayFuncationlTest extends TestCase
         $invalidProfile = clone $this->profileValid;
         $invalidProfile->setAccount(new AccountBasicModel());
         try {
-            $this->profilePersitTableGateway->addNew($invalidProfile);    
+            $this->profilePersitTableGateway->addNew($invalidProfile);
         } catch (\Exception $e) {
-
         }
         $this->assertTableRowCount('user', 0);
         $this->assertTableRowCount('student', 0);
+    }
+
+    public function testWhenAddNewProfileWithFullOptionThenAllProfileInfoStoredToSqlPersistent()
+    {
+        $fullValidProfile = include "module/Achievement/test/AchievementTest/_fixtures/fullProfileModelValid.php";
+        $this->profilePersitTableGateway->addNew($fullValidProfile);
+        $this->assertTableRowCount('user', 1);
+        $this->assertTableRowCount('student', 1);
+        $this->assertTableRowCount('sibling', 2);
     }
 }

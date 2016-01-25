@@ -16,6 +16,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
 {
     const STUDENT_TABLE_NAME = 'student';
     const USER_TABLE_NAME = 'user';
+    const SIBLING_TABLE_NAME = 'sibling';
 
     /**
      * @var \Zend\Db\Adapter\AdapterInterface
@@ -50,6 +51,11 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
             $studentProfile = $this->extractAccountAndProfilePersitFormat($profile);
             $this->insertProfile($studentProfile['profile']);
             $userId = $this->insertAccount($studentProfile['account']);
+            // if (is_array($studentProfile['siblings'])) {
+            //     foreach ($studentProfile['siblings'] as $siblingRaw) {
+            //         $this->insertSibling($siblingRaw);
+            //     }
+            // }
             $profile->getAccount()->setId($userId);
 
             $this->adapter->getDriver()->getConnection()->commit();
@@ -66,15 +72,26 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
      */
     private function extractAccountAndProfilePersitFormat($profile)
     {
+        $username = $profile->getAccount()->getUsername();
         $profileRaw = $this->hydrator->extract($profile);
-        $profileRaw['user'] = $profile->getAccount()->getUsername();
+        $profileRaw['user'] = $username;
         $userRaw = $profileRaw['account'];
+        $siblings = $profileRaw['siblings'];
+        
+        // if ($siblings && is_array($siblings)) {
+        //     foreach ($siblings as &$sibling) {
+        //         $sibling['username'] = $username;
+        //     }
+        // }
+
         unset($profileRaw['account']);
         unset($profileRaw['siblings']);
         unset($userRaw['id']);
+
         return [
             'profile' => $profileRaw,
             'account' => $userRaw,
+            'siblings' => $siblings,
         ];
     }
 
@@ -98,5 +115,16 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
         $studentTable = new TableGateway(self::STUDENT_TABLE_NAME, $this->adapter);
         $studentTable->insert($profileRaw);
         return null;
+    }
+
+    /**
+     * Insert sibling to persistent
+     * @return null | int autoincrement id
+     */
+    private function insertSibling($siblingRaw)
+    {
+        $siblingTable = new TableGateway(self::SIBLING_TABLE_NAME, $this->adapter);
+        $siblingTable->insert($siblingRaw);
+        return $siblingTable->getLastInsertValue();
     }
 }
