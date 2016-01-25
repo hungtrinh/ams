@@ -133,9 +133,57 @@ class ProfilePersitTableGatewayFuncationlTest extends TestCase
     public function testWhenAddNewProfileWithFullOptionThenAllProfileInfoStoredToSqlPersistent()
     {
         $fullValidProfile = include "module/Achievement/test/AchievementTest/_fixtures/fullProfileModelValid.php";
+        $siblings = $fullValidProfile->getSiblings();
+        $expectedDataSet = $this->createArrayDataSet([
+            'user' => [
+                [
+                    'user_id' => 1,
+                    'username' => $fullValidProfile->getAccount()->getUsername(),
+                    'email' => null,
+                    'display_name' => null,
+                    'password' => $fullValidProfile->getAccount()->getPassword(),
+                    'state' => null,
+                ],
+            ],
+            'student' => [
+                [
+                    'id' => 1,
+                    'user' => $fullValidProfile->getAccount()->getUsername(),
+                    'registration_code' => $fullValidProfile->getRegistrationCode(),
+                    'fullname' => $fullValidProfile->getFullname(),
+                    'phonetic_name' => $fullValidProfile->getPhoneticName(),
+                    'dob' => $fullValidProfile->getDob()->format('Y-m-d'),
+                    'gender' => $fullValidProfile->getGender(),
+                    'grade' => $fullValidProfile->getGrade(),
+                ],
+            ],
+            'sibling'  => [
+                [
+                    'id' => 1,
+                    'username' => $fullValidProfile->getAccount()->getUsername(),
+                    'fullname' => $siblings[0]->getFullname(),
+                    'dob' => $siblings[0]->getDob()->format('Y-m-d'),
+                    'work' =>  $siblings[0]->getWork(),
+                    'relationship' =>  $siblings[0]->getRelationship(),
+                ],
+                [
+                    'id' => 2,
+                    'username' => $fullValidProfile->getAccount()->getUsername(),
+                    'fullname' => $siblings[1]->getFullname(),
+                    'dob' => $siblings[1]->getDob()->format('Y-m-d'),
+                    'work' =>  $siblings[1]->getWork(),
+                    'relationship' =>  $siblings[1]->getRelationship(),
+                ],
+            ]
+        ]);
+
         $this->profilePersitTableGateway->addNew($fullValidProfile);
+        
         $this->assertTableRowCount('user', 1);
         $this->assertTableRowCount('student', 1);
         $this->assertTableRowCount('sibling', 2);
+
+        $actualDataset = $this->getConnection()->createDataSet(['user','student','sibling']);
+        $this->assertDataSetsEqual($expectedDataSet, $actualDataset);
     }
 }

@@ -51,11 +51,11 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
             $studentProfile = $this->extractAccountAndProfilePersitFormat($profile);
             $this->insertProfile($studentProfile['profile']);
             $userId = $this->insertAccount($studentProfile['account']);
-            // if (is_array($studentProfile['siblings'])) {
-            //     foreach ($studentProfile['siblings'] as $siblingRaw) {
-            //         $this->insertSibling($siblingRaw);
-            //     }
-            // }
+            if (is_array($studentProfile['siblings'])) {
+                foreach ($studentProfile['siblings'] as $siblingRaw) {
+                    $this->insertSibling($siblingRaw);
+                }
+            }
             $profile->getAccount()->setId($userId);
 
             $this->adapter->getDriver()->getConnection()->commit();
@@ -78,11 +78,11 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
         $userRaw = $profileRaw['account'];
         $siblings = $profileRaw['siblings'];
         
-        // if ($siblings && is_array($siblings)) {
-        //     foreach ($siblings as &$sibling) {
-        //         $sibling['username'] = $username;
-        //     }
-        // }
+        if ($siblings && is_array($siblings)) {
+            foreach ($siblings as &$sibling) {
+                $sibling['username'] = $username;
+            }
+        }
 
         unset($profileRaw['account']);
         unset($profileRaw['siblings']);
