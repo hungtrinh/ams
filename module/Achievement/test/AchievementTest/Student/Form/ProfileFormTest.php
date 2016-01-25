@@ -6,6 +6,7 @@ use Achievement\Student\Model\ProfileInterface;
 use AchievementTest\Controller\AbstractHttpControllerTestCase as TestCase;
 use Achievement\Student\Form\ProfileForm;
 use Achievement\Student\Form\ProfileFieldset;
+use Achievement\Student\Model\Sibling;
 use Achievement\Account\Model\AccountBasicModel;
 use Zend\Form\Element;
 use DateTime;
@@ -152,7 +153,7 @@ class ProfileFormTest extends TestCase
         $this->assertTrue($this->studentForm->isValid());
     }
 
-    public function testGetDataReturnExpectedStudentProfileEntityWhenSetValidProfile()
+    public function testWhenSetValidProfileThenGetDataWillReturnExpectedStudentProfileEntity()
     {
         $this->studentForm->setData($this->profileValid);
         $this->studentForm->isValid();
@@ -184,11 +185,17 @@ class ProfileFormTest extends TestCase
         $this->assertEquals('add', ProfileForm::SUBMIT);
     }
 
-    public function testWhenSubmitFullFormWithValidProfileThenGetFormDataReturnExpectedProfileEntity()
+    public function testWhenSetFullFormWithValidProfileThenGetDataWillReturnExpectedProfileEntity()
     {
         $this->studentForm->setData($this->fullfillProfileValid);
         $this->assertTrue($this->studentForm->isValid());
+
         $profile = $this->studentForm->getData();
-        $this->assertNotNull($profile->getSiblings());
+        $siblings = $profile->getSiblings();
+        $expectedShipings = [
+            Sibling::createFromArray($this->fullfillProfileValid['student']['siblings'][0]),
+            Sibling::createFromArray($this->fullfillProfileValid['student']['siblings'][1])
+        ];
+        $this->assertEquals($expectedShipings, $siblings);
     }
 }

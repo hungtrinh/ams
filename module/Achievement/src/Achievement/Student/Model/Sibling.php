@@ -124,4 +124,33 @@ class Sibling
 
         return $this;
     }
+
+    /**
+     * Create sibling from array
+     *
+     * @param array $rawSibling
+     *
+     * @return Sibling
+     */
+    public static function createFromArray(array $rawSibling = [])
+    {
+        $sibling = new Sibling();
+        if (isset($rawSibling['fullname'])) {
+            $sibling->setFullname($rawSibling['fullname']);
+        }
+        if (isset($rawSibling['dob'])) {
+            $dob = is_string($rawSibling['dob'])
+                ? \DateTime::createFromFormat('Y-m-d', $rawSibling['dob'])
+                : $rawSibling['dob'];
+            
+            $sibling->setDob($dob);
+        }
+        if (isset($rawSibling['work'])) {
+            $sibling->setWork($rawSibling['work']);
+        }
+        if (isset($rawSibling['relationship'])) {
+            $sibling->setRelationship($rawSibling['relationship']);
+        }
+        return $sibling;
+    }
 }

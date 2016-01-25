@@ -11,7 +11,7 @@
         </testsuite>
     </testsuites>
 
-    <!-- <logging>
+   <!--  <logging>
         <log type="coverage-html" target="coverage"/>
         <log type="testdox-html" target="coverage/testdox.html"/>
         <log type="testdox-text" target="coverage/testdox.txt"/>
@@ -30,7 +30,22 @@
             </exclude>
         </whitelist>
     </filter>
-    
+   <!--  
+    <listeners>
+        <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
+            <arguments>
+                <array>
+                    <element key="slowThreshold">
+                        <integer>10</integer>
+                    </element>
+                    <element key="reportLength">
+                        <integer>5</integer>
+                    </element>
+                </array>
+            </arguments>
+        </listener>
+    </listeners>
+ -->
     <php>
         <var name="DB_DRIVER" value="pdo_mysql" />
         <var name="DB_DSN" value="mysql:host=127.0.0.1;dbname=ams_test" />

@@ -27,6 +27,7 @@
         "bjyoungblood/bjy-profiler": "^1.1",
         "phpunit/phpunit": "^4.8",
         "phpspec/prophecy": "~1.0",
-        "phpunit/dbunit": ">=1.2"
+        "phpunit/dbunit": ">=1.2",
+        "johnkary/phpunit-speedtrap": "^1.0"
     }
 }
