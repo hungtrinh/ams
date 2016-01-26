@@ -10,6 +10,13 @@ use Achievement\Student\Hydrator;
  */
 class ProfilePersitFactory
 {
+    /**
+     * Create an \Achievement\Student\Mapper\ProfilePersitTableGateway instance
+     *
+     * @param  ServiceManager $services
+     *
+     * @return \Achievement\Student\Mapper\ProfilePersitTableGateway
+     */
     public function __invoke(ServiceManager $services)
     {
         $databaseAdapter = $services->get('ams');

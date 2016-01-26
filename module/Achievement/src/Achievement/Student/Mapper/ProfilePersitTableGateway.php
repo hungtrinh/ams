@@ -30,10 +30,10 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
 
     public function __construct(
         AdapterInterface $adapter,
-        HydratorInterface $studenMapperHydrator
+        HydratorInterface $studenMysqlHydrator
     ) {
         $this->adapter  = $adapter;
-        $this->hydrator = $studenMapperHydrator;
+        $this->hydrator = $studenMysqlHydrator;
     }
 
     /**
@@ -51,11 +51,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
             $studentProfile = $this->extractAccountAndProfilePersitFormat($profile);
             $this->insertProfile($studentProfile['profile']);
             $userId = $this->insertAccount($studentProfile['account']);
-            if (is_array($studentProfile['siblings'])) {
-                foreach ($studentProfile['siblings'] as $siblingRaw) {
-                    $this->insertSibling($siblingRaw);
-                }
-            }
+            $this->insertListSibling($studentProfile['siblings']);
             $profile->getAccount()->setId($userId);
 
             $this->adapter->getDriver()->getConnection()->commit();
@@ -96,7 +92,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
     }
 
     /**
-     * Insert user account to persistent
+     * Insert user account to persistent store
      * @return int autoincrement id
      */
     private function insertAccount($userRaw)
@@ -107,7 +103,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
     }
 
     /**
-     * Insert user profile to persistent
+     * Insert user profile to persistent store
      * @return null | int autoincrement id
      */
     private function insertProfile($profileRaw)
@@ -118,7 +114,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
     }
 
     /**
-     * Insert sibling to persistent
+     * Insert sibling to persistent store
      * @return null | int autoincrement id
      */
     private function insertSibling($siblingRaw)
@@ -126,5 +122,20 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
         $siblingTable = new TableGateway(self::SIBLING_TABLE_NAME, $this->adapter);
         $siblingTable->insert($siblingRaw);
         return $siblingTable->getLastInsertValue();
+    }
+
+    /**
+     * Insert multiple sibling to persistent store
+     * @param  array $listSiblingRaw
+     * @return void
+     */
+    private function insertListSibling($listSiblingRaw)
+    {
+        if (!is_array($listSiblingRaw)) {
+            return;
+        }
+        foreach ($listSiblingRaw as $siblingRaw) {
+            $this->insertSibling($siblingRaw);
+        }
     }
 }

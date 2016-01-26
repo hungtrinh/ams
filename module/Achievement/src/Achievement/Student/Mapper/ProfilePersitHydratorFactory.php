@@ -20,6 +20,7 @@ class ProfilePersitHydratorFactory
 {
     /**
      * @param \Zend\Stdlib\Hydrator\HydratorPluginManager $hydrators
+     *
      * @return \Zend\Std\Hydrator\HydratorInterface
      */
     public function __invoke(HydratorPluginManager $hydrators)
@@ -41,6 +42,7 @@ class ProfilePersitHydratorFactory
 
     /**
      * @param  \Zend\Stdlib\Hydrator\HydratorInterface $hydrator
+     *
      * @return \Zend\Stdlib\Hydrator\Strategy\StrategyInterface
      */
     protected function createAccountHydratorStrategy($hydrator)
@@ -57,6 +59,7 @@ class ProfilePersitHydratorFactory
 
     /**
      * @param  \Zend\Stdlib\Hydrator\HydratorInterface $hydrator
+     *
      * @return \Zend\Stdlib\Hydrator\Strategy\StrategyInterface
      */
     protected function createSiblingsHydratorStrategy($hydrator)
