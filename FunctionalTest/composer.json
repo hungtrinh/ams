@@ -6,6 +6,11 @@
         "phpunit/phpunit-selenium": "^2.0",
         "se/selenium-server-standalone": "^2.48"
     },
+    "autoload": {
+        "psr-4": {
+            "Ams\\": ["src/", "test"] 
+        }
+    },
     "license": "MIT",
     "authors": [
         {

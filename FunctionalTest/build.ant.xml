@@ -6,7 +6,7 @@
     <target description="Run phpunit verbose" name="phpunit">
         <exec executable="vendor/bin/phpunit" taskname="PHPUnit">
             <arg value="--verbose"/>
-            <arg value="-c"/>
+            <arg value="test"/>
         </exec>
     </target>
     <target description="Cleanup build artifacts" name="clean">
@@ -38,7 +38,11 @@
     <target description="Turn on build-in ams web server"
         name="ams-app-start">
         <exec executable="php">
-            
+            <arg value="-S" />
+            <arg value="127.0.0.1:8888" />
+            <arg value="-t" />
+            <arg value="../public" />
+            <arg value="../public/index.php" />
         </exec>
     </target>
 </project>

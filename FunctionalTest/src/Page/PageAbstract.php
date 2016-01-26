@@ -15,4 +15,9 @@ abstract class PageAbstract
     {
         $this->webdriver = $webdriver;
     }
+
+    public function visit()
+    {
+        $this->webdriver->url($this->url);
+    }
 }
