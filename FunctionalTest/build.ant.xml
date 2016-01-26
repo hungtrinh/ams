@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="phpunit" name="Funcational test AMS project- Ant">
+    <target depends="clean,composer" 
+        description="Build clean app" 
+        name="build" />
+    <target description="Run phpunit verbose" name="phpunit">
+        <exec executable="vendor/bin/phpunit" taskname="PHPUnit">
+            <arg value="--verbose"/>
+            <arg value="-c"/>
+        </exec>
+    </target>
+    <target description="Cleanup build artifacts" name="clean">
+        <delete dir="${basedir}/vendor"/>
+        <delete file="${basedir}/composer.lock"/>
+    </target>
+    <target depends="clean" description="Install dependencies with Composer" name="composer">
+        <tstamp>
+            <format offset="-30" pattern="MM/dd/yyyy hh:mm aa" property="thirty.days.ago" unit="day"/>
+        </tstamp>
+        <delete>
+            <fileset dir="${basedir}">
+                <include name="composer.phar"/>
+                <date datetime="${thirty.days.ago}" when="before"/>
+            </fileset>
+        </delete>
+        <get dest="${basedir}/composer.phar" skipexisting="true" src="https://getcomposer.org/composer.phar"/>
+        <exec executable="php" taskname="composer">
+            <arg value="composer.phar"/>
+            <arg value="install"/>
+            <arg value="--prefer-dist"/>
+            <arg value="-o"/>
+        </exec>
+    </target>
+    <target description="Turn on test browser simulator enviroment"
+        name="env-on">
+        <exec executable="vendor/bin/selenium-server-standalone" />
+    </target>
+    <target description="Turn on build-in ams web server"
+        name="ams-app-start">
+        <exec executable="php">
+            
+        </exec>
+    </target>
+</project>

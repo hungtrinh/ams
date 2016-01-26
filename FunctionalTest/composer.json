@@ -1,0 +1,17 @@
+{
+    "name": "ams/functional-test",
+    "description": "Test ams project",
+    "type": "project",
+    "require": {
+        "phpunit/phpunit-selenium": "^2.0",
+        "se/selenium-server-standalone": "^2.48"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "HungTd",
+            "email": "trinhduchung@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
