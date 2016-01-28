@@ -2,7 +2,7 @@
 
 namespace Achievement\Student\Form;
 
-use Zend\Stdlib\Hydrator\HydratorPluginManager;
+use Zend\Hydrator\HydratorPluginManager;
 use Zend\Stdlib\Hydrator\NamingStrategy\ArrayMapNamingStrategy;
 use Zend\Stdlib\Hydrator\Strategy\DateTimeFormatterStrategy;
 

@@ -4,7 +4,7 @@ namespace Achievement\Student\Mapper;
 
 use Achievement\Student\Model\ProfileInterface;
 use Zend\Db\TableGateway\TableGateway;
-use Zend\Stdlib\Hydrator\HydratorInterface;
+use Zend\Hydrator\HydratorInterface;
 use Zend\Db\Adapter\AdapterInterface;
 
 /**
@@ -24,7 +24,7 @@ class ProfilePersitTableGateway implements ProfilePersitInterface
     protected $adapter;
 
     /**
-     * @var \Zend\Stdlib\Hydrator\AbstractHydrator
+     * @var \Zend\Hydrator\AbstractHydrator
      */
     protected $hydrator;
 
