@@ -5,7 +5,7 @@ namespace AchievementTest\Student\Form;
 use PHPUnit_Framework_TestCase;
 use AchievementTest\Bootstrap;
 use Achievement\Student\Form\ProfileFormHydratorFactory;
-use Zend\Stdlib\Hydrator;
+use Zend\Hydrator;
 
 class ProfileFormHydratorFactoryTest extends PHPUnit_Framework_TestCase
 {

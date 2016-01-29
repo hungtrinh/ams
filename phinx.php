@@ -10,7 +10,7 @@ return [
         'default_database' => 'development',
         'development' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'name' => 'ams',
             'user' => 'ams',
             'pass' => 'ams',

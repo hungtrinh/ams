@@ -2,10 +2,10 @@
 
 namespace Achievement\Student\Mapper;
 
-use Zend\Stdlib\Hydrator\HydratorPluginManager;
-use Zend\Stdlib\Hydrator\NamingStrategy\ArrayMapNamingStrategy;
-use Zend\Stdlib\Hydrator\Strategy\DateTimeFormatterStrategy;
-use Zend\Stdlib\Hydrator\Strategy\ClosureStrategy;
+use Zend\Hydrator\HydratorPluginManager;
+use Zend\Hydrator\NamingStrategy\ArrayMapNamingStrategy;
+use Zend\Hydrator\Strategy\DateTimeFormatterStrategy;
+use Zend\Hydrator\Strategy\ClosureStrategy;
 use Achievement\Account\Model\AccountBasicModel;
 use Achievement\Student\Model\Sibling;
 
@@ -19,7 +19,7 @@ use Achievement\Student\Model\Sibling;
 class ProfilePersitHydratorFactory
 {
     /**
-     * @param \Zend\Stdlib\Hydrator\HydratorPluginManager $hydrators
+     * @param \Zend\Hydrator\HydratorPluginManager $hydrators
      *
      * @return \Zend\Std\Hydrator\HydratorInterface
      */
@@ -29,7 +29,7 @@ class ProfilePersitHydratorFactory
             'registrationCode'  => 'registration_code',
             'phoneticName'      => 'phonetic_name',
         ]);
-        /* @var $hydrator \Zend\Stdlib\Hydrator\ClassMethods */
+        /* @var $hydrator \Zend\Hydrator\ClassMethods */
         $hydrator = $hydrators->get('classmethods');
 
         $hydrator->setNamingStrategy($namingStrategy);
@@ -41,9 +41,9 @@ class ProfilePersitHydratorFactory
     }
 
     /**
-     * @param  \Zend\Stdlib\Hydrator\HydratorInterface $hydrator
+     * @param  \Zend\Hydrator\HydratorInterface $hydrator
      *
-     * @return \Zend\Stdlib\Hydrator\Strategy\StrategyInterface
+     * @return \Zend\Hydrator\Strategy\StrategyInterface
      */
     protected function createAccountHydratorStrategy($hydrator)
     {
@@ -58,9 +58,9 @@ class ProfilePersitHydratorFactory
     }
 
     /**
-     * @param  \Zend\Stdlib\Hydrator\HydratorInterface $hydrator
+     * @param  \Zend\Hydrator\HydratorInterface $hydrator
      *
-     * @return \Zend\Stdlib\Hydrator\Strategy\StrategyInterface
+     * @return \Zend\Hydrator\Strategy\StrategyInterface
      */
     protected function createSiblingsHydratorStrategy($hydrator)
     {

@@ -60,7 +60,7 @@ class SiblingFieldsetTest extends TestCase
     public function testContainExpectedHydrator()
     {
         $hydrator = $this->siblingFieldset->getHydrator();
-        $this->assertInstanceOf(\Zend\Stdlib\Hydrator\ClassMethods::class, $hydrator);
+        $this->assertInstanceOf(\Zend\Hydrator\ClassMethods::class, $hydrator);
     }
 
     public function testHasObjectSibling()
