@@ -9,11 +9,11 @@ abstract class PageAbstract
     /**
      * @var \PHPUnit_Extensions_Selenium2TestCase
      */
-    protected $webdriver;
+    protected $testCase;
 
-    public function __construct(Selenium2TestCase $webdriver)
+    public function __construct(Selenium2TestCase $testCase)
     {
-        $this->webdriver = $webdriver;
+        $this->testCase = $testCase;
         $this->initElements();
     }
 
@@ -28,6 +28,6 @@ abstract class PageAbstract
      */
     public function title()
     {
-        return $this->webdriver->title();
+        return $this->testCase->title();
     }
 }
