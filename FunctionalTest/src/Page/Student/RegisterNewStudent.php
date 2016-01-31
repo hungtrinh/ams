@@ -14,6 +14,9 @@ class RegisterNewStudent extends PageAbstract
         $this->phoneticNameInput = $this->webdriver->byName('student[phonetic-name]');
         $this->fullnameInput = $this->webdriver->byName('student[fullname]');
         $this->dobInput = $this->webdriver->byName('student[dob]');
+        $this->genderSelect = $this->webdriver->byName('student[gender]');
+        $this->gradeSelect = $this->webdriver->byName('student[grade]');
+
         $this->accountIdInput= $this->webdriver->byName('student[account][id]');
         $this->accountUsernameInput= $this->webdriver->byName('student[account][username]');
         $this->accountPasswordInput= $this->webdriver->byName('student[account][password]');
@@ -40,6 +43,11 @@ class RegisterNewStudent extends PageAbstract
         $this->webdriver->assertEmpty($this->phoneticNameInput->value());
         $this->webdriver->assertEmpty($this->fullnameInput->value());
         $this->webdriver->assertEmpty($this->dobInput->value());
+        $maleCode = 'male';
+        $this->webdriver->assertEquals($maleCode, $this->genderSelect->value());
+        $gradeCode = 1;
+        $this->webdriver->assertEquals($gradeCode, $this->gradeSelect->value());
+        
         $this->webdriver->assertEmpty($this->accountIdInput->value());
         $this->webdriver->assertEmpty($this->accountUsernameInput->value());
         $this->webdriver->assertEmpty($this->accountPasswordInput->value());
@@ -48,5 +56,26 @@ class RegisterNewStudent extends PageAbstract
         $this->webdriver->assertEmpty($this->fistSiblingDobInput->value());
         $this->webdriver->assertEmpty($this->fistSiblingWorkInput->value());
         $this->webdriver->assertEquals('sister', $this->fistSiblingRelationshipSelect->value());
+
+        $initCourseId = 1;
+        $this->webdriver->assertEquals($initCourseId, $this->firstCourseSelect->value());
+        $this->webdriver->assertEquals($initCourseId, $this->secondCourseSelect->value());
+        $this->webdriver->assertEquals($initCourseId, $this->threethCourseSelect->value());
+        $this->webdriver->assertEquals($initCourseId, $this->fourthCourseSelect->value());
+        $this->webdriver->assertEquals($initCourseId, $this->fivethCourseSelect->value());
+        $this->webdriver->assertEquals('Add new', $this->submitButton->value());
+    }
+
+    public function assertClickToDobWillShowCalendar()
+    {
+        $calendarDisplay = function ($testCase) {
+            if ($testCase->byCssSelector('.datepicker')->displayed()) {
+                return true;
+            }
+            return null;
+        };
+
+        $this->dobInput->click();
+        $this->webdriver->waitUntil($calendarDisplay, 500);
     }
 }

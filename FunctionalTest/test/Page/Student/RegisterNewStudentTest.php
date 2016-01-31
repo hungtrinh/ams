@@ -28,9 +28,18 @@ class RegisterNewStudentTest extends Selenium2TestCase
         return new RegisterNewStudent($this);
     }
 
-    public function testWhenVisitPageThenRegisterStudentPageAppearCorrect()
+    public function testWhenVisitPageRegisterStudentThenFormAppearCorrect()
     {
         $registerStudentPage = $this->visitPageRegisterStudent();
         $registerStudentPage->assertFormAppearCorrect();
+    }
+
+    /**
+     * @depends testWhenVisitPageRegisterStudentThenFormAppearCorrect
+     */
+    public function testWhenClickOnTheDateOfBirthWillDisplayCalendar()
+    {
+        $registerStudentPage = $this->visitPageRegisterStudent();
+        $registerStudentPage->assertClickToDobWillShowCalendar();
     }
 }
