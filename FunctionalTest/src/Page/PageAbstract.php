@@ -14,10 +14,20 @@ abstract class PageAbstract
     public function __construct(Selenium2TestCase $webdriver)
     {
         $this->webdriver = $webdriver;
+        $this->initElements();
     }
 
-    public function visit()
+    /**
+     * assume page loaded, locate all element on current page(panel)
+     */
+    abstract protected function initElements();
+
+    /**
+     * Get page title
+     * @return string page title
+     */
+    public function title()
     {
-        $this->webdriver->url($this->url);
+        return $this->webdriver->title();
     }
 }

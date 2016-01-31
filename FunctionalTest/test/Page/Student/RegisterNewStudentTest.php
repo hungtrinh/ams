@@ -17,12 +17,20 @@ class RegisterNewStudentTest extends Selenium2TestCase
         parent::setUp();
         $this->setBrowser("firefox");
         $this->setBrowserUrl($this->domain);
-        $this->page = new RegisterNewStudent($this);
     }
 
-    public function testWhenVisitPageThenShowRegisterForm()
+    /**
+     * @return \Ams\Page\Student\RegisterNewStudent
+     */
+    protected function visitPageRegisterStudent()
     {
-        $this->page->visit();
-        sleep(10);
+        $this->url(RegisterNewStudent::URL);
+        return new RegisterNewStudent($this);
+    }
+
+    public function testWhenVisitPageThenRegisterStudentPageAppearCorrect()
+    {
+        $registerStudentPage = $this->visitPageRegisterStudent();
+        $registerStudentPage->assertFormAppearCorrect();
     }
 }

@@ -1,6 +1,8 @@
 <?php
 /* @var $this \Zend\View\Renderer\PhpRenderer */
 /* @var $studentForm \Zend\Form\Form */
+$this->headTitle('Register student', 'PREPEND');
+
 $studentForm = $this->studentForm;
 $studentForm->setAttribute('action', $this->url('student/add'));
 $studentForm->prepare();
