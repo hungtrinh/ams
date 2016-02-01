@@ -2,13 +2,14 @@
 namespace Ams\Page\Student;
 
 use PHPUnit_Extensions_Selenium2TestCase as Selenium2TestCase;
+use Ams\Page\Home;
 
 class RegisterNewStudentTest extends Selenium2TestCase
 {
     /**
      * @var \Ams\Page\Student\RegisterNewStudent
      */
-    protected $page;
+    protected $homepage;
 
     protected $domain = 'http://127.0.0.1:8888';
 
@@ -17,26 +18,19 @@ class RegisterNewStudentTest extends Selenium2TestCase
         parent::setUp();
         $this->setBrowser("firefox");
         $this->setBrowserUrl($this->domain);
-    }
 
-    /**
-     * @return \Ams\Page\Student\RegisterNewStudent
-     */
-    protected function visitPageRegisterStudent()
-    {
-        $this->url(RegisterNewStudent::URL);
-        return new RegisterNewStudent($this);
+        $this->homepage = new Home($this);
     }
 
     public function testWhenVisitPageRegisterStudentThenFormAppearCorrect()
     {
-        $registerStudentPage = $this->visitPageRegisterStudent();
+        $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
         $registerStudentPage->assertFormAppearCorrect();
     }
 
     public function testWhenClickDayFifteenOnCalendarThenDobFilledWithDayClicked()
     {
-        $registerStudentPage = $this->visitPageRegisterStudent();
+        $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
         $registerStudentPage->assertClickToDayOnCalendarWillFillDateToDob();
     }
 }
