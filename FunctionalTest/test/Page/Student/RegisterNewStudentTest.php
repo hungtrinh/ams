@@ -22,26 +22,33 @@ class RegisterNewStudentTest extends Selenium2TestCase
         $this->homepage = new Home($this);
     }
 
-    public function testWhenVisitPageRegisterStudentThenFormRegisterAppearCorrect()
+    public function testGivenOnHomePageWhenVisitPageRegisterStudentThenFormRegisterAppearCorrect()
     {
         $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
         $registerStudentPage->assertFormAppearCorrect();
     }
 
-    public function testWhenClickToDobThenCalendarDisplayed()
+    public function testGivenOnStudentRegisterPageWhenClickToDobThenCalendarDisplayed()
     {
         $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
         $calendarPanel = $registerStudentPage->clickToDobThenShowCalendar();
-        $this->assertTrue($calendarPanel->displayed());
+        $calendarPanel->assertDisplayed();
     }
 
-    public function testWhenClickDayOnCalendarThenDobFilledWithDayClicked()
+    public function testGivenOnCalendarForDobWhenClickToDayThenDobFilledDateClicked()
     {
         $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
         $registerStudentPage->assertClickToDayOnCalendarWillFillDateToDob();
     }
 
-    public function testWhenClickDayOnCalendarThenSiblingDobFilledWithDayClicked()
+    public function tesGivenOnStudentRegisterPageWhenClickToSiblingsDobThenCalendarDisplayed()
+    {
+        $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
+        $calendarPanel = $registerStudentPage->clickToSiblingDobThenShowCalendar();
+        $calendarPanel->assertDisplayed();
+    }
+
+    public function testGivenOnCalendarForSiblingsDobWhenClickDayThenSiblingsDobFilledDateClicked()
     {
         $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
         $registerStudentPage->assertClickToDayOnCalendarWillFillDateToSiblingDob();

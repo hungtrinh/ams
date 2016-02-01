@@ -27,4 +27,9 @@ class BootstrapDatepicker extends PageAbstract
     {
         return $this->calendar->displayed();
     }
+
+    public function assertDisplayed()
+    {
+        $this->testCase->assertTrue($this->displayed());
+    }
 }
