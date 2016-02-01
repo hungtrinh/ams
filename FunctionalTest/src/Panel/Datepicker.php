@@ -14,9 +14,9 @@ class Datepicker extends PageAbstract
         $this->calendar = $this->testCase->byCssSelector('.datepicker');
     }
 
-    public function chooseDayInCurrentMonth($day = 15)
+    public function chooseDayInCurrentMonth($dayNumber = 15)
     {
-        $day15 = $this->testCase->byXpath("//td[@class='day' and text()=$day]");
-        $day15->click();
+        $day = $this->testCase->byXpath("//td[@class='day' and text()=$dayNumber]");
+        $day->click();
     }
 }
