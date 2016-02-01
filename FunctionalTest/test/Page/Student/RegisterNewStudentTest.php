@@ -41,7 +41,7 @@ class RegisterNewStudentTest extends Selenium2TestCase
         $registerStudentPage->assertClickToDayOnCalendarWillFillDateToDob();
     }
 
-    public function tesGivenOnStudentRegisterPageWhenClickToSiblingsDobThenCalendarDisplayed()
+    public function testGivenOnStudentRegisterPageWhenClickToSiblingsDobThenCalendarDisplayed()
     {
         $registerStudentPage = $this->homepage->gotoRegisterStudentPage();
         $calendarPanel = $registerStudentPage->clickToSiblingDobThenShowCalendar();
