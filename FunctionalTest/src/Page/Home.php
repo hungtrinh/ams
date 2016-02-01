@@ -14,7 +14,7 @@ class Home extends PageAbstract
     /**
      * @return \Ams\Page\Student\RegisterNewStudent
      */
-    public function visitPageRegisterNewStudent()
+    public function gotoRegisterStudentPage()
     {
         $this->testCase->url(RegisterNewStudent::URL);
         return new RegisterNewStudent($this->testCase);

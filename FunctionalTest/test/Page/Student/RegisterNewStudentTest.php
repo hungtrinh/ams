@@ -24,33 +24,33 @@ class RegisterNewStudentTest extends Selenium2TestCase
 
     public function testGivenOnHomePageWhenVisitPageRegisterStudentThenFormRegisterAppearCorrect()
     {
-        $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
+        $registerStudentPage = $this->homepage->gotoRegisterStudentPage();
         $registerStudentPage->assertFormAppearCorrect();
     }
 
     public function testGivenOnStudentRegisterPageWhenClickToDobThenCalendarDisplayed()
     {
-        $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
+        $registerStudentPage = $this->homepage->gotoRegisterStudentPage();
         $calendarPanel = $registerStudentPage->clickToDobThenShowCalendar();
         $calendarPanel->assertDisplayed();
     }
 
-    public function testGivenOnCalendarForDobWhenClickToDayThenDobFilledDateClicked()
+    public function testGivenOnCalendarForDobWhenClickToDayThenFillDateClicked2Dob()
     {
-        $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
+        $registerStudentPage = $this->homepage->gotoRegisterStudentPage();
         $registerStudentPage->assertClickToDayOnCalendarWillFillDateToDob();
     }
 
     public function tesGivenOnStudentRegisterPageWhenClickToSiblingsDobThenCalendarDisplayed()
     {
-        $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
+        $registerStudentPage = $this->homepage->gotoRegisterStudentPage();
         $calendarPanel = $registerStudentPage->clickToSiblingDobThenShowCalendar();
         $calendarPanel->assertDisplayed();
     }
 
-    public function testGivenOnCalendarForSiblingsDobWhenClickDayThenSiblingsDobFilledDateClicked()
+    public function testGivenOnCalendarForSiblingsDobWhenClickDayThenFillDateClicked2SiblingsDob()
     {
-        $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
+        $registerStudentPage = $this->homepage->gotoRegisterStudentPage();
         $registerStudentPage->assertClickToDayOnCalendarWillFillDateToSiblingDob();
     }
 }
