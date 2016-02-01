@@ -3,6 +3,7 @@
 namespace Ams\Page\Student;
 
 use Ams\Page\PageAbstract;
+use Ams\Panel\Datepicker;
 
 class RegisterNewStudent extends PageAbstract
 {
@@ -37,6 +38,10 @@ class RegisterNewStudent extends PageAbstract
         $this->submitButton = $testCase->byName('add');
     }
 
+    /**
+     * [assertFormAppearCorrect description]
+     * @return void
+     */
     public function assertFormAppearCorrect()
     {
         $testCase = $this->testCase;
@@ -69,7 +74,10 @@ class RegisterNewStudent extends PageAbstract
         $testCase->assertEquals('Add new', $this->submitButton->value());
     }
 
-    public function assertClickToDobWillShowCalendar()
+    /**
+     * @return \Ams\Panel\Datepicker
+     */
+    public function clickToDobThenShowCalendar()
     {
         $calendarDisplay = function ($testCase) {
             if ($testCase->byCssSelector('.datepicker')->displayed()) {
@@ -80,23 +88,18 @@ class RegisterNewStudent extends PageAbstract
 
         $this->dobInput->click();
         $this->testCase->waitUntil($calendarDisplay, 500);
+        return new Datepicker($this->testCase);
     }
 
+    /**
+     * @return void
+     */
     public function assertClickToDayOnCalendarWillFillDateToDob()
     {
         $fifteen = date('m/15/Y');
-        $testCase = $this->testCase;
+        $datepicker = $this->clickToDobThenShowCalendar();
+        $datepicker->chooseDayInCurrentMonth(15);
 
-        $this->assertClickToDobWillShowCalendar();
-        $calendar = $testCase->byCssSelector('.datepicker');
-        $days = $calendar->elements($testCase->using('css selector')->value('td'));
-
-        foreach ($days as $day) {
-            if ('15' === $day->text()) {
-                $day->click();
-                $testCase->assertEquals($fifteen, $this->dobInput->value());
-                break;
-            }
-        }
+        $this->testCase->assertEquals($fifteen, $this->dobInput->value());
     }
 }
