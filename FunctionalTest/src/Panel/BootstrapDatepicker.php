@@ -7,7 +7,7 @@ use Ams\Page\PageAbstract;
  * Boostrap datepicker
  * @link https://bootstrap-datepicker.readthedocs.org/en/latest/
  */
-class Datepicker extends PageAbstract
+class BootstrapDatepicker extends PageAbstract
 {
     protected function initElements()
     {
@@ -18,5 +18,13 @@ class Datepicker extends PageAbstract
     {
         $day = $this->testCase->byXpath("//td[@class='day' and text()=$dayNumber]");
         $day->click();
+    }
+
+    /**
+     * @return boolean
+     */
+    public function displayed()
+    {
+        return $this->calendar->displayed();
     }
 }

@@ -3,7 +3,7 @@
 namespace Ams\Page\Student;
 
 use Ams\Page\PageAbstract;
-use Ams\Panel\Datepicker;
+use Ams\Panel\BootstrapDatepicker;
 
 class RegisterNewStudent extends PageAbstract
 {
@@ -75,37 +75,35 @@ class RegisterNewStudent extends PageAbstract
     }
 
     /**
-     * @return \Ams\Panel\Datepicker
+     * @return [type] [description]
+     */
+    protected function calendarDisplay()
+    {
+        return function ($testCase) {
+            if ($testCase->byCssSelector('.datepicker')->displayed()) {
+                return true;
+            }
+            return null;
+        };
+    }
+    /**
+     * @return \Ams\Panel\BootstrapDatepicker
      */
     public function clickToDobThenShowCalendar()
     {
-        $calendarDisplay = function ($testCase) {
-            if ($testCase->byCssSelector('.datepicker')->displayed()) {
-                return true;
-            }
-            return null;
-        };
-
         $this->dobInput->click();
-        $this->testCase->waitUntil($calendarDisplay, 500);
-        return new Datepicker($this->testCase);
+        $this->testCase->waitUntil($this->calendarDisplay(), 500);
+        return new BootstrapDatepicker($this->testCase);
     }
 
     /**
-     * @return \Ams\Panel\Datepicker
+     * @return \Ams\Panel\BootstrapDatepicker
      */
     public function clickToSiblingDobThenShowCalendar()
     {
-        $calendarDisplay = function ($testCase) {
-            if ($testCase->byCssSelector('.datepicker')->displayed()) {
-                return true;
-            }
-            return null;
-        };
-
         $this->fistSiblingDobInput->click();
-        $this->testCase->waitUntil($calendarDisplay, 500);
-        return new Datepicker($this->testCase);
+        $this->testCase->waitUntil($this->calendarDisplay(), 500);
+        return new BootstrapDatepicker($this->testCase);
     }
 
     /**

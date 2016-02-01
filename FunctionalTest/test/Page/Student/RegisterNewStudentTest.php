@@ -22,10 +22,17 @@ class RegisterNewStudentTest extends Selenium2TestCase
         $this->homepage = new Home($this);
     }
 
-    public function testWhenVisitPageRegisterStudentThenFormAppearCorrect()
+    public function testWhenVisitPageRegisterStudentThenFormRegisterAppearCorrect()
     {
         $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
         $registerStudentPage->assertFormAppearCorrect();
+    }
+
+    public function testWhenClickToDobThenCalendarDisplayed()
+    {
+        $registerStudentPage = $this->homepage->visitPageRegisterNewStudent();
+        $calendarPanel = $registerStudentPage->clickToDobThenShowCalendar();
+        $this->assertTrue($calendarPanel->displayed());
     }
 
     public function testWhenClickDayOnCalendarThenDobFilledWithDayClicked()

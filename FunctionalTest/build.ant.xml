@@ -45,4 +45,10 @@
             <arg value="../public/index.php" />
         </exec>
     </target>
+    <target description="Agile doc" name="agiledoc">
+        <exec executable="vendor/bin/phpunit" taskname="PHPUnit">
+            <arg value="--testdox"/>
+            <arg value="test"/>
+        </exec>
+    </target>
 </project>
