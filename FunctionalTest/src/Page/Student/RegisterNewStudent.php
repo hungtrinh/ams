@@ -113,7 +113,8 @@ class RegisterNewStudent extends PageAbstract
      */
     public function assertClickToDayOnCalendarWillFillDateToDob()
     {
-        $fifteen = date('m/15/Y');
+        $day = 15;
+        $fifteen = date("Y-m-$day");
         $datepicker = $this->clickToDobThenShowCalendar();
         $datepicker->chooseDayInCurrentMonth(15);
 
@@ -125,7 +126,7 @@ class RegisterNewStudent extends PageAbstract
      */
     public function assertClickToDayOnCalendarWillFillDateToSiblingDob()
     {
-        $fifteen = date('m/15/Y');
+        $fifteen = date('Y-m-15');
         $datepicker = $this->clickToSiblingDobThenShowCalendar();
         $datepicker->chooseDayInCurrentMonth(15);
 
