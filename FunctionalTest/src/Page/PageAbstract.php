@@ -9,15 +9,25 @@ abstract class PageAbstract
     /**
      * @var \PHPUnit_Extensions_Selenium2TestCase
      */
-    protected $webdriver;
+    protected $testCase;
 
-    public function __construct(Selenium2TestCase $webdriver)
+    public function __construct(Selenium2TestCase $testCase)
     {
-        $this->webdriver = $webdriver;
+        $this->testCase = $testCase;
+        $this->initElements();
     }
 
-    public function visit()
+    /**
+     * assume page loaded, locate all element on current page(panel)
+     */
+    abstract protected function initElements();
+
+    /**
+     * Get page title
+     * @return string page title
+     */
+    public function title()
     {
-        $this->webdriver->url($this->url);
+        return $this->testCase->title();
     }
 }
