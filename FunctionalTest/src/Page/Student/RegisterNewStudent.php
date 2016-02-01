@@ -92,6 +92,23 @@ class RegisterNewStudent extends PageAbstract
     }
 
     /**
+     * @return \Ams\Panel\Datepicker
+     */
+    public function clickToSiblingDobThenShowCalendar()
+    {
+        $calendarDisplay = function ($testCase) {
+            if ($testCase->byCssSelector('.datepicker')->displayed()) {
+                return true;
+            }
+            return null;
+        };
+
+        $this->fistSiblingDobInput->click();
+        $this->testCase->waitUntil($calendarDisplay, 500);
+        return new Datepicker($this->testCase);
+    }
+
+    /**
      * @return void
      */
     public function assertClickToDayOnCalendarWillFillDateToDob()
@@ -101,5 +118,17 @@ class RegisterNewStudent extends PageAbstract
         $datepicker->chooseDayInCurrentMonth(15);
 
         $this->testCase->assertEquals($fifteen, $this->dobInput->value());
+    }
+
+    /**
+     * @return void
+     */
+    public function assertClickToDayOnCalendarWillFillDateToSiblingDob()
+    {
+        $fifteen = date('m/15/Y');
+        $datepicker = $this->clickToSiblingDobThenShowCalendar();
+        $datepicker->chooseDayInCurrentMonth(15);
+
+        $this->testCase->assertEquals($fifteen, $this->fistSiblingDobInput->value());
     }
 }

@@ -24,6 +24,9 @@ return [
                     'options' => [
                         'label' => 'Date of birth',
                     ],
+                    'attributes' => [
+                        'data-provide' => 'datepicker',
+                    ],
                 ],//spec
             ],//dob
             [
@@ -132,7 +135,7 @@ return [
                     ],
                     'attributes' => [
                         'data-provide' => 'datepicker',
-                    ]
+                    ],
                 ],//spec
             ],//Student\Form\ProfileFieldset::DATE_OF_BIRTH
             [
