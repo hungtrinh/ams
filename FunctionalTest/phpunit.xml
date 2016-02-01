@@ -1,0 +1,14 @@
+<phpunit>
+    <listeners>
+        <listener class="PHPUnit_Extensions_Selenium2TestCase_ScreenshotListener">
+            <arguments>
+                <string>./screenshort</string>
+            </arguments>
+        </listener>
+    </listeners>
+    <testsuites>
+        <testsuite name="Ams">
+            <directory>test/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

@@ -5,8 +5,9 @@
         name="build" />
     <target description="Run phpunit verbose" name="phpunit">
         <exec executable="vendor/bin/phpunit" taskname="PHPUnit">
+            <arg value="-c"/>
+            <arg value="phpunit.xml"/>
             <arg value="--verbose"/>
-            <arg value="test"/>
         </exec>
     </target>
     <target description="Cleanup build artifacts" name="clean">
@@ -47,8 +48,9 @@
     </target>
     <target description="Agile doc" name="agiledoc">
         <exec executable="vendor/bin/phpunit" taskname="PHPUnit">
+            <arg value="-c"/>
+            <arg value="phpunit.xml"/>
             <arg value="--testdox"/>
-            <arg value="test"/>
         </exec>
     </target>
 </project>
