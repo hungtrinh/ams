@@ -135,6 +135,8 @@ return [
                     ],
                     'attributes' => [
                         'data-provide' => 'datepicker',
+                        'data-toggle' => 'popover',
+                        'data-content' => "Example: 1999-12-28",
                     ],
                 ],//spec
             ],//Student\Form\ProfileFieldset::DATE_OF_BIRTH

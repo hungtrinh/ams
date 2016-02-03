@@ -3,6 +3,7 @@
 /* @var $studentForm \Zend\Form\Form */
 
 $this->headTitle('Register student');
+
 $this->headLink()->appendStylesheet(
     'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/css/bootstrap-datepicker3.standalone.min.css'
 );
@@ -12,9 +13,10 @@ $this->inlineScript()->appendFile(
 $this->inlineScript()->appendFile(
     $this->basePath('page/boostrap-datepicker.default.js')
 );
-?>
 
-<?php
+$this->inlineScript()->appendFile(
+    $this->basePath('page/autorun-boostrap-propover.js')
+);
 
 $studentForm = $this->studentForm;
 $studentForm->setAttribute('action', $this->url('student/add'));
