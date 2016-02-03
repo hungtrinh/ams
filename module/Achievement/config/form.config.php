@@ -184,7 +184,7 @@ return [
                     'options' => [
                         'label' => 'Siblings',
                         'count' => 1,
-                        'should_create_template' => false,
+                        'should_create_template' => true,
                         'allow_add' => true,
                         'target_element' => [
                             'type' => Student\Form\SiblingFieldset::class,

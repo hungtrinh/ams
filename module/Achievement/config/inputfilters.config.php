@@ -60,6 +60,7 @@ return [
                 'input_filter' => [
                     'dob' => [
                         'name' => 'dob',
+                        'required' => false,
                         'validators' => [
                             [
                                 'name' => 'date',
