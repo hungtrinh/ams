@@ -13,11 +13,41 @@ $this->inlineScript()->appendFile(
 $this->inlineScript()->appendFile(
     $this->basePath('page/boostrap-datepicker.default.js')
 );
-
 $this->inlineScript()->appendFile(
     $this->basePath('page/autorun-boostrap-propover.js')
 );
+$this->inlineScript()->captureStart();
+?>
+$(function(){
+    var maxSibling = 0 + $('[data-max-sublings]').data('max-sublings') || 1;
+    var siblingTemplate = $('[data-template]').data('template');
+    var $siblings = $('.siblings');
+    var $body = $('body');
+    var eventAddSiblingDom = 'sibling:add:dom';
+    
+    $body.on(eventAddSiblingDom, addSiblingInput);
+    $body.on('keydown', '.sibling-work', triggerEventAddSiblingDom);
+    
+    function triggerEventAddSiblingDom(e)
+    {
+        var keyCode = e.keyCode || e.which; 
+        var noPressTabKey = keyCode != 9;
+        if (noPressTabKey) {
+            return;
+        }
+        $body.trigger(eventAddSibling);
+    }
 
+    function addSiblingInput(e) {
+        var isLimitedSibling = maxSibling === $('.sibling-work').size();
+        if (isLimitedSibling) { 
+            return;
+        }
+        $siblings.append(siblingTemplate);
+    }
+});
+<?php
+$this->inlineScript()->captureEnd();
 $studentForm = $this->studentForm;
 $studentForm->setAttribute('action', $this->url('student/add'));
 $studentForm->prepare();

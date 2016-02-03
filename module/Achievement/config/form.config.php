@@ -7,6 +7,9 @@ return [
         'name' => Student\Form\SiblingFieldset::NAME,
         'hydrator' => Student\Hydrator::SIBLINGS_HYDRATOR,
         'object' => Student\Model\Sibling::class,
+        'attributes' => [
+            'class' => 'sibling'
+        ],
         'elements' => [
             [
                 'spec' => [
@@ -49,6 +52,9 @@ return [
                     'options' => [
                         'label' => 'Work',
                     ],
+                    'attributes' => [
+                        'class' => 'sibling-work'
+                    ]
                 ],//spec
             ],//work
         ],//elements
@@ -189,7 +195,11 @@ return [
                         'target_element' => [
                             'type' => Student\Form\SiblingFieldset::class,
                         ],
-                    ],
+                    ],//options
+                    'attributes' => [
+                        'data-max-sublings' => 3,
+                        'class' => 'siblings',
+                    ],//attributes
                 ],//spec
             ],//Student\Form\ProfileFieldset::SIBLINGS
             [
