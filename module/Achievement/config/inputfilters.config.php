@@ -17,6 +17,14 @@ return [
             ],
             'dob' => [
                 'name'       => 'dob',
+                'validators' => [
+                    [
+                        'name' => 'date',
+                        'options' => [
+                            'format' => 'Y-m-d'
+                        ],
+                    ],
+                ],
             ],
             'account' => [
                 'type' => 'InputFilter',
@@ -46,6 +54,23 @@ return [
                     'name' => 'password',
                 ]
             ], //account
+            'siblings' => [
+                'type' => 'collection',
+                'required' => false,
+                'input_filter' => [
+                    'dob' => [
+                        'name' => 'dob',
+                        'validators' => [
+                            [
+                                'name' => 'date',
+                                'options' => [
+                                    'format' => 'Y-m-d'
+                                ],
+                            ],
+                        ],
+                    ], //dob
+                ], //input_filter
+            ], //siblings
         ], //student
     ], //Achievement\InputFilter\Student
 ];

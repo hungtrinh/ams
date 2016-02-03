@@ -144,6 +144,22 @@ class ProfileFormInputFilterTest extends TestCase
         );
     }
 
+    public function testDobValidFormatYmd()
+    {
+        $this->setInvidualValidOnStudentFieldSet('dob', '1985-01-18');
+        $this->assertTrue($this->studentInputFilter->isValid());
+    }
+
+    public function testDobValidFormatYmdButWrongDateValue()
+    {
+        $this->setInvidualValidOnStudentFieldSet('dob', '2015-02-29');
+        $this->assertFalse($this->studentInputFilter->isValid());
+        $this->assertArrayHasKey(
+            'dateInvalidDate',
+            $this->studentInputFilter->getMessages()['student']['dob']
+        );
+    }
+
     public function testUsernameIsRequired()
     {
         $this->setInvidualValidOnAccountFieldSet('username', '');
@@ -152,5 +168,48 @@ class ProfileFormInputFilterTest extends TestCase
             'isEmpty',
             $this->studentInputFilter->getMessages()['student']['account']['username']
         );
+    }
+
+    public function testSiblingsIsNotRequired()
+    {
+        $this->studentInputFilter->setValidationGroup([
+            'student' => ['siblings']
+        ]);
+        $this->studentInputFilter->setData([
+            'student' => [
+                'fullname' => 'hungtd',
+            ],
+        ]);
+        $this->assertTrue($this->studentInputFilter->isValid());
+    }
+
+    public function testSiblingsDobFormatIsYmd()
+    {
+        $this->studentInputFilter->setValidationGroup([
+            'student' => [
+                'siblings' => ['dob'],
+            ]
+        ]);
+        $this->studentInputFilter->setData([
+            'student' => [
+                'siblings' => [
+                    0 => [
+                        'dob' =>  'invalid day format',
+                    ],
+                ],
+            ],
+        ]);
+        $this->assertFalse($this->studentInputFilter->isValid());
+
+        $this->studentInputFilter->setData([
+            'student' => [
+                'siblings' => [
+                    0 => [
+                        'dob' =>  '2016-02-29',
+                    ],
+                ],
+            ],
+        ]);
+        $this->assertTrue($this->studentInputFilter->isValid());
     }
 }

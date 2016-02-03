@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"get_",
+				"get_class〔function〕"
+			],
+			[
+				"file",
+				"$filedata〔variable〕"
+			],
+			[
+				"click",
+				"clickToSiblingDobThenShowCalendar〔function〕"
+			],
+			[
+				"ca",
+				"$calendarPanel〔variable〕"
+			],
+			[
+				"Page",
+				"PageAbstract〔class〕"
+			],
+			[
+				"re",
+				"$registerStudentPage〔variable〕"
+			],
+			[
+				"date",
+				"datepicker"
+			],
+			[
 				"v",
 				"verifyPage〔function〕"
 			],
@@ -240,10 +268,6 @@
 				"locator"
 			],
 			[
-				"re",
-				"relationshipValidatorChain"
-			],
-			[
 				"va",
 				"validator"
 			],
@@ -464,10 +488,6 @@
 				"base64_encode"
 			],
 			[
-				"file",
-				"filePath"
-			],
-			[
 				"cl",
 				"client"
 			],
@@ -494,40 +514,17 @@
 			[
 				"in",
 				"includeemptydirs"
-			],
-			[
-				"pass",
-				"$password〔variable〕"
-			],
-			[
-				"u",
-				"$username〔variable〕"
-			],
-			[
-				"var_",
-				"var_dump〔function〕"
-			],
-			[
-				"da",
-				"$dataProvinder〔variable〕"
-			],
-			[
-				"cat",
-				"categoryModel"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "Package Control Messages\n========================\n\nMaterialize\n-----------\n\n  Version 2.5.3\n  ===============================================================================================================================\n  * Fixed Zenburn sidebar\n  \n  Restart your editor if you see any graphic corruption. Report any issues/theme requests to https://github.com/saadq/Materialize/issues.\n  \n  Want to talk about a theme request or just say hi? Send a message to saad@saadquadri.com :)\n",
+			"file": "module/Achievement/test/AchievementTest/Student/Form/ProfileFormInputFIlterDatabaseTest.php",
 			"settings":
 			{
-				"buffer_size": 486,
-				"line_ending": "Unix",
-				"name": "Package Control Messages",
-				"read_only": true,
-				"scratch": true
+				"buffer_size": 3313,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -1144,15 +1141,53 @@
 	"expanded_folders":
 	[
 		"/home/hungtd/Projects/ams",
-		"/home/hungtd/Projects/ams/.vagrant",
-		"/home/hungtd/Projects/ams/FunctionalTest",
-		"/home/hungtd/Projects/ams/config"
+		"/home/hungtd/Projects/ams/FunctionalTest/src",
+		"/home/hungtd/Projects/ams/FunctionalTest/src/Page",
+		"/home/hungtd/Projects/ams/FunctionalTest/src/Panel",
+		"/home/hungtd/Projects/ams/FunctionalTest/test",
+		"/home/hungtd/Projects/ams/FunctionalTest/test/Page",
+		"/home/hungtd/Projects/ams/config",
+		"/home/hungtd/Projects/ams/module",
+		"/home/hungtd/Projects/ams/module/Achievement",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student",
+		"/home/hungtd/Projects/ams/module/Application",
+		"/home/hungtd/Projects/ams/module/Application/src",
+		"/home/hungtd/Projects/ams/module/Application/view",
+		"/home/hungtd/Projects/ams/vendor",
+		"/home/hungtd/Projects/ams/vendor/zendframework",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/View",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/View/Helper"
 	],
 	"file_history":
 	[
-		"/home/hungtd/Projects/ams/FunctionalTest/src/Page/PageAbstract.php",
-		"/home/hungtd/Projects/ams/FunctionalTest/src/Page/Student/RegisterNewStudent.php",
+		"/home/hungtd/Projects/ams/config/application.config.php",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/View/Helper/FormDateSelect.php",
+		"/home/hungtd/Projects/ams/module/Achievement/config/form.config.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/InputFilter.php",
+		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/ProfileFieldset.php",
+		"/home/hungtd/Projects/ams/FunctionalTest/build.xml",
+		"/home/hungtd/Projects/ams/FunctionalTest/screenshort/.gitignore",
+		"/home/hungtd/Projects/ams/FunctionalTest/build.ant.xml",
+		"/home/hungtd/Projects/ams/FunctionalTest/phpunit.xml",
+		"/home/hungtd/Projects/ams/FunctionalTest/src/Page/Home.php",
+		"/home/hungtd/Projects/ams/FunctionalTest/src/Panel/BootstrapDatepicker.php",
 		"/home/hungtd/Projects/ams/FunctionalTest/test/Page/Student/RegisterNewStudentTest.php",
+		"/home/hungtd/Projects/ams/FunctionalTest/src/Page/Student/RegisterNewStudent.php",
+		"/media/hungtd/DCAE1253AE122714/nyuukan/importBox.sh",
+		"/home/hungtd/Projects/ams/FunctionalTest/vendor/phpunit/phpunit-selenium/PHPUnit/Extensions/Selenium2TestCase/ScreenshotListener.php",
+		"/home/hungtd/Projects/ams/FunctionalTest/vendor/phpunit/phpunit-selenium/PHPUnit/Extensions/Selenium2TestCase.php",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/View/Helper/FormElement.php",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/View/Helper/FormText.php",
+		"/home/hungtd/Projects/ams/vendor/zendframework/zend-form/src/View/Helper/FormInput.php",
+		"/home/hungtd/Projects/ams/module/Achievement/view/achievement/student-persit/add.phtml",
+		"/home/hungtd/Projects/ams/public/page/boostrap-datepicker.default.js",
+		"/home/hungtd/Projects/ams/FunctionalTest/vendor/phpunit/phpunit-selenium/PHPUnit/Extensions/Selenium2TestCase/WaitUntil.php",
+		"/home/hungtd/Projects/ams/FunctionalTest/vendor/phpunit/phpunit/src/Extensions/PhptTestCase.php",
+		"/home/hungtd/Projects/ams/FunctionalTest/src/Panel/Datepicker.php",
+		"/home/hungtd/Projects/ams/FunctionalTest/src/Page/PageAbstract.php",
 		"/home/hungtd/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Mapper/ProfileMapperHydratorFunctionalTest.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Mapper/ProfilePersitHydratorFactory.php",
@@ -1166,7 +1201,6 @@
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-feed/src/Reader/Collection.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Mapper/ProfilePersitFactory.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/_fixtures/fullProfileModelValid.php",
-		"/home/hungtd/Projects/ams/module/Achievement/config/form.config.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Form/ProfileFormTest.php",
 		"/home/hungtd/Projects/ams/data/db/migrations/20151224041738_zfc_user_table.php",
 		"/home/hungtd/Projects/ams/build.phing.xml",
@@ -1230,7 +1264,6 @@
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/ProfileForm.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/Element.php",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/Element/CourseSelectFactory.php",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/ProfileFieldset.php",
 		"/home/hungtd/Projects/ams/vendor/zendframework/zend-stdlib/src/Hydrator/ArraySerializable.php",
 		"/home/hungtd/Projects/ams/HISTORY.md",
 		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Account/Model/AccountBasicInterface.php",
@@ -1257,27 +1290,7 @@
 		"/home/hungtd/Projects/ams/build.ant.xml",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Factory/WriteControllerFactoryTest.php",
 		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Form/StudentFormTest.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Service/StudentRegisterTest.php",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Factory/WriteControllerFactory.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php",
-		"/home/hungtd/Projects/ams/module/Achievement/src/Achievement/Student/Form/StudentForm.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-servicemanager/src/AbstractPluginManager.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/StudentWriterSpecificationTest.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-inputfilter/src/InputFilterPluginManager.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/StudentWriteControllerFuntionalTest.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-http/src/Client.php",
-		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Controller/ExceptionTest.php",
-		"/home/hungtd/Projects/ams/Vagrantfile",
-		"/home/hungtd/Projects/ams/vendor/symfony/process/Process.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-inputfilter/src/BaseInputFilter.php",
-		"/home/hungtd/Projects/ams/vendor/zendframework/zend-inputfilter/src/InputFilterInterface.php",
-		"/home/hungtd/.config/sublime-text-3/Packages/User/ColorPicker.sublime-settings",
-		"/home/hungtd/Projects/ams/vendor/phpunit/dbunit/samples/BankAccountDB/BankAccountDBTestMySQL.php",
-		"/home/hungtd/Projects/ams/composer.json",
-		"/home/hungtd/Projects/ams/vendor/phpunit/dbunit/samples/BankAccountDB/BankAccountDBTest.php",
-		"/home/hungtd/Projects/ams/vendor/phpunit/dbunit/samples/BankAccountDB/BankAccount.php",
-		"/home/hungtd/Projects/ams/vendor/phpunit/dbunit/samples/BankAccountDB/BankAccountCompositeTest.php",
-		"/home/hungtd/Projects/ams/vendor/robmorgan/phinx/src/Phinx/Db/Adapter/PdoAdapter.php"
+		"/home/hungtd/Projects/ams/module/Achievement/test/AchievementTest/Student/Service/StudentRegisterTest.php"
 	],
 	"find":
 	{
@@ -1342,6 +1355,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"clickToSiblingDobThenShowCalendar",
+			"visitPageRegisterNewStudent",
+			"testWhenVisitPageRegisterStudentThenFormRegisterAppearCorrect",
+			"provi",
+			"dataProvi",
+			"datepicker",
+			"assertClickToDobWillShowCalendar",
 			"ProfileMapperHydrator",
 			"'sibling'",
 			"sibling",
@@ -1462,14 +1482,7 @@
 			"/Domain/",
 			"fixture",
 			"profileValid",
-			"validNewStudentProfileProvider",
-			"HydratorManager",
-			"\n    ",
-			"Achievement\\InputFilter\\Student",
-			"input_filter_specs",
-			"createInput",
-			"array(",
-			"'Fieldset\\Sibling'"
+			"validNewStudentProfileProvider"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -1538,39 +1551,35 @@
 	"groups":
 	[
 		{
-			"sheets":
-			[
-			]
-		},
-		{
 			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "module/Achievement/test/AchievementTest/Student/Form/ProfileFormInputFIlterDatabaseTest.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 486,
+						"buffer_size": 3313,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								227,
-								227
+								1672,
+								1672
 							]
 						],
 						"settings":
 						{
-							"auto_indent": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_width": 2,
-							"word_wrap": true
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 697.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1596,18 +1605,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -1646,6 +1648,46 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"profileforminputfilter",
+				"module/Achievement/test/AchievementTest/Student/Form/ProfileFormInputFIlterDatabaseTest.php"
+			],
+			[
+				"/student/inputfilter",
+				"module/Achievement/src/Achievement/Student/InputFilter.php"
+			],
+			[
+				"form/helper/desc",
+				"vendor/zendframework/zend-form/src/View/Helper/FormDateSelect.php"
+			],
+			[
+				"screenshotlistener",
+				"FunctionalTest/vendor/phpunit/phpunit-selenium/PHPUnit/Extensions/Selenium2TestCase/ScreenshotListener.php"
+			],
+			[
+				"selenium2testcase",
+				"FunctionalTest/vendor/phpunit/phpunit-selenium/PHPUnit/Extensions/Selenium2TestCase.php"
+			],
+			[
+				"home.php",
+				"FunctionalTest/src/Page/Home.php"
+			],
+			[
+				"formtext.php",
+				"vendor/zendframework/zend-form/src/View/Helper/FormText.php"
+			],
+			[
+				"formelement",
+				"vendor/zendframework/zend-form/src/View/Helper/FormElement.php"
+			],
+			[
+				"add.phtml",
+				"module/Achievement/view/achievement/student-persit/add.phtml"
+			],
+			[
+				"registernewstudent.php",
+				"FunctionalTest/src/Page/Student/RegisterNewStudent.php"
+			],
 			[
 				"collection.php",
 				"vendor/zendframework/zend-form/src/Element/Collection.php"
@@ -2117,46 +2159,6 @@
 			[
 				"registerstudentinterface",
 				"module/Achievement/test/coverage/src/Achievement/Student/Service/StudentRegisterInterface.php.html"
-			],
-			[
-				"studentcontro",
-				"module/Achievement/src/Achievement/Controller/StudentWriteController.php"
-			],
-			[
-				"writecontrollerfactorytest.php",
-				"module/Achievement/test/AchievementTest/Student/Factory/WriteControllerFactoryTest.php"
-			],
-			[
-				"registert",
-				"module/Achievement/test/AchievementTest/Student/Service/RegisterTest.php"
-			],
-			[
-				"writecontrollerfactoryt",
-				"module/Achievement/test/AchievementTest/Student/Factory/WriteControllerFactoryTest.php"
-			],
-			[
-				"buil",
-				"build.xml"
-			],
-			[
-				"build",
-				"build.xml"
-			],
-			[
-				"studenttes",
-				"module/Achievement/test/AchievementTest/InputFilter/StudentTest.php"
-			],
-			[
-				"studentw",
-				"module/Achievement/src/Achievement/Controller/StudentWriteController.php"
-			],
-			[
-				"studentwriteco",
-				"module/Achievement/test/AchievementTest/Controller/StudentWriteControllerTest.php"
-			],
-			[
-				"studenttest",
-				"module/Achievement/test/AchievementTest/InputFilter/StudentTest.php"
 			]
 		],
 		"width": 0.0

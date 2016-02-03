@@ -57,7 +57,7 @@ class ProfileFormInputFilterDatabaseTest extends TestCase
         $this->assertTablesEqual($expectedTable, $queryTable);
     }
     
-    public function testIsInValidWhenInjectUsernameExistedBefore()
+    public function testUsernameIsUnique()
     {
         $duplicatedUserName = '1234568';
         $this->studentInputFilter->setValidationGroup([
