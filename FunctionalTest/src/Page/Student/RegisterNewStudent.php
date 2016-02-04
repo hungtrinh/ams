@@ -78,15 +78,17 @@ class RegisterNewStudent extends PageAbstract
     }
 
     /**
-     * @return [type] [description]
+     * 
+     * @return true | null
      */
     protected function calendarDisplay()
     {
         return function ($testCase) {
-            if ($testCase->byCssSelector('.datepicker')->displayed()) {
+            try {
+                $testCase->byCssSelector('.datepicker');
                 return true;
+            } catch (WebDriverException $ex) {
             }
-            return null;
         };
     }
     /**

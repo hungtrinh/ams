@@ -70,7 +70,7 @@ class SiblingFieldset extends PageAbstract
                 return true;
             } catch (WebDriverException $e) {
             }
-            return false;
+            return false; // remove this line ha issue
         };
     }
 
