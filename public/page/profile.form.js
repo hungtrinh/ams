@@ -13,13 +13,14 @@
      */
     function profileFormReady() {
         var EVENT_ADD_SIBLING_DOM = 'sibling:add:dom',
+            inputSiblingJob       = '.sibling-work',
             maxSibling            = 0 + $('[data-max-sublings]').data('max-sublings') || 1,
             siblingTemplate       = $('[data-template]').data('template'),
-            $siblings             = $('.siblings'),
+            $siblingList          = $('.siblings'),
             $body                 = $('body');
         
         $body.on(EVENT_ADD_SIBLING_DOM, addSiblingInput);
-        $body.on('keydown', '.sibling-work', triggerEventAddSiblingDom);
+        $body.on('keydown', inputSiblingJob, triggerEventAddSiblingDom);
         
         /**
          * Trigger event add sibling dom 
@@ -43,11 +44,14 @@
          * @return void
          */
         function addSiblingInput(e) {
-            var isLimitedSibling = maxSibling === $('.sibling-work').size();
-            if (isLimitedSibling) { 
+            var numberSibling   = $(inputSiblingJob).size(),
+                isEnoughSibling = maxSibling === numberSibling,
+                siblingFieldset = '';
+            if (isEnoughSibling) { 
                 return;
             }
-            $siblings.append(siblingTemplate);
+            siblingFieldset = siblingTemplate.replace(/__index__/g, numberSibling)
+            $siblingList.append(siblingFieldset);
         } //addSiblingInput
 
     }; //profileFormReady

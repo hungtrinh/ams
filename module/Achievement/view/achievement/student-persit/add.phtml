@@ -19,6 +19,8 @@ $this->inlineScript()->appendFile(
 $this->inlineScript()->appendFile(
     $this->basePath('page/profile.form.js')
 );
+?>
+<?php
 $studentForm = $this->studentForm;
 $studentForm->setAttribute('action', $this->url('student/add'));
 $studentForm->prepare();

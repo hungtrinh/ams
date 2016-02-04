@@ -4,6 +4,8 @@ namespace Ams\Page\Student;
 
 use Ams\Page\PageAbstract;
 use Ams\Panel\BootstrapDatepicker;
+use Ams\Panel\SiblingFieldset;
+use PHPUnit_Extensions_Selenium2TestCase_WebDriverException as WebDriverException;
 
 class RegisterNewStudent extends PageAbstract
 {
@@ -28,6 +30,7 @@ class RegisterNewStudent extends PageAbstract
         $this->fistSiblingDobInput= $testCase->byName('student[siblings][0][dob]');
         $this->fistSiblingWorkInput= $testCase->byName('student[siblings][0][work]');
         $this->fistSiblingRelationshipSelect= $testCase->byName('student[siblings][0][relationship]');
+        $this->siblingFieldset = new SiblingFieldset($this->testCase, 0);
 
         $this->firstCourseSelect= $testCase->byName('student[courses][0][code]');
         $this->secondCourseSelect= $testCase->byName('student[courses][1][code]');
@@ -129,5 +132,21 @@ class RegisterNewStudent extends PageAbstract
         $datepicker->chooseDayInCurrentMonth(15);
 
         $this->testCase->assertEquals($fifteen, $this->fistSiblingDobInput->value());
+    }
+
+    public function assertOnSiblingWorkPressTabThenCreateMaximum3SiblingInput()
+    {
+        $siblingFieldset2 = $this->siblingFieldset->pressTabKeyOnWorkInput();
+        $siblingFieldset3 = $siblingFieldset2->pressTabKeyOnWorkInput();
+        
+        try {
+            $siblingFieldset3->pressTabKeyOnWorkInput();
+        } catch (WebDriverException $e) {}
+        
+        $testCase = $this->testCase;
+        $findAllSiblingFieldset = $testCase->using('css selector')->value('.sibling');
+        $siblingFieldsets = $testCase->elements($findAllSiblingFieldset);
+        
+        $this->testCase->assertCount(3, $siblingFieldsets);
     }
 }
