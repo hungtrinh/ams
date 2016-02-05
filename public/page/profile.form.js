@@ -50,9 +50,8 @@
             if (isEnoughSibling) { 
                 return;
             }
-            siblingFieldset = siblingTemplate.replace(/__index__/g, numberSibling)
+            siblingFieldset = siblingTemplate.replace(/__index__/g, numberSibling);
             $siblingList.append(siblingFieldset);
         } //addSiblingInput
-
     }; //profileFormReady
 })(window.jQuery);
