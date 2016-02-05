@@ -13,5 +13,5 @@
             format:'yyyy-mm-dd'
         };
         $.extend($datepicker.defaults, amsDatePickerDefault);
-    }
+    } //setupAmsDatePickerDefault
 })(window.jQuery, window.jQuery.fn.datepicker);

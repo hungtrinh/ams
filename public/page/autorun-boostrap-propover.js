@@ -9,12 +9,12 @@
     $(readyToRunPopoverFeature);    
 
     function readyToRunPopoverFeature() {
-        var popoverSelector = '[data-toggle="popover"]';
-        var $document = $(document);
-        var $popover = $(popoverSelector);
+        var popoverSelector = '[data-toggle="popover"]',
+            $body           = $('body'),
+            $popover        = $(popoverSelector);
 
         $popover.popover({"placement": "auto"});
-        $document.on('blur', popoverSelector, hidePopoverOnOutFocus);
+        $body.on('blur', popoverSelector, hidePopoverOnOutFocus);
 
         function hidePopoverOnOutFocus() {
             $(this).popover('hide');
